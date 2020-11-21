@@ -115,7 +115,9 @@
 <p>​      <em>block和none是不占用空间的，而visible和unvisible是占用空间的</em></p>
 <p>​      <strong>且一定一定要让该行文字与div区域处于统一父元素之下才能实现！</strong></p>
 <p>​    8. <strong><em>改变图片的透明度（用hover的时候使图片变灰）</em></strong></p>
-<pre><code>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.d1 img:hover&#123;</span><br><span class="line">    filter:alpha(Opacity&#x3D;80);-moz-opacity:0.8;opacity: 0.8</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></code></pre>
+<pre><code>.d1 img:hover&#123;
+    filter:alpha(Opacity=80);-moz-opacity:0.8;opacity: 0.8
+&#125;</code></pre>
 
       
     </div>
