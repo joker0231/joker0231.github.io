@@ -64,6 +64,79 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Task 3：对象，数组以及字符串" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/04/Task%203%EF%BC%9A%E5%AF%B9%E8%B1%A1%EF%BC%8C%E6%95%B0%E7%BB%84%E4%BB%A5%E5%8F%8A%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="article-date">
+  <time datetime="2020-12-04T13:41:10.772Z" itemprop="datePublished">2020-12-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Task-3：对象，数组以及字符串"><a href="#Task-3：对象，数组以及字符串" class="headerlink" title="Task 3：对象，数组以及字符串"></a>Task 3：对象，数组以及字符串</h3><h4 id="数组语法"><a href="#数组语法" class="headerlink" title="数组语法"></a><strong><em>数组语法</em></strong></h4><ol>
+<li><p>split(‘’”), 字符串转数组,返回一个新的数组</p>
+</li>
+<li><p>slice(start,end),字符串截取，[1,2,3,5].slice(-1)  =&gt; [5],返回截取后的数组，不改变原数组</p>
+</li>
+<li><p>splice()，删除或者添加字符串 [].splite(1,1,’2’), 在下标为1的位置开始 删除1个元素，添加“2”到这个位置,改变原来数组</p>
+</li>
+<li><p>push(),结尾添加元素，改变原数组返回新数组长度</p>
+</li>
+<li><p>pop() 结尾删除元素，删除数组最后一个元素，返回该元素</p>
+</li>
+<li><p>shift() 开头删除元素，删除开头一个元素，返回该元素</p>
+</li>
+<li><p>unshift() 开头添加元素，在开头添加若干元素，返回新的长度</p>
+</li>
+<li><p>reverse() 数组倒叙，改变原数组，返回一个新的数组倒叙</p>
+</li>
+<li><p>array.reduce()<br>reduce() 方法接收一个函数作为累加器，数组中的每个值（从左到右）开始缩减，最终计算为一个值。</p>
+</li>
+<li><p>array.map((value,index)=&gt;{}) </p>
+</li>
+<li><p>array.filter((value,index)=&gt;{})</p>
+</li>
+<li><p>array.concat 返回一个新的数组，不改变原来数组</p>
+</li>
+</ol>
+<h2 id="关于object-的API"><a href="#关于object-的API" class="headerlink" title="关于object 的API"></a>关于object 的API</h2><h4 id="Object-assign"><a href="#Object-assign" class="headerlink" title="Object.assign()"></a>Object.assign()</h4><p>语法：Object.assign(target, …sources)<br>参数：target目标对象，sources源对象。<br>返回值：目标对象<br>Object.assign()方法用于将所有可枚举属性的值从一个或多个源对象复制到目标对象，它将返回目标对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 重复的属性会被源对象替换</span><br><span class="line">    var obj &#x3D; &#123; a: 1, b: 2, c: 3 &#125;;</span><br><span class="line">    var obj1 &#x3D; &#123; c: 4, e: 5, f: 6 &#125;;</span><br><span class="line">    var obj2 &#x3D; Object.assign(&#123;&#125;, obj, obj1);</span><br><span class="line">    console.log(obj2);</span><br><span class="line">    &#x2F;&#x2F; &#123;a: 1, b: 2, c: 4, e: 5, f: 6&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="Object-create"><a href="#Object-create" class="headerlink" title="Object.create()"></a>Object.create()</h4><p>Object.create(proto, [propertiesObject])<br>//方法创建一个新对象，使用现有的对象来提供新创建的对象的proto。</p>
+<p>proto : 必须。表示新建对象的原型对象，即该参数会被赋值到目标对象(即新对象，或说是最后返回的对象)的<strong>原型</strong>上。该参数可以是null、 对象、 函数的prototype属性 （创建空的对象时需传null , 否则会抛出TypeError异常）。<br>propertiesObject : 可选。 添加到新创建对象的可枚举属性（<strong>即其自身的属性，而不是原型链上的枚举属性</strong>）对象的属性描述符以及相应的属性名称。这些属性对应Object.defineProperties()的第二个参数。</p>
+<p>返回在原型对象上添加属性的新对象。</p>
+<h4 id="Object-keys（）"><a href="#Object-keys（）" class="headerlink" title="Object.keys（）"></a>Object.keys（）</h4><p>参数：要返回其枚举自身属性的对象</p>
+<p>返回值：一个表示给定对象的所有可枚举属性的字符串数组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let person &#x3D; &#123;name:&quot;张三&quot;,age:25,address:&quot;深圳&quot;,getName:function()&#123;&#125;&#125;</span><br><span class="line"></span><br><span class="line">Object.keys(person) &#x2F;&#x2F; [&quot;name&quot;, &quot;age&quot;, &quot;address&quot;,&quot;getName&quot;]</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="JSON-stringify-和-JSON-parse-两个-API"><a href="#JSON-stringify-和-JSON-parse-两个-API" class="headerlink" title="JSON.stringify 和 JSON.parse 两个 API"></a>JSON.stringify 和 JSON.parse 两个 API</h4><p>json.stringfy()将对象、数组转换成字符串；</p>
+<p>json.parse()将字符串转成json对象。</p>
+<p>参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/panmy/p/5925986.html">https://www.cnblogs.com/panmy/p/5925986.html</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/04/Task%203%EF%BC%9A%E5%AF%B9%E8%B1%A1%EF%BC%8C%E6%95%B0%E7%BB%84%E4%BB%A5%E5%8F%8A%E5%AD%97%E7%AC%A6%E4%B8%B2/" data-id="ckiabgz2f0000u8tpe0ztg5js" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-继承" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/11/28/%E7%BB%A7%E6%89%BF/" class="article-date">
@@ -470,7 +543,7 @@ f1();//报错函数无法执行</code></pre>
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li></ul>
     </div>
   </div>
 
@@ -481,6 +554,10 @@ f1();//报错函数无法执行</code></pre>
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/12/04/Task%203%EF%BC%9A%E5%AF%B9%E8%B1%A1%EF%BC%8C%E6%95%B0%E7%BB%84%E4%BB%A5%E5%8F%8A%E5%AD%97%E7%AC%A6%E4%B8%B2/">(no title)</a>
+          </li>
         
           <li>
             <a href="/2020/11/28/%E7%BB%A7%E6%89%BF/">(no title)</a>
@@ -496,10 +573,6 @@ f1();//报错函数无法执行</code></pre>
         
           <li>
             <a href="/2020/10/10/%E7%AC%AC%E4%B8%80%E7%AF%87/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/08/hello-world/">Hello World</a>
           </li>
         
       </ul>
