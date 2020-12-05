@@ -64,9 +64,9 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-继承/继承" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-继承" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/12/05/%E7%BB%A7%E6%89%BF/%E7%BB%A7%E6%89%BF/" class="article-date">
+    <a href="/2020/12/05/%E7%BB%A7%E6%89%BF/" class="article-date">
   <time datetime="2020-12-05T07:17:44.705Z" itemprop="datePublished">2020-12-05</time>
 </a>
     
@@ -78,15 +78,12 @@
       
         <h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><p><strong>A 对象通过继承B对象，就能直接拥有B对象的所有属性和方法。</strong>这对于代码的复用非常有用，</p>
 <p>JavaScript通过使用“类”（class）和原型对象（prototype）实现。常见的有六种继承方式。</p>
-<h4 id="方法一：原型链继承"><a href="#方法一：原型链继承" class="headerlink" title="方法一：原型链继承"></a>方法一：原型链继承</h4><p>关键在于：**<em>子类型的原型为父类型的一个实例对象。**</em></p>
-<img src="D:\木犀\js\blog pic\原型继承.png" alt="avatar"  />
-
-
-
+<h4 id="方法一：原型链继承"><a href="#方法一：原型链继承" class="headerlink" title="方法一：原型链继承"></a>方法一：原型链继承</h4><p>关键在于：<br><strong><em>子类型的原型为父类型的一个实例对象。</em></strong></p>
+<p><img src="/2020/12/05/%E7%BB%A7%E6%89%BF/%E5%8E%9F%E5%9E%8B%E7%BB%A7%E6%89%BF.png" alt="01"></p>
 <ul>
 <li><p>让父类的属性和方法在子类实例的原型链上。</p>
 </li>
-<li><p>CHILD .prototype = new PARENT（）；</p>
+<li><p>CHILD .prototype = new PARENT（）；s</p>
 </li>
 <li><p><strong>CHILD .prototype .constructor = CHILD;</strong>(保证原型重定向的完整性)</p>
 </li>
@@ -108,11 +105,10 @@
 </ol>
 <p>（ps：prototype和proto的区别概念</p>
 <p>每个函数都会有一个prototype属性，这个属性是一个指针，指向一个对象，记住只有函数才有,并且通过bind()绑定的也没有。Person.prototype就是原型对象。</p>
-<p>![avatar](D:\木犀\js\blog pic\prototype.webp)</p>
+<p><img src="/2020/12/05/%E7%BB%A7%E6%89%BF/prototype.webp" alt="01"></p>
 <p>proto则是用来将对象与该对象的原型相连。</p>
 <p>constructor属性其实就是将原型对象指向关联的构造函数。</p>
 <p><code>Person.prototype.constructor ===Person // true</code></p>
-<p>）</p>
 <h4 id="方法二：借用构造函数继承"><a href="#方法二：借用构造函数继承" class="headerlink" title="方法二：借用构造函数继承"></a>方法二：借用构造函数继承</h4><p>关键在于：<strong>在子类型构造函数中通用call（）或者apply（）调用父类型构造函数。</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var A&#x3D;function()&#123; </span><br><span class="line">    this.name&#x3D;&quot;meili&quot;; </span><br><span class="line">    this.show&#x3D;function()&#123; </span><br><span class="line">        alert(this.color); </span><br><span class="line">&#125; </span><br><span class="line">&#125; </span><br><span class="line">var B&#x3D;function()&#123;</span><br><span class="line">    this.color&#x3D;&quot;red&quot; ;</span><br><span class="line">        A.call(this)&#x2F;&#x2F;a在 b中执行，实现了B继承A的功能。其中的this指向B的实例。</span><br><span class="line">&#125; </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"> var C &#x3D; new B();  &#x2F;&#x2F;B已经继承了A，从而C也拥有了A的属性。</span><br><span class="line"> C.show();  &#x2F;&#x2F;red</span><br></pre></td></tr></table></figure>
 
@@ -127,7 +123,7 @@
 </li>
 </ol>
 <h4 id="方法三：原型链-借用构造函数的组合继承"><a href="#方法三：原型链-借用构造函数的组合继承" class="headerlink" title="方法三：原型链+借用构造函数的组合继承"></a>方法三：原型链+借用构造函数的组合继承</h4><p>关键在于：<strong>利用原型链实现原型属性和方法的继承，从而通过构造函数来实现实例属性的继承(保证每个实例都有单独的实例属性，而不互相影响，将属性和原型分开继承。</strong></p>
-<p>![aveter](D:\木犀\js\blog pic\组合继承.png)</p>
+<p><img src="/2020/12/05/%E7%BB%A7%E6%89%BF/%E7%BB%84%E5%90%88%E7%BB%A7%E6%89%BF.png" alt="01"></p>
 <p><strong>特点：</strong></p>
 <ol>
 <li>可以继承实例属性、方法，也可以继承原型属性、方法</li>
@@ -138,8 +134,7 @@
 <p>但是没有办法辨别实例是子类还是父类创造的，子类和父类的构造函数指向是同一个。</p>
 <h4 id="优化2-寄生组合式继承："><a href="#优化2-寄生组合式继承：" class="headerlink" title="优化2 寄生组合式继承："></a>优化2 寄生组合式继承：</h4><p><strong>关键：借助原型基于已有的对象创建一个新对象，同时还不必因此创建自定义类型</strong>。</p>
 <p><strong><em>利用Object.create(原型)</em></strong></p>
-<img src="D:\木犀\js\blog pic\寄生组合继承.png" alt="aveter" style="zoom:100%;" />
-
+<p><img src="/2020/12/05/%E7%BB%A7%E6%89%BF/%E5%AF%84%E7%94%9F%E7%BB%84%E5%90%88%E7%BB%A7%E6%89%BF.png" alt="01"></p>
 <ul>
 <li>跟原型链继承有点相似，但是这里并不是创建一个父类的实例然后将子类的原型变为父类的实例，而是通过Object.create创建了一个新的空对象使之指向父类原型，此时空对象中不存在父类的任何私有属性，仅存在父类的公有属性，然后将子类的实例proto指向空对象实现父类公有属性的继承，同时使用call继承父类型的私有属性，从而分开继承私有和公有属性。</li>
 </ul>
@@ -169,7 +164,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/05/%E7%BB%A7%E6%89%BF/%E7%BB%A7%E6%89%BF/" data-id="ckibd80vu0000x4tpe2bc2rpd" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/05/%E7%BB%A7%E6%89%BF/" data-id="ckibgtcfk0005l8tpforu2fmn" class="article-share-link">Share</a>
       
       
     </footer>
@@ -242,7 +237,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/04/Task%203%EF%BC%9A%E5%AF%B9%E8%B1%A1%EF%BC%8C%E6%95%B0%E7%BB%84%E4%BB%A5%E5%8F%8A%E5%AD%97%E7%AC%A6%E4%B8%B2/" data-id="ckiabgz2f0000u8tpe0ztg5js" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/04/Task%203%EF%BC%9A%E5%AF%B9%E8%B1%A1%EF%BC%8C%E6%95%B0%E7%BB%84%E4%BB%A5%E5%8F%8A%E5%AD%97%E7%AC%A6%E4%B8%B2/" data-id="ckibgtcej0000l8tpewkube4x" class="article-share-link">Share</a>
       
       
     </footer>
@@ -370,7 +365,7 @@ f1();//报错函数无法执行</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/11/27/javascript%20task1&2/" data-id="ckhz10xiy00006stp2m1g91vj" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/11/27/javascript%20task1&2/" data-id="ckibgtcfg0003l8tp0o9wgrys" class="article-share-link">Share</a>
       
       
     </footer>
@@ -438,7 +433,7 @@ f1();//报错函数无法执行</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/11/21/%E5%AD%A6%E8%80%8C%E6%9C%BA%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/" data-id="ckhr4hp5g0000s4tp8b4fhfdv" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/11/21/%E5%AD%A6%E8%80%8C%E6%9C%BA%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/" data-id="ckibgtcfi0004l8tpgj2dcp2i" class="article-share-link">Share</a>
       
       
     </footer>
@@ -466,7 +461,7 @@ f1();//报错函数无法执行</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/10/10/%E7%AC%AC%E4%B8%80%E7%AF%87/" data-id="ckg2gd2rd0000r4tp1iro0lp1" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/10/10/%E7%AC%AC%E4%B8%80%E7%AF%87/" data-id="ckibgtcf60002l8tp1qtf4ls7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -515,7 +510,7 @@ f1();//报错函数无法执行</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/10/08/hello-world/" data-id="ckg10m8ga00004gtpcclz0bbm" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/10/08/hello-world/" data-id="ckibgtcf30001l8tp7qsjdp23" class="article-share-link">Share</a>
       
       
     </footer>
@@ -556,7 +551,7 @@ f1();//报错函数无法执行</code></pre>
       <ul>
         
           <li>
-            <a href="/2020/12/05/%E7%BB%A7%E6%89%BF/%E7%BB%A7%E6%89%BF/">(no title)</a>
+            <a href="/2020/12/05/%E7%BB%A7%E6%89%BF/">(no title)</a>
           </li>
         
           <li>
