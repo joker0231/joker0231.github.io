@@ -1,712 +1,1647 @@
 <!DOCTYPE html>
-<html>
-<head>
+<html lang="en">
+<head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/tree/4.2.0'>
   <meta charset="utf-8">
+  <!-- SEO相关 -->
   
+    
+      
+        <meta name="robots" content="index,follow">
+      
+    
+  
+  <!-- 渲染优化 -->
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
+  <!-- 页面元数据 -->
   
   <title>Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:locale" content="en_US">
-<meta property="article:author" content="John Doe">
-<meta name="twitter:card" content="summary">
   
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
 
-<meta name="generator" content="Hexo 5.2.0"></head>
+  
+
+  <!-- feed -->
+  
+
+  <!-- import meta -->
+  
+
+  <!-- link -->
+  
+
+  <!-- import link -->
+  
+
+  
+    
+<link rel="stylesheet" href="/css/first.css">
+
+  
+
+  
+  <link rel="stylesheet" href="/css/style.css" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="/css/style.css"></noscript>
+  
+
+  <script id="loadcss"></script>
+
+</head>
 
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
+  
+
+<header id="l_header" class="l_header auto shadow blur " style='opacity: 0' >
+  <div class='container'>
+  <div id='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h m-phone' id="pjax-header-nav-list">
+        <li><a id="s-comment" class="fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
         
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-http" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/12/10/http/" class="article-date">
-  <time datetime="2020-12-10T09:10:29.000Z" itemprop="datePublished">2020-12-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/12/10/http/">http</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h2><p>当客户端向服务器端发送请求时，描述返回的请求结果。</p>
-<p>数字的第一位指定了响应类别，后两位无分类。</p>
-<p><img src="http/sum.png" alt="01"><br><img src="http/1.png" alt="01"><br>这一类型的状态码，代表请求已被接受，需要继续处理。这类响应是临时响应，只包含状态行和某些可选的响应头信息，并以空行结束。<br><img src="http/2.png" alt="01"><br>这一类型的状态码，代表请求已成功被服务器接收、理解、并接受</p>
-<ul>
-<li><p>mata信息（HTML语言head区的一个辅助性标签）</p>
-<p>位于文档的头部，不包含任何内容。 标签的属性定义了与文档相关联的名称/值对。共有两个属性，它们分别是http-equiv属性和name属性</p>
-<p>name属性主要用于描述网页，与之对应的属性值为content，content中的内容主要是便于搜索引擎机器人查找信息和分类信息用的。</p>
-<p>http-equiv顾名思义，相当于http的文件头作用，它可以向浏览器传回一些有用的信息，以帮助正确和精确地显示网页内容，与之对应的属性值为content，content中的内容其实就是各个参数的变量值。</p>
-</li>
-</ul>
-<p><img src="http/3.png" alt="01"><br>这类状态码代表需要客户端采取进一步的操作才能完成请求。通常，这些状态码用来重定向，后续的请求地址（重定向目标）在本次响应的 Location 域中指明。<br><img src="http/4%E2%80%98.png" alt="01"><br><img src="http/4.png" alt="01"><br>这类的状态码代表了*<strong>客户端*** 看起来可能发生了错误，妨碍了服务器的处理。服务器应该返回一个解释当前错误状况的实体，以及这是临时的还是永久性的状况。这些状态码适用于任何请求方法。浏览器应当向用户显示任何包含在此类错误响应中的实体内容。<br><img src="http/5.png" alt="01"><br>这类状态码代表了*</strong>服务器*** 在处理请求的过程中有错误或者异常状态发生，也有可能是服务器意识到以当前的软硬件资源无法完成对请求的处理。除非这是一个HEAD 请求，否则服务器应当包含一个解释当前错误状态以及这个状况是临时的还是永久的解释信息实体。浏览器应当向用户展示任何在当前响应中被包含的实体。</p>
-<p>下面是常见的HTTP状态码：</p>
-<ul>
-<li><p>200 - 请求成功</p>
-</li>
-<li><p>301 - 资源（网页等）被永久转移到其它URL</p>
-</li>
-<li><p>404 - 请求的资源（网页等）不存在</p>
-</li>
-<li><p>500 - 内部服务器错误</p>
-</li>
-</ul>
-<h3 id="http状态码在哪里查看？"><a href="#http状态码在哪里查看？" class="headerlink" title="http状态码在哪里查看？"></a><strong>http状态码在哪里查看？</strong></h3><p>1.浏览器的F12调试（或者右键检查），network查看Status，status就是http返回的状态码。</p>
-<h3 id="状态码的变化转换："><a href="#状态码的变化转换：" class="headerlink" title="状态码的变化转换："></a><strong>状态码的变化转换：</strong></h3><p>在进行一个http请求的时候，我们看到的只是最后服务器返回来的状态码，比如出错了404之类，或者成功了200.这说明整个http状态请求的过程中，状态码都只是最后返回的那个状态码吗？</p>
-<p>实际上在请求的过程中，http状态码的变化的非常快，像刚才说的1开头的状态码（被接受，需要继续处理。），这类状态码只是一个临时响应的状态码，http请求还是要继续进行下去的，这种状态码是用来反映现在请求进行到哪一步了。除非是类似那种像打断点的东西，一步操作停一下，才会清晰的看出http状态码是如何进行变化的。</p>
-<h2 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h2><p>其功能就是代理网络用户去取得网络信息。形象的说：它是网络信息的中转站。有了它之后，浏览器不是直接到Web服务器去取回网页而是向代理服务器发出请求，Request信号会先送到代理服务器，由代理服务器来取回浏览器所需要的信息并传送给你的浏览器。</p>
-<p>大部分代理服务器都具有缓冲的功能，就好象一个大的Cache，它有很大的存储空间，它不断将新取得数据储存到它本机的存储器上，如果浏览器所请求的数据在它本机的存储器上已经存在而且是最新的，那么它就不重新从Web服务器取数据，而直接将存储器上的数据传送给用户的浏览器，这样就能显著提高浏览速度和效率。</p>
-<h4 id="代理功能"><a href="#代理功能" class="headerlink" title="代理功能"></a><strong><em>代理功能</em></strong></h4><ul>
-<li>隐藏自身IP，免受攻击（SOCKS5代理）</li>
-<li>提高访问速度：通常代理服务器都设置一个较大的硬盘缓冲区，当有外界的信息通过时，同时也将其保存到缓冲区中，当其他用户再访问相同的信息时， 则直接由缓冲区中取出信息，传给用户，以提高访问速度。</li>
-<li>突破自身IP访问限制，访问国外站点。教育网、169网等网络用户可以通过代理访问国外网站。</li>
-<li>访问一些单位或团体内部资源，使用教育网内地址段免费代理服务器，就可以用于对教育网开放的各类FTP下载上传，以及各类资料查询共享等服务。</li>
-</ul>
-<h4 id="设置代理服务器"><a href="#设置代理服务器" class="headerlink" title="设置代理服务器"></a><strong><em>设置代理服务器</em></strong></h4><p>例子：（IE5.0以上版本中设置代理：菜单栏“工具”-&gt;下拉菜单“Internet选项”-&gt;选项卡“连接”-&gt;在“局域网设置”中选中您使用的连接，然后点击右侧的“设置”-&gt;在中间的“代理服务器”栏选中“使用代理服务器”-&gt;在“地址”和“端口”栏输入本站提供的HTTP代理服务器-&gt;确定-&gt;确定。</p>
-<p><strong>透明代理</strong>的意思是客户端根本不需要知道有代理服务器的存在，它改变你的request fields（报文），并会传送真实IP，多用于路由器的NAT转发中。注意，加密的透明代理则是属于匿名代理</p>
-<h2 id="网关"><a href="#网关" class="headerlink" title="网关"></a>网关</h2><p> 网关是一种充当转换重任的计算机系统或设备。使用在不同的通信协议、数据格式或语言，甚至体系结构完全不同的两种系统之间，网关是一个翻译器。从一个网络向另一个网络发送信息，必须要经过一个关口，这就是网关。</p>
-<p> 【说明：由于历史的原因，许多有关TCP/IP的文献曾经把网络层使用的路由器称为网关，在今天很多局域网采用都是路由来接入网络，因此通常指的网关就是路由器的IP！】</p>
-<p> <strong><em>网关实质上是一个网络通向其他网络的IP地址。</em></strong></p>
-<p> 例子：</p>
-<p> 比如有网络A和网络B，网络A的IP地址范围为“192.168.1.1<del>192. 168.1.254”，网络B的IP地址范围为“192.168.2.1</del>192.168.2.254”，在没有路由器的情况下，两个网络之间是不能进行TCP/IP通信的，TCP/IP协议判定两个网络中的主机处在不同的网络里。要实现这两个网络之间的通信，则必须通过网关。如果网络A中的主机发现数据包的目的主机不在本地网络中，就把数据包转发给它自己的网关，再由网关转发给网络B的网关，网络B的网关再转发给网络B的某个主机。网络A向网络B转发数据包的过程。</p>
-<p>通俗一点的讲：网关就是要去别的网络的时候，把报文首先发送到的那台设备。网关一般就是一台路由器，有点像“一个小区中的一个邮局”，小区里面的住户互相是知道怎么走，但是要向外地投递东西就不知道了，怎么办？把地址写好送到本小区的邮局就好了。</p>
-<h2 id="隧道"><a href="#隧道" class="headerlink" title="隧道"></a>隧道</h2><p>http权威指南对于隧道的解释是：</p>
-<p><em>隧道（tunnel） 是建立起来之后， 就会在两条连接之间对原始数据进行盲转发的HTTP 应用程序。 HTTP 隧道通常用来在一条或多条 HTTP 连接上转发非 HTTP 数据， 转发时不会窥探数据。HTTP 隧道的一种常见用途是通过 HTTP 连接承载加密的安全套接字层（SSL，Secure Sockets Layer） 流量， 这样 SSL 流量就可以穿过只允许 Web 流量通过的防火墙了。  HTTP/SSL 隧道收到一条 HTTP 请求， 要求建立一条到目的地址和端口的输出连接， 然后在 HTTP 信道上通过隧道传输加密的 SSL 流量， 这样就可以将其盲转发到目的服务器上去了</em></p>
-<p>HTTP隧道技术就是把所有要传送的数据全部封装到HTTP协议里进行传送。确保客户端能与服务器进行安全的通信。请求保持原样中转给之后的服务器，隧道会在通信双方断开连接时结束。</p>
-<h2 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h2><p>指的是代理服务器或客户端本地磁盘中保存的资源副本。利用缓存减少对原服务器的访问，因此节省了通信流量和通信时间。</p>
-<p>前端缓存可分为两大类：http缓存和浏览器缓存。</p>
-<h3 id="http缓存指的是"><a href="#http缓存指的是" class="headerlink" title="http缓存指的是:"></a>http缓存指的是:</h3><p>当客户端向服务器请求资源时，会先抵达浏览器缓存，如果浏览器有“要请求资源”的副本，就可以直接从浏览器缓存中提取而不是从原始服务器中提取这个资源。</p>
-<p>http缓存都是从第二次请求开始的。第一次请求资源时，服务器返回资源，并在respone header头中回传资源的缓存参数；第二次请求时，浏览器判断这些请求参数，命中强缓存就直接200，否则就把请求参数加到request header头中传给服务器，看是否命中协商缓存，命中则返回304，否则服务器会返回新的资源。</p>
-<ol>
-<li><p>强制缓存</p>
-<p>强制缓存在缓存数据未失效的情况下，那么就会直接使用浏览器的缓存数据，不会再向服务器发送任何请求。</p>
-</li>
-<li><p>协商缓存</p>
-<p>当第一次请求时服务器返回的响应头中没有Cache-Control和Expires或者Cache-Control和Expires过期还或者它的属性设置为no-cache时(即不走强缓存)，那么浏览器第二次请求时就会与服务器进行协商，与服务器端对比判断资源是否进行了修改更新。如果服务器端的资源没有修改，那么就会返回304状态码，告诉浏览器可以使用缓存中的数据，这样就减少了服务器的数据传输压力。如果数据有更新就会返回200状态码，服务器就会返回更新后的资源并且将缓存信息一起返回。</p>
-</li>
-</ol>
-<h3 id="代理缓存"><a href="#代理缓存" class="headerlink" title="代理缓存"></a>代理缓存</h3><p>由一个代理服务器下载的页面存储。一个代理服务器为多个用户提供一条通道。缓冲的代理允许一个代理服务器减少对同一个网站的同样页面的请求次数。一旦代理服务器的一个用户请求了某页，代理服务器就保存该页以服务于它的其他用户的同样请求。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/10/http/" data-id="ckij0j1di0000kotp635ahybv" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-继承" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/12/05/%E7%BB%A7%E6%89%BF/" class="article-date">
-  <time datetime="2020-12-05T07:17:44.705Z" itemprop="datePublished">2020-12-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><p><strong>A 对象通过继承B对象，就能直接拥有B对象的所有属性和方法。</strong>这对于代码的复用非常有用，</p>
-<p>JavaScript通过使用“类”（class）和原型对象（prototype）实现。常见的有六种继承方式。</p>
-<h4 id="方法一：原型链继承"><a href="#方法一：原型链继承" class="headerlink" title="方法一：原型链继承"></a>方法一：原型链继承</h4><p>关键在于：<br><strong><em>子类型的原型为父类型的一个实例对象。</em></strong></p>
-<p><img src="/2020/12/05/%E7%BB%A7%E6%89%BF/%E5%8E%9F%E5%9E%8B%E7%BB%A7%E6%89%BF.png" alt="01"></p>
-<ul>
-<li><p>让父类的属性和方法在子类实例的原型链上。</p>
-</li>
-<li><p>CHILD .prototype = new PARENT（）；s</p>
-</li>
-<li><p><strong>CHILD .prototype .constructor = CHILD;</strong>(保证原型重定向的完整性)</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function Person(name)&#123;</span><br><span class="line">    this.name &#x3D; name;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">function Student(species,age)&#123;</span><br><span class="line">    this.species &#x3D; species;</span><br><span class="line">    this.age &#x3D; age;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">Student.prototype &#x3D; new Person();</span><br><span class="line">Student.prototype.constructor &#x3D; Student;</span><br><span class="line">var studentalin &#x3D; new Student(&quot;大学生&quot;,21);</span><br><span class="line">console.log(studentalin.species);</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<p><strong><em>特点：</em></strong></p>
-<ol>
-<li><p>子类的原型指向父类的实例，故子类的实例可以通过_proto _访问到父类的实例，从而访问到父类的私有方法，再通过 _proto _指向父类的prototype获得父类原型上的方法。从而<strong>将父类的私有公有属性都当做子类的公有属性</strong>。</p>
-</li>
-<li><p>子类可以重写父类上的方法，但是会导致父类其他的实例受到影响。所以想为子类新增属性和方法，必须要<strong>放在替换原型的语句之后写</strong>。</p>
-</li>
-<li><p>继承过多，它会连同不需要继承的属性也继承，会造成效率和用法上的障碍</p>
-</li>
-</ol>
-<p>（ps：prototype和proto的区别概念</p>
-<p>每个函数都会有一个prototype属性，这个属性是一个指针，指向一个对象，记住只有函数才有,并且通过bind()绑定的也没有。Person.prototype就是原型对象。</p>
-<p><img src="/2020/12/05/%E7%BB%A7%E6%89%BF/prototype.webp" alt="01"></p>
-<p>proto则是用来将对象与该对象的原型相连。</p>
-<p>constructor属性其实就是将原型对象指向关联的构造函数。</p>
-<p><code>Person.prototype.constructor ===Person // true</code></p>
-<h4 id="方法二：借用构造函数继承"><a href="#方法二：借用构造函数继承" class="headerlink" title="方法二：借用构造函数继承"></a>方法二：借用构造函数继承</h4><p>关键在于：<strong>在子类型构造函数中通用call（）或者apply（）调用父类型构造函数。</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var A&#x3D;function()&#123; </span><br><span class="line">    this.name&#x3D;&quot;meili&quot;; </span><br><span class="line">    this.show&#x3D;function()&#123; </span><br><span class="line">        alert(this.color); </span><br><span class="line">&#125; </span><br><span class="line">&#125; </span><br><span class="line">var B&#x3D;function()&#123;</span><br><span class="line">    this.color&#x3D;&quot;red&quot; ;</span><br><span class="line">        A.call(this)&#x2F;&#x2F;a在 b中执行，实现了B继承A的功能。其中的this指向B的实例。</span><br><span class="line">&#125; </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"> var C &#x3D; new B();  &#x2F;&#x2F;B已经继承了A，从而C也拥有了A的属性。</span><br><span class="line"> C.show();  &#x2F;&#x2F;red</span><br></pre></td></tr></table></figure>
-
-
-
-<p>call改变函数A 的this指向，使之指向B。</p>
-<p><strong><em>特点：</em></strong></p>
-<ol>
-<li><p>不是真正的继承，只能继承父类的（私有）属性和方法，不能继承父类原型的属性和方法。</p>
-</li>
-<li><p>代码无法复用。总体而言就是可以<strong>实现所有属性方法独享，但无法做到属性、方法共享</strong>（例如，Sub1新增了一个函数，然后想让Sub2、Sub3…都可以用的话就无法实现了，只能Sub2、Sub3…各自在构造函数中新增）。</p>
-</li>
-</ol>
-<h4 id="方法三：原型链-借用构造函数的组合继承"><a href="#方法三：原型链-借用构造函数的组合继承" class="headerlink" title="方法三：原型链+借用构造函数的组合继承"></a>方法三：原型链+借用构造函数的组合继承</h4><p>关键在于：<strong>利用原型链实现原型属性和方法的继承，从而通过构造函数来实现实例属性的继承(保证每个实例都有单独的实例属性，而不互相影响，将属性和原型分开继承。</strong></p>
-<p><img src="/2020/12/05/%E7%BB%A7%E6%89%BF/%E7%BB%84%E5%90%88%E7%BB%A7%E6%89%BF.png" alt="01"></p>
-<p><strong>特点：</strong></p>
-<ol>
-<li>可以继承实例属性、方法，也可以继承原型属性、方法</li>
-<li>不存在引用属性共享问题</li>
-</ol>
-<h4 id="优化1："><a href="#优化1：" class="headerlink" title="优化1："></a>优化1：</h4><p><strong>关键：将父类原型和子类原型指向同一对象，子类可以继承到父类的公有方法当做自己的公有方法。</strong></p>
-<p><code>Parent.prototype = Student.prototype</code></p>
-<p>但是没有办法辨别实例是子类还是父类创造的，子类和父类的构造函数指向是同一个。</p>
-<h4 id="优化2-寄生组合式继承："><a href="#优化2-寄生组合式继承：" class="headerlink" title="优化2 寄生组合式继承："></a>优化2 寄生组合式继承：</h4><p><strong>关键：借助原型基于已有的对象创建一个新对象，同时还不必因此创建自定义类型</strong>。</p>
-<p><strong><em>利用Object.create(原型)</em></strong></p>
-<p><img src="/2020/12/05/%E7%BB%A7%E6%89%BF/%E5%AF%84%E7%94%9F%E7%BB%84%E5%90%88%E7%BB%A7%E6%89%BF.png" alt="01"></p>
-<ul>
-<li>跟原型链继承有点相似，但是这里并不是创建一个父类的实例然后将子类的原型变为父类的实例，而是通过Object.create创建了一个新的空对象使之指向父类原型，此时空对象中不存在父类的任何私有属性，仅存在父类的公有属性，然后将子类的实例proto指向空对象实现父类公有属性的继承，同时使用call继承父类型的私有属性，从而分开继承私有和公有属性。</li>
-</ul>
-<p>ps：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function Activity()</span><br><span class="line">&#123;</span><br><span class="line">  var x&#x3D;1;&#x2F;&#x2F; var变量定义的是私有属性      &#x2F;&#x2F;类似与private</span><br><span class="line">  this.y&#x3D;2;&#x2F;&#x2F;this关键字定义的是公有属性   &#x2F;&#x2F;类似与public</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p><strong>私有属性不能直接访问，而公有属性可以.</strong></p>
-</li>
-<li><p><strong>用var变量定义的是私有方法，而this定义的是公有方法，可以直接调用.</strong></p>
-</li>
-</ul>
-<h4 id="方法四：用class继承"><a href="#方法四：用class继承" class="headerlink" title="方法四：用class继承"></a>方法四：用class继承</h4><p>Class 之间可以通过extends关键字实现继承</p>
-<p><code>class ColorPoint extends Point &#123;&#125;</code></p>
-<p>上面代码定义了一个ColorPoint类， 该类通过extends关键字， 继承了Point类的所有属性和方法。 但是由于没有部署任何代码， 所以这两个类完全一样， 等于复制了一个Point类。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class ColorPoint extends Point &#123;</span><br><span class="line">	constructor(x, y, color) &#123;</span><br><span class="line">		super(x, y); &#x2F;&#x2F;  调用父类的 constructor(x, y)</span><br><span class="line">		this.color &#x3D; color;</span><br><span class="line">	&#125;</span><br><span class="line">	toString() &#123;</span><br><span class="line">		return this.color + &#39; &#39; + super.toString(); &#x2F;&#x2F;  调用父类的 toString()</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>constructor方法和to String方法之中， 都出现了<strong>super关键字</strong>， 它在这里表示父类的构造函数， 用来新建父类的this对象。</p>
-</li>
-<li><p>子类必须在constructor方法中调用super方法， 否则新建实例时会报错。 这是因为子类没有自己的this对象， 而是继承父类的this对象， 然后对其进行加工。 如果不调用super方法， 子类就得不到this对象。</p>
-</li>
-<li><p>实质是先创造父类的实例对象this（ 所以必须先调用super方法）， 然后再用子类的构造函数修改this。</p>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/05/%E7%BB%A7%E6%89%BF/" data-id="ckibgtcfk0005l8tpforu2fmn" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Task 3：对象，数组以及字符串" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/12/04/Task%203%EF%BC%9A%E5%AF%B9%E8%B1%A1%EF%BC%8C%E6%95%B0%E7%BB%84%E4%BB%A5%E5%8F%8A%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="article-date">
-  <time datetime="2020-12-04T13:41:10.772Z" itemprop="datePublished">2020-12-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="Task-3：对象，数组以及字符串"><a href="#Task-3：对象，数组以及字符串" class="headerlink" title="Task 3：对象，数组以及字符串"></a>Task 3：对象，数组以及字符串</h3><h4 id="数组语法"><a href="#数组语法" class="headerlink" title="数组语法"></a><strong><em>数组语法</em></strong></h4><ol>
-<li><p>split(‘’”), 字符串转数组,返回一个新的数组</p>
-</li>
-<li><p>slice(start,end),字符串截取，[1,2,3,5].slice(-1)  =&gt; [5],返回截取后的数组，不改变原数组</p>
-</li>
-<li><p>splice()，删除或者添加字符串 [].splite(1,1,’2’), 在下标为1的位置开始 删除1个元素，添加“2”到这个位置,改变原来数组</p>
-</li>
-<li><p>push(),结尾添加元素，改变原数组返回新数组长度</p>
-</li>
-<li><p>pop() 结尾删除元素，删除数组最后一个元素，返回该元素</p>
-</li>
-<li><p>shift() 开头删除元素，删除开头一个元素，返回该元素</p>
-</li>
-<li><p>unshift() 开头添加元素，在开头添加若干元素，返回新的长度</p>
-</li>
-<li><p>reverse() 数组倒叙，改变原数组，返回一个新的数组倒叙</p>
-</li>
-<li><p>array.reduce()<br>reduce() 方法接收一个函数作为累加器，数组中的每个值（从左到右）开始缩减，最终计算为一个值。</p>
-</li>
-<li><p>array.map((value,index)=&gt;{}) </p>
-</li>
-<li><p>array.filter((value,index)=&gt;{})</p>
-</li>
-<li><p>array.concat 返回一个新的数组，不改变原来数组</p>
-</li>
-</ol>
-<h2 id="关于object-的API"><a href="#关于object-的API" class="headerlink" title="关于object 的API"></a>关于object 的API</h2><h4 id="Object-assign"><a href="#Object-assign" class="headerlink" title="Object.assign()"></a>Object.assign()</h4><p>语法：Object.assign(target, …sources)<br>参数：target目标对象，sources源对象。<br>返回值：目标对象<br>Object.assign()方法用于将所有可枚举属性的值从一个或多个源对象复制到目标对象，它将返回目标对象</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 重复的属性会被源对象替换</span><br><span class="line">    var obj &#x3D; &#123; a: 1, b: 2, c: 3 &#125;;</span><br><span class="line">    var obj1 &#x3D; &#123; c: 4, e: 5, f: 6 &#125;;</span><br><span class="line">    var obj2 &#x3D; Object.assign(&#123;&#125;, obj, obj1);</span><br><span class="line">    console.log(obj2);</span><br><span class="line">    &#x2F;&#x2F; &#123;a: 1, b: 2, c: 4, e: 5, f: 6&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h4 id="Object-create"><a href="#Object-create" class="headerlink" title="Object.create()"></a>Object.create()</h4><p>Object.create(proto, [propertiesObject])<br>//方法创建一个新对象，使用现有的对象来提供新创建的对象的proto。</p>
-<p>proto : 必须。表示新建对象的原型对象，即该参数会被赋值到目标对象(即新对象，或说是最后返回的对象)的<strong>原型</strong>上。该参数可以是null、 对象、 函数的prototype属性 （创建空的对象时需传null , 否则会抛出TypeError异常）。<br>propertiesObject : 可选。 添加到新创建对象的可枚举属性（<strong>即其自身的属性，而不是原型链上的枚举属性</strong>）对象的属性描述符以及相应的属性名称。这些属性对应Object.defineProperties()的第二个参数。</p>
-<p>返回在原型对象上添加属性的新对象。</p>
-<h4 id="Object-keys（）"><a href="#Object-keys（）" class="headerlink" title="Object.keys（）"></a>Object.keys（）</h4><p>参数：要返回其枚举自身属性的对象</p>
-<p>返回值：一个表示给定对象的所有可枚举属性的字符串数组</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let person &#x3D; &#123;name:&quot;张三&quot;,age:25,address:&quot;深圳&quot;,getName:function()&#123;&#125;&#125;</span><br><span class="line"></span><br><span class="line">Object.keys(person) &#x2F;&#x2F; [&quot;name&quot;, &quot;age&quot;, &quot;address&quot;,&quot;getName&quot;]</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h4 id="JSON-stringify-和-JSON-parse-两个-API"><a href="#JSON-stringify-和-JSON-parse-两个-API" class="headerlink" title="JSON.stringify 和 JSON.parse 两个 API"></a>JSON.stringify 和 JSON.parse 两个 API</h4><p>json.stringfy()将对象、数组转换成字符串；</p>
-<p>json.parse()将字符串转成json对象。</p>
-<p>参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/panmy/p/5925986.html">https://www.cnblogs.com/panmy/p/5925986.html</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/04/Task%203%EF%BC%9A%E5%AF%B9%E8%B1%A1%EF%BC%8C%E6%95%B0%E7%BB%84%E4%BB%A5%E5%8F%8A%E5%AD%97%E7%AC%A6%E4%B8%B2/" data-id="ckibgtcej0000l8tpewkube4x" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-javascript task1&amp;2" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/11/27/javascript%20task1&2/" class="article-date">
-  <time datetime="2020-11-26T16:03:09.972Z" itemprop="datePublished">2020-11-27</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="javascript"><a href="#javascript" class="headerlink" title="javascript"></a>javascript</h3><ol>
-<li><strong>0.1+0.1=0.2但0.1+0.2不等于0.3？</strong></li>
-</ol>
-<p>​       计算机在表示小数的时候存在舍入误差，在0.1+0.1是这种舍入误差被抵消掉了，但是这种负负得正的效果不一定每次都能完美抵消，故在0.1+0.2的时候计算机只能表示出最接近0.3的值而非0.3。但有些值不存在舍入误差，比如0.5.</p>
-<ol start="2">
-<li><strong>number底层的存储格式</strong></li>
-</ol>
-<p>​      64位的二进制储存。</p>
-<ol start="3">
-<li><strong>var，const，let 关键字的区别是什么？</strong></li>
-</ol>
-<p>​      <strong>在JS函数中的var声明，其作用域是函数体的全部</strong>。哪怕跳出for循环，也可以访问for循环内部定义的变量。</p>
-<p>​     let是更完美的var，let声明的变量拥有块级作用域。let声明的全局变量不是全局对象的属性。</p>
-<p>​     const用来定义常量，限制很多。</p>
-<p><strong>暂时性死区</strong></p>
-<p><strong>用var 声明过的变量 ，会有变量提升，给一个默认值是undefined<br>用let 和 const 声明的变量， 不会进行变量提升，但是他也会对里边的带let 和 const 的变量进行预览,这时 ，浏览器不会再往上级作用域查找相应变量</strong></p>
-<pre><code>function f1() &#123;
-    console.log(b);
-    console.log(a);
-    let a = 15;
-    var b = 10;
-    console.log(b,a);
-&#125;
-f1();//报错函数无法执行</code></pre>
-<p>  ES6明确规定，如果区块中存在<code>let</code>和<code>const</code>命令，这个区块对这些命令声明的变量，从一开始就形成了封闭作用域。凡是在声明之前就使用这些变量，就会报错。</p>
-<p>  总之，在代码块内，使用let命令声明变量之前，该变量都是不可用的。这在语法上，称为“暂时性死区”</p>
-<ol start="4">
-<li><strong>函数的副作用</strong></li>
-</ol>
-<p>​       指调用函数的时候，除了返回函数值之外，还对调用函数产生附加的影响。例如：修改了全局的变量或者修改了参数。</p>
-<p>​       <strong>函数副作用相关的几个概念</strong></p>
-<p><strong>纯函数</strong><br> 输入输出数据流全是显式的。显式的意思是，函数与外界交换数据只有一个唯一的渠道——参数和返回值。函数从函数外部接收的所有输入都通过参数传递到该函数的内部。函数输出的所有外部信息都通过返回值传递到函数外部。</p>
-<p><strong>非纯函数</strong></p>
-<p>与之相反。 隐式（Implicit）的意思是，函数通过参数和返回值以外的渠道，和外界进行数据交换。比如读取/修改全局变量，都叫作以隐式的方式和外界进行数据交换。</p>
-<p><strong>引用透明</strong><br> 引用透明的概念与函数的副作用相关，且受其影响。 如果程序中两个相同值得表达式能在该程序的任何地方互相替换，而不影响程序的动作，那么该程序就具有引用透明性。它的优点是比非引用透明的语言的语义更容易理解，不那么晦涩。纯函数式语言没有变量，所以它们都具有引用透明性。</p>
-<ol start="5">
-<li><strong>什么是弱类型语言？语言在类型上有哪些分类？JS 的隐式类型转换的规则是什么？</strong></li>
-</ol>
-<p>​      强类型语言是一种强制类型定义的语言，即一旦某一个变量被定义类型，如果不经强制转换，那么它永远就是该数据类型。而弱类型语言是一种弱类型定义的语言，某一个变量被定义类型，该变量可以根据环境变化自动进行转换，不需要经过现行强制转换。</p>
-<p>​     js中一个难点就是js<strong>隐形转换</strong>，因为js在一些操作符下其类型会做一些变化，所以js灵活，同时造成易出错，并且难以理解<em>（弱类型语言）</em>。</p>
-<p><strong><em>JavaScript的三种隐形转化方式</em></strong></p>
-<p>涉及隐式转换最多的两个运算符 + 和 ==。</p>
-<p>+运算符即可数字相加，也可以字符串相加。所以转换时很麻烦。== 不同于===，故也存在隐式转换。- * / 这些运算符只会针对number类型，故转换的结果只能是转换成number类型。</p>
-<p>既然要隐式转换，那到底怎么转换呢，应该有一套转换规则，才能追踪最终转换成什么了。</p>
-<p>隐式转换中主要涉及到<strong>三种转换</strong>：</p>
-<p>1、将值转为原始值，ToPrimitive()。</p>
-<p>2、将值转为数字，ToNumber()。</p>
-<p>3、将值转为字符串，ToString()。</p>
-<ol start="6">
-<li><strong>什么是 JS 逻辑操作符的短路特性？</strong></li>
-</ol>
-<p>​       在Javascript中，有逻辑运算符 <code>与 &amp;&amp;</code>, <code>或 ||</code>, <code>非 !</code>，常在条件句或循环中进行逻辑判断。</p>
-<p>​      <strong><em>短路原则</em></strong></p>
-<p>​      在逻辑运算中，这是一个通用的原则，这是由于表达式从左到右执行的特性，为了减少运算量而     给运算器规定的操作。主要针对 <code>&amp;&amp;</code> 和 <code>||</code> 两种运算。</p>
-<ul>
-<li><code>&amp;&amp;</code> 的判断是<strong>同真为真，一假为假</strong>，则运算如果左边的表达式值为 <code>false</code>，那么就不会再执行右边的表达式了，如果左表达式为 <code>true</code>，就会继续执行右表达式；</li>
-<li><code>||</code> 的判断是<strong>一真为真，同假为假</strong>，则运算如果坐表达式值为 <code>true</code>，那么就不用执行右边的表达式了，如果左表达式为 <code>false</code>，就会继续执行右表达式。</li>
-</ul>
-<p>​      <strong><em>在平时的应用</em></strong></p>
-<p>   在javascript中，只有<code>对象(Object)</code>和布尔值<code>true</code>为真，其它例如 <code>undefined</code>, <code>NaN</code>, <code>false</code> 等，值为 <code>false</code>。为被定义的对象或未赋值变量也是 <code>false</code>，因为其值都是 <code>undefined</code>，这里就可以应用于检查某变量是否<strong>已定义</strong>。</p>
-<p>​    除了这个也能衍生出其它相同原理的应用，类似于判断赋值 <code>var a = (b &gt; 0) &amp;&amp; &#39;9&#39;</code> 或判断定义变量 <code>var abc = abc || &quot;&quot;</code> 等。</p>
-<p>js中使用这种方法可以减少代码量，提示性能，但同时也降低了代码<strong>可读性</strong>。</p>
-<ol start="7">
-<li><strong>驼峰命名法</strong></li>
-</ol>
-<p>​       骆驼式命名法（Camel-Case）又称驼峰式命名法，是电脑程式编写时的一套命名规则（惯例）。正如它的名称CamelCase所表示的那样，是指混合使用大小写字母来构成变量和函数的名字。程序员们为了自己的代码能更容易的在同行之间交流，所以多采取统一的可读性比较好的命名方式。</p>
-<ol start="8">
-<li><strong>JavaScript跳出循环的三种方法break，return，continue</strong></li>
-</ol>
-<h2 id="break"><a href="#break" class="headerlink" title="break"></a>break</h2><p>break是用来终止循环的，让循环不再往下进行：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;=<span class="number">5</span>;i++)&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(i)<span class="comment">//输出0123</span></span><br><span class="line">   <span class="keyword">if</span>(i==<span class="number">3</span>)&#123;<span class="keyword">break</span>;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="number">1234</span></span><br></pre></td></tr></table></figure>
-
-<p>当i等于3的时候，直接退出for循环，这个循环将不在被执行</p>
-<h2 id="continue"><a href="#continue" class="headerlink" title="continue"></a>continue</h2><p>continue和break的语句相似，不同的是，他并不是推出一个循环，而是结束本次循环，开始下一次的循环</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;=<span class="number">5</span>;i++)&#123;</span><br><span class="line">   <span class="keyword">if</span>(i==<span class="number">3</span>)&#123;<span class="keyword">continue</span>;&#125;</span><br><span class="line">   <span class="built_in">console</span>.log(i)<span class="comment">//输出01245</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="number">1234</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="return"><a href="#return" class="headerlink" title="return"></a>return</h2><p>return语句用于返回指定的函数值，return只能出现在函数体中<br>当执行return语句的时候，即使还有其他的语句，函数执行也会停止</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a()&#123;</span><br><span class="line">   <span class="keyword">if</span>(<span class="number">1</span>)&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">   &#125;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="number">1</span>)<span class="comment">//不会打印</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<ol start="9">
-<li><strong>函数声明vs函数表达式</strong></li>
-</ol>
-<p>​       Javascript 中函数声明和函数表达式是存在区别的，函数声明在JS解析时进行函数提升，因此在同一个作用域内，不管函数声明在哪里定义，该函数都可以进行调用。而函数表达式的值是在JS运行时确定，并且在表达式赋值完成后，该函数才能调用。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 函数声明</span><br><span class="line">function funDeclaration(type)&#123;</span><br><span class="line">    return type&#x3D;&#x3D;&#x3D;&quot;Declaration&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 函数表达式</span><br><span class="line">var funExpression &#x3D; function(type)&#123;</span><br><span class="line">    return type&#x3D;&#x3D;&#x3D;&quot;Expression&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1     funDeclaration(&quot;Declaration&quot;);&#x2F;&#x2F;&#x3D;&gt; true</span><br><span class="line">2     function funDeclaration(type)&#123;</span><br><span class="line">3         return type&#x3D;&#x3D;&#x3D;&quot;Declaration&quot;;</span><br><span class="line">4     &#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1     funExpression(&quot;Expression&quot;);&#x2F;&#x2F;&#x3D;&gt;error</span><br><span class="line">2     var funExpression &#x3D; function(type)&#123;</span><br><span class="line">3         return type&#x3D;&#x3D;&#x3D;&quot;Expression&quot;;</span><br><span class="line">4     &#125;</span><br></pre></td></tr></table></figure>
-
-<p>上述代码在运行时，只定义了funExpression变量，但值为undefined。因此不能在undefined上进行函数调用。此时funExpression赋值语句还没执行到。用函数声明创建的函数可以在函数解析后调用（解析时进行等逻辑处理）；而用函数表达式创建的函数是在运行时进行赋值，且要等到表达式赋值完成后才能调用。</p>
-<p>第一段相当于</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function funDeclaration(type)&#123;</span><br><span class="line">        return type&#x3D;&#x3D;&#x3D;&quot;Declaration&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    funDeclaration(&quot;Declaration&quot;);&#x2F;&#x2F;&#x3D;&gt; true</span><br></pre></td></tr></table></figure>
-
-<p>第二段相当于</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var funExpression;</span><br><span class="line">funExpression(&quot;Expression&quot;);&#x2F;&#x2F;&#x3D;&#x3D;&gt;error</span><br><span class="line">funExpression &#x3D; function(type)&#123;</span><br><span class="line">    return type&#x3D;&#x3D;&#x3D;&quot;Expression&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/11/27/javascript%20task1&2/" data-id="ckibgtcfg0003l8tp0o9wgrys" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-学而机试题总结" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/11/21/%E5%AD%A6%E8%80%8C%E6%9C%BA%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/" class="article-date">
-  <time datetime="2020-11-21T03:17:54.264Z" itemprop="datePublished">2020-11-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li><p><strong><code>border-radius</code></strong> 允许你设置元素的外边框圆角。当使用一个半径时确定一个圆形，当使用两个半径时确定一个椭圆。这个(椭)圆与边框的交集形成圆角效果。</p>
-</li>
-<li><p>使用hover效果改变字体颜色问题。父元素中存在两个子元素，其中一个子元素设置过字体颜色，不可利用hover改变父元素整体字体颜色。**<em>子元素中设置字体颜色优先级高于父元素**</em>。</p>
-<p>此时能使用“&gt;”符号，来提升父元素css优先级。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;span&gt;界面与设计应用&lt;&#x2F;span&gt;</span><br><span class="line">&lt;br&gt;</span><br><span class="line">&lt;span class&#x3D;&quot;word&quot;&gt;房子&lt;&#x2F;span&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ol>
-   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.cou:hover &gt; span &#123;</span><br><span class="line">    color: coral</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.word&#123;</span><br><span class="line">    color: rgb(177, 177, 177);</span><br><span class="line">    font-size: 13px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<ol start="3">
-<li>设置class名称的时候尽量和该区块本身有一定关系，不然自己都看不清楚了。</li>
-</ol>
-<p>​       同时注意相同效果的区块设置相同名字。</p>
-<ol start="4">
-<li>实现<strong>横行滚动</strong>需要设置两个div，使父元素的宽度小于子元素的宽度。</li>
-</ol>
-<p>​      <em>父元素的宽度是整个框的宽度，而子元素的宽度则是内部隐藏滚动的整个内容的全部宽度</em></p>
-<ol start="5">
-<li><p><strong><em>如何隐藏滚动框？</em></strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">.kuang::-webkit-scrollbar&#123;</span><br><span class="line">    width: 5px;</span><br><span class="line">    height: 0;</span><br><span class="line">    background-color: #fff;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.kuang::-webkit-scrollbar-track&#123;</span><br><span class="line">    border-radius: 30px;</span><br><span class="line">    background-color: gainsboro;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.kuang::-webkit-scrollbar-thumb&#123;</span><br><span class="line">    border-radius: 30px;</span><br><span class="line">    -webkit-box-shadow:inset 0 0 6px rgba(0,0,0,.3);</span><br><span class="line">    background-color: gainsboro;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong><em>如何用hover使文字加下划线？</em></strong></p>
-   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.un span:hover&#123;</span><br><span class="line">    text-decoration:underline;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong><em>使光标放在一行文字上时出现一个div区域</em></strong></p>
-</li>
-</ol>
-<p>​      首先涉及到display中block和visible的区别：</p>
-<p>​      <em>block和none是不占用空间的，而visible和unvisible是占用空间的</em></p>
-<p>​      <strong>且一定一定要让该行文字与div区域处于统一父元素之下才能实现！</strong></p>
-<p>​    8. <strong><em>改变图片的透明度（用hover的时候使图片变灰）</em></strong></p>
-<pre><code>.d1 img:hover&#123;
-    filter:alpha(Opacity=80);-moz-opacity:0.8;opacity: 0.8
-&#125;</code></pre>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/11/21/%E5%AD%A6%E8%80%8C%E6%9C%BA%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/" data-id="ckibgtcfi0004l8tpgj2dcp2i" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-第一篇" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/10/10/%E7%AC%AC%E4%B8%80%E7%AF%87/" class="article-date">
-  <time datetime="2020-10-09T16:16:03.313Z" itemprop="datePublished">2020-10-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="这是第一篇博文"><a href="#这是第一篇博文" class="headerlink" title="这是第一篇博文"></a>这是第一篇博文</h1><p><em>不知道该说点什么…</em><br><strong>大概试一试学到的基础markdown语法吧</strong><br><strong>链接一下我的GitHub吧</strong></p>
-<p>欢迎浏览<a target="_blank" rel="noopener" href="https://github.com/joker0231/joker0231.github.io">我的GitHub</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/10/10/%E7%AC%AC%E4%B8%80%E7%AF%87/" data-id="ckibgtcf60002l8tp1qtf4ls7" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/10/08/hello-world/" class="article-date">
-  <time datetime="2020-10-08T15:32:55.779Z" itemprop="datePublished">2020-10-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/08/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/10/08/hello-world/" data-id="ckibgtcf30001l8tp7qsjdp23" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2020/12/10/http/">http</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/05/%E7%BB%A7%E6%89%BF/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/04/Task%203%EF%BC%9A%E5%AF%B9%E8%B1%A1%EF%BC%8C%E6%95%B0%E7%BB%84%E4%BB%A5%E5%8F%8A%E5%AD%97%E7%AC%A6%E4%B8%B2/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2020/11/27/javascript%20task1&2/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2020/11/21/%E5%AD%A6%E8%80%8C%E6%9C%BA%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/">(no title)</a>
-          </li>
+          <li><a id="s-toc" class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
         
       </ul>
     </div>
-  </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+            <img no-lazy class='logo' src='https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png'/>
+          
+          
+          
+        </a>
+      
 
+			<div class='menu navigation'>
+				<ul class='nav-list-h m-pc'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h m-phone'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+  <div id="l_body">
+    <div id="l_cover">
   
-</aside>
+    
+        <div id="full" class='cover-wrapper  dock' style="display: ;">
+          
+            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg"></div>
+          
+          <div class='cover-body'>
+  <div class='top'>
+    
+    
+      <p class="title">Volantis</p>
+    
+    
+  </div>
+  <div class='bottom'>
+    <div class='menu navigation'>
+      <div class='list-h'>
+        
+          
+            <a href="/v4/getting-started/"
+              
+              
+              id="v4getting-started">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg'><p>文档</p>
+            </a>
+          
+            <a href="/faqs/"
+              
+              
+              id="faqs">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg'><p>帮助</p>
+            </a>
+          
+            <a href="/examples/"
+              
+              
+              id="examples">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg'><p>示例</p>
+            </a>
+          
+            <a href="/contributors/"
+              
+              
+              id="contributors">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg'><p>社区</p>
+            </a>
+          
+            <a href="/archives/"
+              
+              
+              id="archives">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg'><p>博客</p>
+            </a>
+          
+            <a target="_blank" rel="noopener" href="https://github.com/volantis-x/hexo-theme-volantis/"
+              
+              
+              id="https:githubcomvolantis-xhexo-theme-volantis">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg'><p>源码</p>
+            </a>
+          
         
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 John Doe<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
-</footer>
+</div>
+
+          <div id="scroll-down" style="display: ;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
+        </div>
+    
+  
+  </div>
+
+    <div id='safearea'>
+      <div class='body-wrapper' id="pjax-container">
+        
+
+<div class='l_main'>
+  
+  <section class="post-list">
+    
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+    
+    
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/12/10/http/">
+        http
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        状态码当客户端向服务器端发送请求时，描述返回的请求结果。
+数字的第一位指定了响应类别，后两位无分类。
+这一类型的状态码，代表请求已被接受，需要继续处理。这类响应是临时响应，只包含状态行和某些可选的响应头信息，并以空行结束。这一类型的状态码，代表请求已成功被服务器接收、理解、并接受
+
+mata信息（HTML语言head区的一个辅助性标签）
+位于文档的头部，不包含任何内容。 标签的属性定义了与文...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-12-10</time>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/12/10/http/'>
+            Read More
+          </a>
+        </div>
+      
     </div>
-    <nav id="mobile-nav">
   
-    <a href="/" class="mobile-nav-link">Home</a>
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
   
-</nav>
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/12/05/%E7%BB%A7%E6%89%BF/">
+        Dec 5, 2020
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        继承A 对象通过继承B对象，就能直接拥有B对象的所有属性和方法。这对于代码的复用非常有用，
+JavaScript通过使用“类”（class）和原型对象（prototype）实现。常见的有六种继承方式。
+方法一：原型链继承关键在于：子类型的原型为父类型的一个实例对象。
+
+
+让父类的属性和方法在子类实例的原型链上。
+
+CHILD .prototype = new PARENT（）；s
+
+CHIL...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-12-05</time>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/12/05/%E7%BB%A7%E6%89%BF/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/12/04/Task%203%EF%BC%9A%E5%AF%B9%E8%B1%A1%EF%BC%8C%E6%95%B0%E7%BB%84%E4%BB%A5%E5%8F%8A%E5%AD%97%E7%AC%A6%E4%B8%B2/">
+        Dec 4, 2020
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        Task 3：对象，数组以及字符串数组语法
+split(‘’”), 字符串转数组,返回一个新的数组
+
+slice(start,end),字符串截取，[1,2,3,5].slice(-1)  =&gt; [5],返回截取后的数组，不改变原数组
+
+splice()，删除或者添加字符串 [].splite(1,1,’2’), 在下标为1的位置开始 删除1个元素，添加“2”到这个位置,改变原来数组
+...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-12-04</time>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/12/04/Task%203%EF%BC%9A%E5%AF%B9%E8%B1%A1%EF%BC%8C%E6%95%B0%E7%BB%84%E4%BB%A5%E5%8F%8A%E5%AD%97%E7%AC%A6%E4%B8%B2/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/11/27/javascript%20task1&2/">
+        Nov 27, 2020
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        javascript
+0.1+0.1=0.2但0.1+0.2不等于0.3？
+
+​       计算机在表示小数的时候存在舍入误差，在0.1+0.1是这种舍入误差被抵消掉了，但是这种负负得正的效果不一定每次都能完美抵消，故在0.1+0.2的时候计算机只能表示出最接近0.3的值而非0.3。但有些值不存在舍入误差，比如0.5.
+
+number底层的存储格式
+
+​      64位的二进制储存。
+
+...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-11-27</time>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/11/27/javascript%20task1&2/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/11/21/%E5%AD%A6%E8%80%8C%E6%9C%BA%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/">
+        Nov 21, 2020
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+border-radius 允许你设置元素的外边框圆角。当使用一个半径时确定一个圆形，当使用两个半径时确定一个椭圆。这个(椭)圆与边框的交集形成圆角效果。
+
+使用hover效果改变字体颜色问题。父元素中存在两个子元素，其中一个子元素设置过字体颜色，不可利用hover改变父元素整体字体颜色。**子元素中设置字体颜色优先级高于父元素**。
+此时能使用“&gt;”符号，来提升父元素css优先级。...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-11-21</time>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/11/21/%E5%AD%A6%E8%80%8C%E6%9C%BA%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/10/10/%E7%AC%AC%E4%B8%80%E7%AF%87/">
+        Oct 10, 2020
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        这是第一篇博文不知道该说点什么…大概试一试学到的基础markdown语法吧链接一下我的GitHub吧
+欢迎浏览我的GitHub
+
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-10-10</time>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/10/10/%E7%AC%AC%E4%B8%80%E7%AF%87/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/10/08/hello-world/">
+        Hello World
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
+Qu...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-10-08</time>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/10/08/hello-world/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+    
+  </section>
+  
+    
+  
+
+
+</div>
+<aside class='l_side'>
+  
+  
+    
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<section class="widget blogger shadow desktop mobile">
+  <div class='content'>
+    
+      
+        <a class='avatar flat-box rectangle' href='/about/'>
+          <img no-lazy src='https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png'/>
+        </a>
+      
+    
+    
+      <div class='text'>
+        
+        
+        
+          <p><span id="jinrishici-sentence">Hexo</span></p>
+          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+        
+      </div>
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="/atom.xml"
+              class="social fas fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="mailto:me@xxx.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="https://github.com/volantis-x/"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="/"
+              class="social fas fa-headphones-alt flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+
+
+</aside>
+
+
+
+        
+        
+          <!--此文件用来存放一些不方便取值的变量-->
+<!--思路大概是将值藏到重加载的区域内-->
+
+<script>
+  window.pdata={}
+  pdata.ispage=false;
+  pdata.postTitle="";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.remove("show");
+  
+</script>
+
+        
+      </div>
+      
+  
+  <footer class="footer clearfix">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+
+        </div>
+      
+    
+      
+        <br>
+        <div class="social-wrapper">
+          
+            
+          
+            
+          
+            
+          
+        </div>
+      
+    
+      
+        <div><p>Blog content follows the <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
+</div>
+      
+    
+      
+        
+          <div><p><span id="lc-sv">本站总访问量为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 次</span> <span id="lc-uv">访客数为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 人</span></p>
+</div>
+        
+      
+    
+      
+        Use
+        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.2.0" target="_blank" class="codename">Volantis</a>
+        as theme
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="/">Copyright © 2017-2020 XXX</a></p>
+
+        </div>
+      
+    
+  </footer>
+
+
+      <a id="s-top" class="fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+    </div>
+  </div>
+  <div>
+    <script>
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/********************脚本懒加载函数********************************/
+function loadScript(src, cb) {
+var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+var script = document.createElement('script');
+script.setAttribute('type','text/javascript');
+if (cb) script.onload = cb;
+script.setAttribute('src', src);
+HEAD.appendChild(script);
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script>
+<script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script>
+<!-- required -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js"></script>
+
+<script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    setTimeout(function() {
+      loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+    }, 1);
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+</script>
+
+
+<!-- internal -->
+
+
+
+
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script>
+
+
 
 
   
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+    <script>
+      window.FPConfig = {
+        delay: 0,
+        ignoreKeywords: [],
+        maxRPS: 5,
+        hoverDelay: 25
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
 
   
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
+  
+<script src="/js/valine.js"></script>
+
+
+<script>
+  var GUEST_INFO = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link'.split(',').filter(function (item) {
+    return GUEST_INFO.indexOf(item) > -1
+  });
+  var REQUIRED_FIELDS = ['nick', 'mail', 'link'];
+  var requiredFields = 'nick,mail'.split(',').filter(function (item) {
+    return REQUIRED_FIELDS.indexOf(item) > -1
+  });
+
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+
+    var valine = new Valine();
+    valine.init({
+      el: '#valine_container',
+      meta: meta,
+      placeholder: pagePlaceholder,
+      path: path,
+      appId: "",
+      appKey: "",
+      pageSize: '10',
+      avatar: 'robohash',
+      lang: 'zh-cn',
+      visitor: 'true',
+      highlight: 'true',
+      mathJax: 'false',
+      enableQQ: 'true',
+      recordIP: 'false',
+      requiredFields: requiredFields,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps
+    })
+  }
+
+  $(function () {
+    pjax_valine();
+  });
+</script>
 
 
 
 
-<script src="/js/script.js"></script>
+
+  
+<script src="/js/app.js"></script>
+
+
+
+<!-- optional -->
+
+  <script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script>
 
 
 
 
+
+
+
+
+
+
+
+  <script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'http://example.com' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'http://example.com' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'http://example.com' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script>
+
+
+
+
+
+
+
+
+<script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script>
+
+<!-- more -->
+
+
+
+
+    
+      
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script>
+
+
+<script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          "#l_cover",
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      // 关于百度统计对 SPA 页面的处理：
+      // 方案一：百度统计>管理>单页应用设置中，打开开启按钮即可对SPA进行统计。 https://tongji.baidu.com/web/help/article?id=324
+      // 方案二：取消注释下列代码。 https://tongji.baidu.com/web/help/article?id=235
+       
+
+      // 关于谷歌统计对 SPA 页面的处理：
+      // 当应用以动态方式加载内容并更新地址栏中的网址时，也应该更新通过 gtag.js 存储的网页网址。
+      // https://developers.google.cn/analytics/devguides/collection/gtagjs/single-page-applications?hl=zh-cn
+      
+	 
+
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+          if (typeof $.fancybox == "undefined") {
+            SCload_fancybox();
+          } else {
+            pjax_fancybox();
+          }
+        
+        
+        
+        
+        
+        
+          pjax_valine();
+        
+        
+        
+        
+        
+      } catch (e) {
+        console.log(e);
+      }
+	  
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  
+      window.location.href = e.triggerElement.href;
+    });
+</script>
+
+    
   </div>
 </body>
 </html>
