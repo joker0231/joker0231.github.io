@@ -444,8 +444,11 @@
 
   
   <h2 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h2><p>当客户端向服务器端发送请求时，描述返回的请求结果。</p>
-<p>数字的第一位指定了响应类别，后两位无分类。</p>
-<p><img src="http/sum.png" class="lazyload" data-srcset="http/sum.png" srcset="data:image/png;base64,666" alt="01"><br><img src="http/1.png" class="lazyload" data-srcset="http/1.png" srcset="data:image/png;base64,666" alt="01"><br>这一类型的状态码，代表请求已被接受，需要继续处理。这类响应是临时响应，只包含状态行和某些可选的响应头信息，并以空行结束。<br><img src="http/2.png" class="lazyload" data-srcset="http/2.png" srcset="data:image/png;base64,666" alt="01"><br>这一类型的状态码，代表请求已成功被服务器接收、理解、并接受</p>
+<p>数字的第一位指定了响应类别，后两位无分类。<br><img src="http/sum.png" class="lazyload" data-srcset="http/sum.png" srcset="data:image/png;base64,666" alt="01"></p>
+<p><img src="http/1.png" class="lazyload" data-srcset="http/1.png" srcset="data:image/png;base64,666" alt="01"></p>
+<p>这一类型的状态码，代表请求已被接受，需要继续处理。这类响应是临时响应，只包含状态行和某些可选的响应头信息，并以空行结束。</p>
+<p><img src="http/2.png" class="lazyload" data-srcset="http/2.png" srcset="data:image/png;base64,666" alt="01"></p>
+<p>这一类型的状态码，代表请求已成功被服务器接收、理解、并接受</p>
 <ul>
 <li><p>mata信息（HTML语言head区的一个辅助性标签）</p>
 <p>位于文档的头部，不包含任何内容。 标签的属性定义了与文档相关联的名称/值对。共有两个属性，它们分别是http-equiv属性和name属性</p>
@@ -453,7 +456,7 @@
 <p>http-equiv顾名思义，相当于http的文件头作用，它可以向浏览器传回一些有用的信息，以帮助正确和精确地显示网页内容，与之对应的属性值为content，content中的内容其实就是各个参数的变量值。</p>
 </li>
 </ul>
-<p><img src="http/3.png" class="lazyload" data-srcset="http/3.png" srcset="data:image/png;base64,666" alt="01"><br>这类状态码代表需要客户端采取进一步的操作才能完成请求。通常，这些状态码用来重定向，后续的请求地址（重定向目标）在本次响应的 Location 域中指明。<br><img src="http/4%E2%80%98.png" class="lazyload" data-srcset="http/4%E2%80%98.png" srcset="data:image/png;base64,666" alt="01"><br><img src="http/4.png" class="lazyload" data-srcset="http/4.png" srcset="data:image/png;base64,666" alt="01"><br>这类的状态码代表了*<strong>客户端*** 看起来可能发生了错误，妨碍了服务器的处理。服务器应该返回一个解释当前错误状况的实体，以及这是临时的还是永久性的状况。这些状态码适用于任何请求方法。浏览器应当向用户显示任何包含在此类错误响应中的实体内容。<br><img src="http/5.png" class="lazyload" data-srcset="http/5.png" srcset="data:image/png;base64,666" alt="01"><br>这类状态码代表了*</strong>服务器*** 在处理请求的过程中有错误或者异常状态发生，也有可能是服务器意识到以当前的软硬件资源无法完成对请求的处理。除非这是一个HEAD 请求，否则服务器应当包含一个解释当前错误状态以及这个状况是临时的还是永久的解释信息实体。浏览器应当向用户展示任何在当前响应中被包含的实体。</p>
+<p><img src="http/3.png" class="lazyload" data-srcset="http/3.png" srcset="data:image/png;base64,666" alt="01"><br>这类状态码代表需要客户端采取进一步的操作才能完成请求。通常，这些状态码用来重定向，后续的请求地址（重定向目标）在本次响应的 Location 域中指明。<br><img src="http/4%E2%80%98.png" class="lazyload" data-srcset="http/4%E2%80%98.png" srcset="data:image/png;base64,666" alt="01"><br><img src="http/4.png" class="lazyload" data-srcset="http/4.png" srcset="data:image/png;base64,666" alt="01"><br>这类的状态码代表了<strong><em>客户端</em></strong> 看起来可能发生了错误，妨碍了服务器的处理。服务器应该返回一个解释当前错误状况的实体，以及这是临时的还是永久性的状况。这些状态码适用于任何请求方法。浏览器应当向用户显示任何包含在此类错误响应中的实体内容。<br><img src="http/5.png" class="lazyload" data-srcset="http/5.png" srcset="data:image/png;base64,666" alt="01"><br>这类状态码代表了<strong><em>服务器</em></strong> 在处理请求的过程中有错误或者异常状态发生，也有可能是服务器意识到以当前的软硬件资源无法完成对请求的处理。除非这是一个HEAD 请求，否则服务器应当包含一个解释当前错误状态以及这个状况是临时的还是永久的解释信息实体。浏览器应当向用户展示任何在当前响应中被包含的实体。</p>
 <p>下面是常见的HTTP状态码：</p>
 <ul>
 <li><p>200 - 请求成功</p>
@@ -482,7 +485,7 @@
 <p> 【说明：由于历史的原因，许多有关TCP/IP的文献曾经把网络层使用的路由器称为网关，在今天很多局域网采用都是路由来接入网络，因此通常指的网关就是路由器的IP！】</p>
 <p> <strong><em>网关实质上是一个网络通向其他网络的IP地址。</em></strong></p>
 <p> 例子：</p>
-<p> 比如有网络A和网络B，网络A的IP地址范围为“192.168.1.1<del>192. 168.1.254”，网络B的IP地址范围为“192.168.2.1</del>192.168.2.254”，在没有路由器的情况下，两个网络之间是不能进行TCP/IP通信的，TCP/IP协议判定两个网络中的主机处在不同的网络里。要实现这两个网络之间的通信，则必须通过网关。如果网络A中的主机发现数据包的目的主机不在本地网络中，就把数据包转发给它自己的网关，再由网关转发给网络B的网关，网络B的网关再转发给网络B的某个主机。网络A向网络B转发数据包的过程。</p>
+<p> 比如有网络A和网络B，网络A的IP地址范围为“192.168.1.1至192. 168.1.254”，网络B的IP地址范围为“192.168.2.1~192.168.2.254”，在没有路由器的情况下，两个网络之间是不能进行TCP/IP通信的，TCP/IP协议判定两个网络中的主机处在不同的网络里。要实现这两个网络之间的通信，则必须通过网关。如果网络A中的主机发现数据包的目的主机不在本地网络中，就把数据包转发给它自己的网关，再由网关转发给网络B的网关，网络B的网关再转发给网络B的某个主机。网络A向网络B转发数据包的过程。</p>
 <p>通俗一点的讲：网关就是要去别的网络的时候，把报文首先发送到的那台设备。网关一般就是一台路由器，有点像“一个小区中的一个邮局”，小区里面的住户互相是知道怎么走，但是要向外地投递东西就不知道了，怎么办？把地址写好送到本小区的邮局就好了。</p>
 <h2 id="隧道"><a href="#隧道" class="headerlink" title="隧道"></a>隧道</h2><p>http权威指南对于隧道的解释是：</p>
 <p><em>隧道（tunnel） 是建立起来之后， 就会在两条连接之间对原始数据进行盲转发的HTTP 应用程序。 HTTP 隧道通常用来在一条或多条 HTTP 连接上转发非 HTTP 数据， 转发时不会窥探数据。HTTP 隧道的一种常见用途是通过 HTTP 连接承载加密的安全套接字层（SSL，Secure Sockets Layer） 流量， 这样 SSL 流量就可以穿过只允许 Web 流量通过的防火墙了。  HTTP/SSL 隧道收到一条 HTTP 请求， 要求建立一条到目的地址和端口的输出连接， 然后在 HTTP 信道上通过隧道传输加密的 SSL 流量， 这样就可以将其盲转发到目的服务器上去了</em></p>
@@ -534,10 +537,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-12-10T23:44:26+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-12-11T14:55:53+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Dec 10, 2020</p>
+    <p>更新于：Dec 11, 2020</p>
   </a>
 </div>
 
