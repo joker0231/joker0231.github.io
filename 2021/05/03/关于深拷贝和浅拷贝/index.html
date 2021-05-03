@@ -399,14 +399,14 @@
 <p>引用数据类型(Object类)有常规名值对的<strong>无序对象{a:1}**，</strong>数组[1,2,3]<strong>，以及</strong>函数**等。</p>
 <p>而这两类数据存储分别是这样的：</p>
 <p><strong>a.基本类型–名值存储在栈内存中</strong>，例如let a=1;</p>
-<p><img src="https://images2018.cnblogs.com/blog/1213309/201711/1213309-20171124130901890-511917244.jpg" class="lazyload" data-srcset="https://images2018.cnblogs.com/blog/1213309/201711/1213309-20171124130901890-511917244.jpg" srcset="data:image/png;base64,666" alt="img"></p>
+<p><img src="/2021/05/03/%E5%85%B3%E4%BA%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/1.jpg" class="lazyload" data-srcset="/2021/05/03/%E5%85%B3%E4%BA%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/1.jpg" srcset="data:image/png;base64,666" alt="img"></p>
 <p>当你b=a复制时，栈内存会新开辟一个内存，例如这样：</p>
-<p> <img src="https://images2018.cnblogs.com/blog/1213309/201711/1213309-20171124131822437-430949998.jpg" class="lazyload" data-srcset="https://images2018.cnblogs.com/blog/1213309/201711/1213309-20171124131822437-430949998.jpg" srcset="data:image/png;base64,666" alt="img"></p>
+<p><img src="/2021/05/03/%E5%85%B3%E4%BA%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/2.jpg" class="lazyload" data-srcset="/2021/05/03/%E5%85%B3%E4%BA%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/2.jpg" srcset="data:image/png;base64,666" alt="img"></p>
 <p>所以当你此时修改a=2，对b并不会造成影响。当然，let a=1,b=a;虽然b不受a影响，但这也算不上深拷贝，因为深拷贝本身只针对较为复杂的object类型数据。</p>
 <p><strong>b.引用数据类型–名存在栈内存中，值存在于堆内存中，但是栈内存会提供一个引用的地址指向堆内存中的值</strong></p>
-<p><img src="https://images2018.cnblogs.com/blog/1213309/201711/1213309-20171124133428359-1292133331.jpg" class="lazyload" data-srcset="https://images2018.cnblogs.com/blog/1213309/201711/1213309-20171124133428359-1292133331.jpg" srcset="data:image/png;base64,666" alt="img"></p>
+<p><img src="/2021/05/03/%E5%85%B3%E4%BA%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/3.jpg" class="lazyload" data-srcset="/2021/05/03/%E5%85%B3%E4%BA%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/3.jpg" srcset="data:image/png;base64,666" alt="img"></p>
 <p>当b=a进行拷贝时，其实复制的是a的引用地址，而并非堆里面的值。</p>
-<p><img src="https://images2018.cnblogs.com/blog/1213309/201711/1213309-20171124133647796-1390255671.jpg" class="lazyload" data-srcset="https://images2018.cnblogs.com/blog/1213309/201711/1213309-20171124133647796-1390255671.jpg" srcset="data:image/png;base64,666" alt="img"></p>
+<p><img src="/2021/05/03/%E5%85%B3%E4%BA%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/4.jpg" class="lazyload" data-srcset="/2021/05/03/%E5%85%B3%E4%BA%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/4.jpg" srcset="data:image/png;base64,666" alt="img"></p>
 <ul>
 <li>如果拷贝的对象里的元素只有值，没有引用（像一个列表里储存着另一个列表，存的就是另一个列表的引用），那浅拷贝和深拷贝没有差别，都会将原有对象复制一份，产生一个新对象，对新对象里的值进行修改不会影响原有对象，新对象和原对象完全分离开。</li>
 <li>如果拷贝的对象里的元素包含引用，那浅拷贝和深拷贝是不同的，浅拷贝虽然将原有对象复制一份，但是依然保存的是引用，所以对新对象里的引用里的值进行修改，依然会改变原对象里的列表的值，新对象和原对象并没有完全分离开。而深拷贝则不同，它会将原对象里的引用也新创建一个，即新建一个列表，然后放的是新列表的引用，这样就可以将新对象和原对象完全分离开。</li>
@@ -463,7 +463,7 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-03T17:52:09+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-03T18:41:40+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：May 3, 2021</p>
