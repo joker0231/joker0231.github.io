@@ -5,10 +5,6 @@
   <!-- SEO相关 -->
   
     
-      
-        <meta name="robots" content="index,follow">
-      
-    
   
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -58,7 +54,7 @@
 <body>
   
 
-<header id="l_header" class="l_header auto shadow blur " style='opacity: 0' >
+<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -309,7 +305,7 @@
     <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper  dock' style="display: ;">
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg"></div>
           
@@ -374,7 +370,7 @@
   </div>
 </div>
 
-          <div id="scroll-down" style="display: ;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
+          <div id="scroll-down" style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
         </div>
     
   
@@ -385,427 +381,195 @@
         
 
 <div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
   
-  <section class="post-list">
-    
-      
-        
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-      
+
+
+  
+  <div class="article-meta" id="top">
     
     
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/03/%E5%85%B3%E4%BA%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/">
-        May 3, 2021
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        关于深拷贝和浅拷贝首先需要引入基本数据类型与引用数据类型的概念。
-基本数据类型有哪些，number，string，boolean，null，undefined，symbol以及ES10新增的BigInt(任意精度整数)七类。
-引用数据类型(Object类)有常规名值对的无序对象{a:1}**，数组[1,2,3]，以及函数**等。
-而这两类数据存储分别是这样的：
-a.基本类型–名值存储在栈内存...
-      
     
   </div>
+
+
   
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-03</time>
-        
-      </div>
+  <h3 id="关于深拷贝和浅拷贝"><a href="#关于深拷贝和浅拷贝" class="headerlink" title="关于深拷贝和浅拷贝"></a>关于深拷贝和浅拷贝</h3><p>首先需要引入<strong>基本数据类型</strong>与<strong>引用数据类型</strong>的概念。</p>
+<p>基本数据类型有哪些，<strong>number，string，boolean，null，undefined，symbol</strong>以及ES10新增的<strong>BigInt</strong>(任意精度整数)七类。</p>
+<p>引用数据类型(Object类)有常规名值对的<strong>无序对象{a:1}**，</strong>数组[1,2,3]<strong>，以及</strong>函数**等。</p>
+<p>而这两类数据存储分别是这样的：</p>
+<p><strong>a.基本类型–名值存储在栈内存中</strong>，例如let a=1;</p>
+<p><img src="https://images2018.cnblogs.com/blog/1213309/201711/1213309-20171124130901890-511917244.jpg" class="lazyload" data-srcset="https://images2018.cnblogs.com/blog/1213309/201711/1213309-20171124130901890-511917244.jpg" srcset="data:image/png;base64,666" alt="img"></p>
+<p>当你b=a复制时，栈内存会新开辟一个内存，例如这样：</p>
+<p> <img src="https://images2018.cnblogs.com/blog/1213309/201711/1213309-20171124131822437-430949998.jpg" class="lazyload" data-srcset="https://images2018.cnblogs.com/blog/1213309/201711/1213309-20171124131822437-430949998.jpg" srcset="data:image/png;base64,666" alt="img"></p>
+<p>所以当你此时修改a=2，对b并不会造成影响。当然，let a=1,b=a;虽然b不受a影响，但这也算不上深拷贝，因为深拷贝本身只针对较为复杂的object类型数据。</p>
+<p><strong>b.引用数据类型–名存在栈内存中，值存在于堆内存中，但是栈内存会提供一个引用的地址指向堆内存中的值</strong></p>
+<p><img src="https://images2018.cnblogs.com/blog/1213309/201711/1213309-20171124133428359-1292133331.jpg" class="lazyload" data-srcset="https://images2018.cnblogs.com/blog/1213309/201711/1213309-20171124133428359-1292133331.jpg" srcset="data:image/png;base64,666" alt="img"></p>
+<p>当b=a进行拷贝时，其实复制的是a的引用地址，而并非堆里面的值。</p>
+<p><img src="https://images2018.cnblogs.com/blog/1213309/201711/1213309-20171124133647796-1390255671.jpg" class="lazyload" data-srcset="https://images2018.cnblogs.com/blog/1213309/201711/1213309-20171124133647796-1390255671.jpg" srcset="data:image/png;base64,666" alt="img"></p>
+<ul>
+<li>如果拷贝的对象里的元素只有值，没有引用（像一个列表里储存着另一个列表，存的就是另一个列表的引用），那浅拷贝和深拷贝没有差别，都会将原有对象复制一份，产生一个新对象，对新对象里的值进行修改不会影响原有对象，新对象和原对象完全分离开。</li>
+<li>如果拷贝的对象里的元素包含引用，那浅拷贝和深拷贝是不同的，浅拷贝虽然将原有对象复制一份，但是依然保存的是引用，所以对新对象里的引用里的值进行修改，依然会改变原对象里的列表的值，新对象和原对象并没有完全分离开。而深拷贝则不同，它会将原对象里的引用也新创建一个，即新建一个列表，然后放的是新列表的引用，这样就可以将新对象和原对象完全分离开。</li>
+</ul>
+<p><strong>浅拷贝</strong>：有两种方式，一种是把一个对象里面的所有的属性值和方法都复制给另一个对象，另一种是直接把一个对象赋给另一个对象，使得两个都指向同一个对象。或者说,就是把一个对象的地址给了另一个对象,他们指向相同,两个对象之间有共同的属性或者方法,都可以使用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第一种：</span></span><br><span class="line">        <span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">            age: <span class="number">10</span>,</span><br><span class="line">            sex: <span class="string">&quot;男&quot;</span>,</span><br><span class="line">            car: [<span class="string">&quot;奔驰&quot;</span>, <span class="string">&quot;宝马&quot;</span>, <span class="string">&quot;特斯拉&quot;</span>, <span class="string">&quot;奥拓&quot;</span>]</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="comment">//另一个对象</span></span><br><span class="line">        <span class="keyword">var</span> obj2 = &#123;&#125;;</span><br><span class="line"> </span><br><span class="line">        <span class="comment">//写一个函数,作用:把一个对象的属性复制到另一个对象中,浅拷贝</span></span><br><span class="line">        <span class="comment">//把a对象中的所有的属性复制到对象b中</span></span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">shallowCopy</span>(<span class="params">obj,targetObj</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> obj)&#123;</span><br><span class="line">                targetObj[key] = obj[key];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        shallowCopy(obj1, obj2);</span><br><span class="line">        <span class="built_in">console</span>.dir(obj2);<span class="comment">//开始的时候这个对象是空对象</span></span><br><span class="line">        <span class="built_in">console</span>.dir(obj1);<span class="comment">//有属性</span></span><br><span class="line">        <span class="comment">//change car attribute</span></span><br><span class="line">        obj1.car.push(<span class="string">&quot;奥迪&quot;</span>);</span><br><span class="line">        <span class="comment">//the car of obj2 change,too.for the point of the car in obj2 is same as the obj1</span></span><br><span class="line">        <span class="built_in">console</span>.log(obj2.car);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 第二种</span></span><br><span class="line">        <span class="keyword">var</span> obj3 = obj1;</span><br><span class="line">        <span class="built_in">console</span>.dir(obj3);</span><br></pre></td></tr></table></figure>
+
+
+
+<p> <strong>深拷贝</strong>：把一个对象的属性和方法一个个找出来，<strong>在另一个对象中开辟对应的空间</strong>，一个个存储到另一个对象中。</p>
+<ul>
+<li>递归的方法</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">           age: <span class="number">10</span>,</span><br><span class="line">           sex: <span class="string">&quot;男&quot;</span>,</span><br><span class="line">           car: [<span class="string">&quot;奔驰&quot;</span>, <span class="string">&quot;宝马&quot;</span>, <span class="string">&quot;特斯拉&quot;</span>, <span class="string">&quot;奥拓&quot;</span>],</span><br><span class="line">           dog: &#123;</span><br><span class="line">               name: <span class="string">&quot;大黄&quot;</span>,</span><br><span class="line">               age: <span class="number">5</span>,</span><br><span class="line">               color: <span class="string">&quot;黑白色&quot;</span></span><br><span class="line">           &#125;</span><br><span class="line">       &#125;;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">var</span> obj2 = &#123;&#125;;<span class="comment">//空对象</span></span><br><span class="line">       <span class="comment">//通过函数实现,把对象a中的所有的数据深拷贝到对象b中</span></span><br><span class="line">       <span class="comment">// use recursion</span></span><br><span class="line">       <span class="function"><span class="keyword">function</span> <span class="title">deepCopy</span>(<span class="params">obj,targetObj</span>)</span>&#123;</span><br><span class="line">           <span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> obj)&#123;</span><br><span class="line">               <span class="keyword">let</span> item = obj[key];</span><br><span class="line">               <span class="keyword">if</span> (item <span class="keyword">instanceof</span> <span class="built_in">Array</span>)&#123;<span class="comment">//if array</span></span><br><span class="line">                   targetObj[key] = [];</span><br><span class="line">                   deepCopy(item,targetObj[key]);</span><br><span class="line">               &#125;<span class="keyword">else</span> <span class="keyword">if</span> (item <span class="keyword">instanceof</span> <span class="built_in">Object</span>)&#123;<span class="comment">//if object</span></span><br><span class="line">                   targetObj[key] = &#123;&#125;;</span><br><span class="line">                   deepCopy(item,targetObj[key]);</span><br><span class="line">               &#125;<span class="keyword">else</span> &#123;<span class="comment">//normal attribute</span></span><br><span class="line">                   targetObj[key] = obj[key];</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       deepCopy(obj1,obj2);</span><br><span class="line">       <span class="built_in">console</span>.dir(obj1);</span><br><span class="line">       <span class="built_in">console</span>.dir(obj2);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>通过JSON对象实现深拷贝（<strong>无法实现对象中方法的深拷贝</strong>）</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function deepClone2(obj) &#123;</span><br><span class="line">  let _obj = JSON.stringify(obj),</span><br><span class="line">  return JSON.parse(_obj);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过Object.assign()拷贝（ <strong>当对象只有一级属性为深拷贝；当对象中有多级属性时，二级属性后就是浅拷贝</strong>）</p>
+</li>
+</ul>
+
+  
+  
+    
+    <div class='footer'>
       
-        <div>
-          <a class='readmore' href='/2021/05/03/%E5%85%B3%E4%BA%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/'>
-            Read More
-          </a>
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=http://example.com/2021/05/03/%E5%85%B3%E4%BA%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/>http://example.com/2021/05/03/%E5%85%B3%E4%BA%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/</a></p>
+              
+            
+          </blockquote>
         </div>
+      
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-03T17:52:09+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：May 3, 2021</p>
+  </a>
 </div>
 
-          </div>
         
       
         
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/12/10/http/">
-        http
-      </a>
-    </h2>
-  
-  <div class='md'>
+          
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
     
       
-        状态码当客户端向服务器端发送请求时，描述返回的请求结果。
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2021/05/03/%E5%85%B3%E4%BA%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/&title= - Hexo&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2021/05/03/%E5%85%B3%E4%BA%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/&title= - Hexo&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2021/05/03/%E5%85%B3%E4%BA%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/&title= - Hexo&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+      
+        <a class='next' href='/2020/12/10/http/'>
+          <p class='title'>http<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>状态码当客户端向服务器端发送请求时，描述返回的请求结果。
 数字的第一位指定了响应类别，后两位无分类。
 
 
 
 
-这一类型的状态码，代表请求已被接受，需要继续处理。这类响应是临时响应，只包含状态行和某些可选的响应头信息，并以空行结束。
-
-这一类型的状态码，代表请求已成功被服务器接收、理解、并接受
-
-mata信息（HTML语言head区的一个辅助性标签）
-位于文档的头部，不包含任何内容。 标签的属...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-12-10</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/12/10/http/'>
-            Read More
-          </a>
-        </div>
+这一类型的状态码，代表请求已被接受，需要继续处理。这类响应是临时响应，只包含状态行和...</p>
+        </a>
       
     </div>
   
+</article>
 
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
 </div>
 
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/12/05/%E7%BB%A7%E6%89%BF/">
-        Dec 5, 2020
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        继承A 对象通过继承B对象，就能直接拥有B对象的所有属性和方法。这对于代码的复用非常有用，
-JavaScript通过使用“类”（class）和原型对象（prototype）实现。常见的有六种继承方式。
-方法一：原型链继承关键在于：子类型的原型为父类型的一个实例对象。
+  </article>
 
 
-让父类的属性和方法在子类实例的原型链上。
 
-CHILD .prototype = new PARENT（）；s
 
-CHIL...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-12-05</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/12/05/%E7%BB%A7%E6%89%BF/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/12/04/Task%203%EF%BC%9A%E5%AF%B9%E8%B1%A1%EF%BC%8C%E6%95%B0%E7%BB%84%E4%BB%A5%E5%8F%8A%E5%AD%97%E7%AC%A6%E4%B8%B2/">
-        Dec 4, 2020
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        Task 3：对象，数组以及字符串数组语法
-split(‘’”), 字符串转数组,返回一个新的数组
-
-slice(start,end),字符串截取，[1,2,3,5].slice(-1)  =&gt; [5],返回截取后的数组，不改变原数组
-
-splice()，删除或者添加字符串 [].splite(1,1,’2’), 在下标为1的位置开始 删除1个元素，添加“2”到这个位置,改变原来数组
-...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-12-04</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/12/04/Task%203%EF%BC%9A%E5%AF%B9%E8%B1%A1%EF%BC%8C%E6%95%B0%E7%BB%84%E4%BB%A5%E5%8F%8A%E5%AD%97%E7%AC%A6%E4%B8%B2/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/11/27/javascript%20task1&2/">
-        Nov 27, 2020
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        javascript
-0.1+0.1=0.2但0.1+0.2不等于0.3？
-
-​       计算机在表示小数的时候存在舍入误差，在0.1+0.1是这种舍入误差被抵消掉了，但是这种负负得正的效果不一定每次都能完美抵消，故在0.1+0.2的时候计算机只能表示出最接近0.3的值而非0.3。但有些值不存在舍入误差，比如0.5.
-
-number底层的存储格式
-
-​      64位的二进制储存。
-
-...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-11-27</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/11/27/javascript%20task1&2/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/11/21/%E5%AD%A6%E8%80%8C%E6%9C%BA%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/">
-        Nov 21, 2020
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-border-radius 允许你设置元素的外边框圆角。当使用一个半径时确定一个圆形，当使用两个半径时确定一个椭圆。这个(椭)圆与边框的交集形成圆角效果。
-
-使用hover效果改变字体颜色问题。父元素中存在两个子元素，其中一个子元素设置过字体颜色，不可利用hover改变父元素整体字体颜色。**子元素中设置字体颜色优先级高于父元素**。
-此时能使用“&gt;”符号，来提升父元素css优先级。...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-11-21</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/11/21/%E5%AD%A6%E8%80%8C%E6%9C%BA%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/10/10/%E7%AC%AC%E4%B8%80%E7%AF%87/">
-        Oct 10, 2020
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        这是第一篇博文不知道该说点什么…大概试一试学到的基础markdown语法吧链接一下我的GitHub吧
-欢迎浏览我的GitHub
-
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-10-10</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/10/10/%E7%AC%AC%E4%B8%80%E7%AF%87/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/10/08/hello-world/">
-        Hello World
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Qu...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-10-08</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/10/08/hello-world/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-    
-  </section>
-  
-    
-  
 
 
 </div>
@@ -815,82 +579,22 @@ Qu...
     
     
 
-<section class="widget blogger shadow desktop mobile">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box rectangle' href='/about/'>
-          <img no-lazy src='https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-        
-        
-          <p><span id="jinrishici-sentence">Hexo</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="/atom.xml"
-              class="social fas fa-rss flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="mailto:me@xxx.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/volantis-x/"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="/"
-              class="social fas fa-headphones-alt flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
 
-  
 
-  
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
     
+  <header>
     
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
 
-  
 
-  
-    
-    
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D"><span class="toc-text">关于深拷贝和浅拷贝</span></a></li></ol>
+    </div>
+  </section>
 
-  
 
   
 
@@ -913,7 +617,7 @@ Qu...
 
   var l_header=document.getElementById("l_header");
   
-  l_header.classList.remove("show");
+  l_header.classList.add("show");
   
 </script>
 
