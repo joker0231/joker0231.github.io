@@ -394,42 +394,56 @@
 
 
   
-  <h3 id="关于深拷贝和浅拷贝"><a href="#关于深拷贝和浅拷贝" class="headerlink" title="关于深拷贝和浅拷贝"></a>关于深拷贝和浅拷贝</h3><p>首先需要引入<strong>基本数据类型</strong>与<strong>引用数据类型</strong>的概念。</p>
-<p>基本数据类型有哪些，<strong>number，string，boolean，null，undefined，symbol</strong>以及ES10新增的<strong>BigInt</strong>(任意精度整数)七类。</p>
-<p>引用数据类型(Object类)有常规名值对的<strong>无序对象{a:1}**，</strong>数组[1,2,3]<strong>，以及</strong>函数**等。</p>
-<p>而这两类数据存储分别是这样的：</p>
-<p><strong>a.基本类型–名值存储在栈内存中</strong>，例如let a=1;</p>
-<p><img src="/2021/05/03/%E5%85%B3%E4%BA%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/1.jpg" class="lazyload" data-srcset="/2021/05/03/%E5%85%B3%E4%BA%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/1.jpg" srcset="data:image/png;base64,666" alt="01"></p>
-<p>当你b=a复制时，栈内存会新开辟一个内存，例如这样：</p>
-<p><img src="/2021/05/03/%E5%85%B3%E4%BA%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/2.jpg" class="lazyload" data-srcset="/2021/05/03/%E5%85%B3%E4%BA%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/2.jpg" srcset="data:image/png;base64,666" alt="img"></p>
-<p>所以当你此时修改a=2，对b并不会造成影响。当然，let a=1,b=a;虽然b不受a影响，但这也算不上深拷贝，因为深拷贝本身只针对较为复杂的object类型数据。</p>
-<p><strong>b.引用数据类型–名存在栈内存中，值存在于堆内存中，但是栈内存会提供一个引用的地址指向堆内存中的值</strong></p>
-<p><img src="/2021/05/03/%E5%85%B3%E4%BA%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/3.jpg" class="lazyload" data-srcset="/2021/05/03/%E5%85%B3%E4%BA%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/3.jpg" srcset="data:image/png;base64,666" alt="img"></p>
-<p>当b=a进行拷贝时，其实复制的是a的引用地址，而并非堆里面的值。</p>
-<p><img src="/2021/05/03/%E5%85%B3%E4%BA%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/4.jpg" class="lazyload" data-srcset="/2021/05/03/%E5%85%B3%E4%BA%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/4.jpg" srcset="data:image/png;base64,666" alt="img"></p>
-<ul>
-<li>如果拷贝的对象里的元素只有值，没有引用（像一个列表里储存着另一个列表，存的就是另一个列表的引用），那浅拷贝和深拷贝没有差别，都会将原有对象复制一份，产生一个新对象，对新对象里的值进行修改不会影响原有对象，新对象和原对象完全分离开。</li>
-<li>如果拷贝的对象里的元素包含引用，那浅拷贝和深拷贝是不同的，浅拷贝虽然将原有对象复制一份，但是依然保存的是引用，所以对新对象里的引用里的值进行修改，依然会改变原对象里的列表的值，新对象和原对象并没有完全分离开。而深拷贝则不同，它会将原对象里的引用也新创建一个，即新建一个列表，然后放的是新列表的引用，这样就可以将新对象和原对象完全分离开。</li>
-</ul>
-<p><strong>浅拷贝</strong>：有两种方式，一种是把一个对象里面的所有的属性值和方法都复制给另一个对象，另一种是直接把一个对象赋给另一个对象，使得两个都指向同一个对象。或者说,就是把一个对象的地址给了另一个对象,他们指向相同,两个对象之间有共同的属性或者方法,都可以使用</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第一种：</span></span><br><span class="line">        <span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">            age: <span class="number">10</span>,</span><br><span class="line">            sex: <span class="string">&quot;男&quot;</span>,</span><br><span class="line">            car: [<span class="string">&quot;奔驰&quot;</span>, <span class="string">&quot;宝马&quot;</span>, <span class="string">&quot;特斯拉&quot;</span>, <span class="string">&quot;奥拓&quot;</span>]</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="comment">//另一个对象</span></span><br><span class="line">        <span class="keyword">var</span> obj2 = &#123;&#125;;</span><br><span class="line"> </span><br><span class="line">        <span class="comment">//写一个函数,作用:把一个对象的属性复制到另一个对象中,浅拷贝</span></span><br><span class="line">        <span class="comment">//把a对象中的所有的属性复制到对象b中</span></span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">shallowCopy</span>(<span class="params">obj,targetObj</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> obj)&#123;</span><br><span class="line">                targetObj[key] = obj[key];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        shallowCopy(obj1, obj2);</span><br><span class="line">        <span class="built_in">console</span>.dir(obj2);<span class="comment">//开始的时候这个对象是空对象</span></span><br><span class="line">        <span class="built_in">console</span>.dir(obj1);<span class="comment">//有属性</span></span><br><span class="line">        <span class="comment">//change car attribute</span></span><br><span class="line">        obj1.car.push(<span class="string">&quot;奥迪&quot;</span>);</span><br><span class="line">        <span class="comment">//the car of obj2 change,too.for the point of the car in obj2 is same as the obj1</span></span><br><span class="line">        <span class="built_in">console</span>.log(obj2.car);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 第二种</span></span><br><span class="line">        <span class="keyword">var</span> obj3 = obj1;</span><br><span class="line">        <span class="built_in">console</span>.dir(obj3);</span><br></pre></td></tr></table></figure>
+  <h3 id="变量对象"><a href="#变量对象" class="headerlink" title="变量对象"></a>变量对象</h3><p>JavaScript 的可执行代码，具有执行上下文，而每个上下文包括以下 3 个属性：</p>
+<ol>
+<li>变量对象（variable object, 简称 VO）</li>
+<li>作用域链（scope chain）</li>
+<li>this</li>
+</ol>
+<p><img src="/2021/05/03/%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1/1.jpg" class="lazyload" data-srcset="/2021/05/03/%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1/1.jpg" srcset="data:image/png;base64,666" alt="img"></p>
+<p>什么是变量对象呢？先看定义：</p>
+<blockquote>
+<p>变量对象是与执行上下文相关的数据作用域，用于存储执行上下文中的变量和函数声明。</p>
+</blockquote>
+<p>变量对象是与执行上下文对应的概念，在执行上下文的创建阶段，它<strong>依次存储</strong>着在上下文中定义的以下内容：</p>
+<p><strong>1.1</strong> <strong>函数的所有形参（如果是函数上下文中）：</strong></p>
+<p>建立arguments对象。检查当前上下文中的参数，建立该对象下的属性与属性值。没有实参的话，属性值为undefined。</p>
+<p><strong>1.2. 所有函数声明：(FunctionDeclaration, FD)</strong></p>
+<p>检查当前上下文的函数声明，也就是使用function关键字声明的函数。在变量对象中以函数名建立一个属性，属性值为指向该函数所在内存地址的引用。<strong>如果变量对象已经存在相同名称的属性，则完全替换这个属性。</strong></p>
+<p>1.3. <strong>所有变量声明:（var, VariableDeclaration）</strong></p>
+<p>检查当前上下文中的变量声明，每找到一个变量声明，就在变量对象中以变量名建立一个属性，属性值为undefined。<strong>如果变量名称跟已经声明的形式参数或函数相同，则变量声明不会干扰已经存在的这类属性。</strong></p>
+<p>不同的执行上下文，变量对象会有一些差别。接下来就分别针对不同的上下文讨论其区别。</p>
+<h3 id="一-全局上下文"><a href="#一-全局上下文" class="headerlink" title="一.全局上下文"></a>一.全局上下文</h3><blockquote>
+<p>全局对象(Global object) 是在进入任何执行上下文之前就已经创建了的对象</p>
+</blockquote>
+<p>在全局代码的上下文执行环境中，变量对象就是全局对象，在浏览器中，就是 window 对象。</p>
+<p>此时，我们可以用 this 和 self 来访问到全局对象，也就是它本身</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">this</span>)  <span class="comment">// window</span></span><br><span class="line"><span class="built_in">console</span>.log(self)  <span class="comment">// window</span></span><br></pre></td></tr></table></figure>
 
 
 
-<p> <strong>深拷贝</strong>：把一个对象的属性和方法一个个找出来，<strong>在另一个对象中开辟对应的空间</strong>，一个个存储到另一个对象中。</p>
-<ul>
-<li>递归的方法</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">           age: <span class="number">10</span>,</span><br><span class="line">           sex: <span class="string">&quot;男&quot;</span>,</span><br><span class="line">           car: [<span class="string">&quot;奔驰&quot;</span>, <span class="string">&quot;宝马&quot;</span>, <span class="string">&quot;特斯拉&quot;</span>, <span class="string">&quot;奥拓&quot;</span>],</span><br><span class="line">           dog: &#123;</span><br><span class="line">               name: <span class="string">&quot;大黄&quot;</span>,</span><br><span class="line">               age: <span class="number">5</span>,</span><br><span class="line">               color: <span class="string">&quot;黑白色&quot;</span></span><br><span class="line">           &#125;</span><br><span class="line">       &#125;;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">var</span> obj2 = &#123;&#125;;<span class="comment">//空对象</span></span><br><span class="line">       <span class="comment">//通过函数实现,把对象a中的所有的数据深拷贝到对象b中</span></span><br><span class="line">       <span class="comment">// use recursion</span></span><br><span class="line">       <span class="function"><span class="keyword">function</span> <span class="title">deepCopy</span>(<span class="params">obj,targetObj</span>)</span>&#123;</span><br><span class="line">           <span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> obj)&#123;</span><br><span class="line">               <span class="keyword">let</span> item = obj[key];</span><br><span class="line">               <span class="keyword">if</span> (item <span class="keyword">instanceof</span> <span class="built_in">Array</span>)&#123;<span class="comment">//if array</span></span><br><span class="line">                   targetObj[key] = [];</span><br><span class="line">                   deepCopy(item,targetObj[key]);</span><br><span class="line">               &#125;<span class="keyword">else</span> <span class="keyword">if</span> (item <span class="keyword">instanceof</span> <span class="built_in">Object</span>)&#123;<span class="comment">//if object</span></span><br><span class="line">                   targetObj[key] = &#123;&#125;;</span><br><span class="line">                   deepCopy(item,targetObj[key]);</span><br><span class="line">               &#125;<span class="keyword">else</span> &#123;<span class="comment">//normal attribute</span></span><br><span class="line">                   targetObj[key] = obj[key];</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       deepCopy(obj1,obj2);</span><br><span class="line">       <span class="built_in">console</span>.dir(obj1);</span><br><span class="line">       <span class="built_in">console</span>.dir(obj2);</span><br></pre></td></tr></table></figure>
+<h3 id="二-函数上下文"><a href="#二-函数上下文" class="headerlink" title="二.函数上下文"></a>二.函数上下文</h3><p>在函数上下文中，变量对象包括：arguments, 函数声明，变量声明。在函数创建阶段，变量对象有默认值，进入执行阶段后，变量对象会被激活成活动对象，然后变量对象的值被顺序改变。</p>
+<p>用伪代码来表示：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">VO = &#123;</span><br><span class="line">    arguments: Arguments,</span><br><span class="line">    variables: undefine,</span><br><span class="line">    functionName: &lt;Function reference&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li><p>通过JSON对象实现深拷贝（<strong>无法实现对象中方法的深拷贝</strong>）</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function deepClone2(obj) &#123;</span><br><span class="line">  let _obj = JSON.stringify(obj),</span><br><span class="line">  return JSON.parse(_obj);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>通过Object.assign()拷贝（ <strong>当对象只有一级属性为深拷贝；当对象中有多级属性时，二级属性后就是浅拷贝</strong>）</p>
-</li>
-</ul>
+<p>只有全局上下文的变量对象允许通过VO的属性名称来间接访问，函数上下文中是不能直接访问VO对象的，此时由活动对象AO继续扮演VO的角色。也就是说未进入执行阶段前，变量对象中的属性都不能访问！但是进入到执行阶段之后，变量对象转变成了活动对象，里面的属性都能被访问了，然后开始进行执行阶段的操作。活动对象与变量对象其实都是同一个对象，只是处于执行上下文的不同生命周期。</p>
+<h4 id="创建阶段"><a href="#创建阶段" class="headerlink" title="创建阶段"></a>创建阶段</h4><p>函数在<strong>创建阶段</strong>就创建了<strong>变量对象</strong> 其中，变量对象包括：</p>
+<ol>
+<li>当前函数的参数列表，建立 Arguments 对象。</li>
+<li>所有的函数声明（不包括函数表达式哦!），直接指向函数</li>
+<li>所有的变量声明（var 声明的变量），默认为 undefined</li>
+</ol>
+<p>进入执行上下文时，函数声明和变量声明都会提前，这就是声明提升，但是变量声明的值都是undefined，而函数声明的变量已经可以指向函数。变量声明的优先级最低。</p>
+<p>举个例子：</p>
+<figure class="highlight plain"><figcaption><span>foo 时，其变量对象的表现形式为：</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function foo(a, b) &#123;</span><br><span class="line">  var c &#x3D; 10;</span><br><span class="line">  function d() &#123;&#125;</span><br><span class="line">  var e &#x3D; function _e() &#123;&#125;;</span><br><span class="line">  (function x() &#123;&#125;);</span><br><span class="line">&#125;</span><br><span class="line">  </span><br><span class="line">foo(10); </span><br></pre></td></tr></table></figure>
 
+<p>当进入函数 foo 时，其变量对象的表现形式为：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">VO = &#123;</span><br><span class="line">    <span class="built_in">arguments</span>: &#123;</span><br><span class="line">        a: <span class="number">10</span>,</span><br><span class="line">        b: <span class="literal">undefined</span>,</span><br><span class="line">        length: <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">    c: <span class="literal">undefined</span>,</span><br><span class="line">    d: <span class="xml"><span class="tag">&lt;<span class="name">function</span> <span class="attr">reference</span> <span class="attr">to</span> <span class="attr">d</span>&gt;</span>,</span></span><br><span class="line"><span class="xml">    e: undefined,</span></span><br><span class="line"><span class="xml">&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="执行阶段"><a href="#执行阶段" class="headerlink" title="执行阶段"></a>执行阶段</h4><p>当前进入执行阶段，变量对象激活成活动对象，函数会顺序执行代码，改变变量对象的值： 以上代码就变成：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">AO = &#123;</span><br><span class="line">    <span class="built_in">arguments</span>: &#123;</span><br><span class="line">        <span class="number">0</span>: <span class="number">10</span>,</span><br><span class="line">        <span class="number">1</span>: <span class="literal">undefined</span>,</span><br><span class="line">        length: <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">    c: <span class="number">10</span>,</span><br><span class="line">    d: <span class="xml"><span class="tag">&lt;<span class="name">reference</span> <span class="attr">to</span> <span class="attr">function</span> <span class="attr">declaration</span> <span class="attr">d</span>&gt;</span>,</span></span><br><span class="line">    e: &lt;reference to Function expression to _e&gt;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
   
   
     
@@ -446,7 +460,7 @@
               
             
               
-                <p>本文永久链接是：<a href=http://example.com/2021/05/03/%E5%85%B3%E4%BA%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/>http://example.com/2021/05/03/%E5%85%B3%E4%BA%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/</a></p>
+                <p>本文永久链接是：<a href=http://example.com/2021/05/03/%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1/>http://example.com/2021/05/03/%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1/</a></p>
               
             
           </blockquote>
@@ -463,7 +477,7 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-03T19:44:17+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-03T21:14:37+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：May 3, 2021</p>
@@ -485,7 +499,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2021/05/03/%E5%85%B3%E4%BA%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/&title= - Hexo&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2021/05/03/%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1/&title= - Hexo&summary="
           
           >
           
@@ -497,7 +511,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2021/05/03/%E5%85%B3%E4%BA%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/&title= - Hexo&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2021/05/03/%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1/&title= - Hexo&summary="
           
           >
           
@@ -509,7 +523,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2021/05/03/%E5%85%B3%E4%BA%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/&title= - Hexo&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2021/05/03/%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1/&title= - Hexo&summary="
           
           >
           
@@ -539,25 +553,11 @@
   
     <div class="prev-next">
       
-        <a class='prev' href='/2021/05/03/%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i></p>
-          <p class='content'>变量对象JavaScript 的可执行代码，具有执行上下文，而每个上下文包括以下 3 个属性：
-
-变量对象（variable object, 简称 VO）
-作用域链（scope chain）
-t...</p>
-        </a>
       
-      
-        <a class='next' href='/2020/12/10/http/'>
-          <p class='title'>http<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>状态码当客户端向服务器端发送请求时，描述返回的请求结果。
-数字的第一位指定了响应类别，后两位无分类。
-
-
-
-
-这一类型的状态码，代表请求已被接受，需要继续处理。这类响应是临时响应，只包含状态行和...</p>
+        <a class='next' href='/2021/05/03/%E5%85%B3%E4%BA%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/'>
+          <p class='title'><i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>关于深拷贝和浅拷贝首先需要引入基本数据类型与引用数据类型的概念。
+基本数据类型有哪些，number，string，boolean，null，undefined，symbol以及ES10新增的Bi...</p>
         </a>
       
     </div>
@@ -600,7 +600,7 @@ t...</p>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D"><span class="toc-text">关于深拷贝和浅拷贝</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1"><span class="toc-text">变量对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-%E5%85%A8%E5%B1%80%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="toc-text">一.全局上下文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-%E5%87%BD%E6%95%B0%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="toc-text">二.函数上下文</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E9%98%B6%E6%AE%B5"><span class="toc-text">创建阶段</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E9%98%B6%E6%AE%B5"><span class="toc-text">执行阶段</span></a></li></ol></li></ol>
     </div>
   </section>
 
