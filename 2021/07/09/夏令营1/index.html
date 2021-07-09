@@ -394,56 +394,51 @@
 
 
   
-  <h3 id="变量对象"><a href="#变量对象" class="headerlink" title="变量对象"></a>变量对象</h3><p>JavaScript 的可执行代码，具有执行上下文，而每个上下文包括以下 3 个属性：</p>
+  <p>夏令营1</p>
+<p><strong>对于类相关知识的复习：</strong></p>
 <ol>
-<li>变量对象（variable object, 简称 VO）</li>
-<li>作用域链（scope chain）</li>
-<li>this</li>
+<li>类中的构造器不是必须要写，但若要对类的实例进行初始化操作比如添加上属性就要写</li>
+<li>如果A类继承了B类，且在A类中写了构造器，那么A类构造器中的super是一定要写的super（props）</li>
+<li>类中定义的方法，都是放在类的原型对象上供实例去使用</li>
+<li>render方法放在组件的实例对象上，中的this指向指向组件实例对象</li>
+<li>写在组件中的方法是放在组件的原型对象上，供实例使用，在组件中调用方法时如果直接用this.方法。那么不是通过实例调用，而是直接调用。类中的方法默认开启了局部的严格模式，在方法内部调用this指向的是undefined。所以需要在构造器中改变方法this指向：  this.方法=this.方法.bind（this）或者用箭头函数</li>
+<li>类中直接写赋值语句，不用加let，const</li>
 </ol>
-<p><img src="/2021/05/03/%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1/1.jpg" class="lazyload" data-srcset="/2021/05/03/%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1/1.jpg" srcset="data:image/png;base64,666" alt="img"></p>
-<p>什么是变量对象呢？先看定义：</p>
-<blockquote>
-<p>变量对象是与执行上下文相关的数据作用域，用于存储执行上下文中的变量和函数声明。</p>
-</blockquote>
-<p>变量对象是与执行上下文对应的概念，在执行上下文的创建阶段，它<strong>依次存储</strong>着在上下文中定义的以下内容：</p>
-<p><strong>1.1</strong> <strong>函数的所有形参（如果是函数上下文中）：</strong></p>
-<p>建立arguments对象。检查当前上下文中的参数，建立该对象下的属性与属性值。没有实参的话，属性值为undefined。</p>
-<p><strong>1.2. 所有函数声明：(FunctionDeclaration, FD)</strong></p>
-<p>检查当前上下文的函数声明，也就是使用function关键字声明的函数。在变量对象中以函数名建立一个属性，属性值为指向该函数所在内存地址的引用。<strong>如果变量对象已经存在相同名称的属性，则完全替换这个属性。</strong></p>
-<p>1.3. <strong>所有变量声明:（var, VariableDeclaration）</strong></p>
-<p>检查当前上下文中的变量声明，每找到一个变量声明，就在变量对象中以变量名建立一个属性，属性值为undefined。<strong>如果变量名称跟已经声明的形式参数或函数相同，则变量声明不会干扰已经存在的这类属性。</strong></p>
-<p>不同的执行上下文，变量对象会有一些差别。接下来就分别针对不同的上下文讨论其区别。</p>
-<h3 id="一-全局上下文"><a href="#一-全局上下文" class="headerlink" title="一.全局上下文"></a>一.全局上下文</h3><blockquote>
-<p>全局对象(Global object) 是在进入任何执行上下文之前就已经创建了的对象</p>
-</blockquote>
-<p>在全局代码的上下文执行环境中，变量对象就是全局对象，在浏览器中，就是 window 对象。</p>
-<p>此时，我们可以用 this 和 self 来访问到全局对象，也就是它本身</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">this</span>)  <span class="comment">// window</span></span><br><span class="line"><span class="built_in">console</span>.log(self)  <span class="comment">// window</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="二-函数上下文"><a href="#二-函数上下文" class="headerlink" title="二.函数上下文"></a>二.函数上下文</h3><p>在函数上下文中，变量对象包括：arguments, 函数声明，变量声明。在函数创建阶段，变量对象有默认值，进入执行阶段后，变量对象会被激活成活动对象，然后变量对象的值被顺序改变。</p>
-<p>用伪代码来表示：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">VO = &#123;</span><br><span class="line">    arguments: Arguments,</span><br><span class="line">    variables: undefine,</span><br><span class="line">    functionName: &lt;Function reference&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>只有全局上下文的变量对象允许通过VO的属性名称来间接访问，函数上下文中是不能直接访问VO对象的，此时由活动对象AO继续扮演VO的角色。也就是说未进入执行阶段前，变量对象中的属性都不能访问！但是进入到执行阶段之后，变量对象转变成了活动对象，里面的属性都能被访问了，然后开始进行执行阶段的操作。活动对象与变量对象其实都是同一个对象，只是处于执行上下文的不同生命周期。</p>
-<h4 id="创建阶段"><a href="#创建阶段" class="headerlink" title="创建阶段"></a>创建阶段</h4><p>函数在<strong>创建阶段</strong>就创建了<strong>变量对象</strong> 其中，变量对象包括：</p>
+<p><strong>关于props</strong></p>
 <ol>
-<li>当前函数的参数列表，建立 Arguments 对象。</li>
-<li>所有的函数声明（不包括函数表达式哦!），直接指向函数</li>
-<li>所有的变量声明（var 声明的变量），默认为 undefined</li>
+<li>在批量传递参数的时候可使用{…数组名称}，但仅可在传递标签属性的时候使用，相当于js的…数组名称</li>
+<li>给类自身加属性，使用static</li>
+<li>构造函数仅用于给this.state赋值初始化，或为事件处理函数绑定实例</li>
 </ol>
-<p>进入执行上下文时，函数声明和变量声明都会提前，这就是声明提升，但是变量声明的值都是undefined，而函数声明的变量已经可以指向函数。变量声明的优先级最低。</p>
-<p>举个例子：</p>
-<figure class="highlight plain"><figcaption><span>foo 时，其变量对象的表现形式为：</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function foo(a, b) &#123;</span><br><span class="line">  var c &#x3D; 10;</span><br><span class="line">  function d() &#123;&#125;</span><br><span class="line">  var e &#x3D; function _e() &#123;&#125;;</span><br><span class="line">  (function x() &#123;&#125;);</span><br><span class="line">&#125;</span><br><span class="line">  </span><br><span class="line">foo(10); </span><br></pre></td></tr></table></figure>
+<p><strong>关于refs</strong></p>
+<ol>
+<li>字符串形式的ref，最简单的方式，但过时，格式与设置id有点像</li>
+<li>ref回调函数如果是内联函数，更新过程中会被执行两次，第一次传入参数null，第二次传入参数dom元素，也可以定义成 类的绑定函数，但其实没必要，就用内联函数就可以。           ref={e=&gt;this. 名称 = e}</li>
+<li>creatref是react最推荐的方法，生成一个容器来保存ref，但是好麻烦</li>
+<li>最好通过event.target得到发生事件的dom对象，不要过度使用</li>
+</ol>
+<p><strong>关于生命周期</strong></p>
+<ol>
+<li><img src="/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/1.png" class="lazyload" data-srcset="/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/1.png" srcset="data:image/png;base64,666" alt="img"></li>
+</ol>
+<p>这是整个生命周期（旧）流程，但是componentwillreceiveprops有bug，只有在组件第二次接受新prop时才会触发。</p>
+<img src="/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/2.png" class="lazyload" data-srcset="/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/2.png" srcset="data:image/png;base64,666" alt="img" style="zoom:75%;">
 
-<p>当进入函数 foo 时，其变量对象的表现形式为：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">VO = &#123;</span><br><span class="line">    <span class="built_in">arguments</span>: &#123;</span><br><span class="line">        a: <span class="number">10</span>,</span><br><span class="line">        b: <span class="literal">undefined</span>,</span><br><span class="line">        length: <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">    c: <span class="literal">undefined</span>,</span><br><span class="line">    d: <span class="xml"><span class="tag">&lt;<span class="name">function</span> <span class="attr">reference</span> <span class="attr">to</span> <span class="attr">d</span>&gt;</span>,</span></span><br><span class="line"><span class="xml">    e: undefined,</span></span><br><span class="line"><span class="xml">&#125;</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>新的生命周期流程，更新后的版本<img src="/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/3.png" class="lazyload" data-srcset="/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/3.png" srcset="data:image/png;base64,666" alt="img"></li>
+</ol>
+<p>虚拟dom中key的作用</p>
+<ol>
+<li>简单来说，key是虚拟dom对象的标识，，，在更新显示的时候key起着极其重要的作用</li>
+<li>详细点讲，当state中的数据发生变化，那么react会根据新数据生成新的虚拟dom。后与旧虚拟dom进行比较，找到相同的key，如果内容没变，那么直接使用之前的真实dom，若虚拟dom中内容变了，那么生成新的真实dom替换之前的真实dom。</li>
+<li>最好不用index作为key，数据逆序添加或删除会产生不必要的dom更新，有时也会产生一些错误。</li>
+<li>最好是使用每条数据的唯一标识作为key。</li>
+</ol>
+<p>一些小的复习知识点</p>
+<ol>
+<li>…不能展开一个对象，但{…person}可用于复制对象 或者也用来展开props</li>
+</ol>
 
-
-
-<h4 id="执行阶段"><a href="#执行阶段" class="headerlink" title="执行阶段"></a>执行阶段</h4><p>当前进入执行阶段，变量对象激活成活动对象，函数会顺序执行代码，改变变量对象的值： 以上代码就变成：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">AO = &#123;</span><br><span class="line">    <span class="built_in">arguments</span>: &#123;</span><br><span class="line">        <span class="number">0</span>: <span class="number">10</span>,</span><br><span class="line">        <span class="number">1</span>: <span class="literal">undefined</span>,</span><br><span class="line">        length: <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">    c: <span class="number">10</span>,</span><br><span class="line">    d: <span class="xml"><span class="tag">&lt;<span class="name">reference</span> <span class="attr">to</span> <span class="attr">function</span> <span class="attr">declaration</span> <span class="attr">d</span>&gt;</span>,</span></span><br><span class="line">    e: &lt;reference to Function expression to _e&gt;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
   
   
     
@@ -460,7 +455,7 @@
               
             
               
-                <p>本文永久链接是：<a href=http://example.com/2021/05/03/%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1/>http://example.com/2021/05/03/%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1/</a></p>
+                <p>本文永久链接是：<a href=http://example.com/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/>http://example.com/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/</a></p>
               
             
           </blockquote>
@@ -477,10 +472,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-03T21:14:37+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-07-09T13:28:21+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：May 3, 2021</p>
+    <p>更新于：Jul 9, 2021</p>
   </a>
 </div>
 
@@ -499,7 +494,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2021/05/03/%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1/&title= - Hexo&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/&title= - Hexo&summary="
           
           >
           
@@ -511,7 +506,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2021/05/03/%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1/&title= - Hexo&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/&title= - Hexo&summary="
           
           >
           
@@ -523,7 +518,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2021/05/03/%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1/&title= - Hexo&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/&title= - Hexo&summary="
           
           >
           
@@ -553,20 +548,14 @@
   
     <div class="prev-next">
       
-        <a class='prev' href='/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i></p>
-          <p class='content'>夏令营1
-对于类相关知识的复习：
-
-类中的构造器不是必须要写，但若要对类的实例进行初始化操作比如添加上属性就要写
-如果A类继承了B类，且在A类中写了构造器，那么A类构造器中的super是一定要写...</p>
-        </a>
       
-      
-        <a class='next' href='/2021/05/03/%E5%85%B3%E4%BA%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/'>
+        <a class='next' href='/2021/05/03/%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1/'>
           <p class='title'><i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>关于深拷贝和浅拷贝首先需要引入基本数据类型与引用数据类型的概念。
-基本数据类型有哪些，number，string，boolean，null，undefined，symbol以及ES10新增的Bi...</p>
+          <p class='content'>变量对象JavaScript 的可执行代码，具有执行上下文，而每个上下文包括以下 3 个属性：
+
+变量对象（variable object, 简称 VO）
+作用域链（scope chain）
+t...</p>
         </a>
       
     </div>
@@ -598,20 +587,6 @@
     
 
 
-
-  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
-    
-  <header>
-    
-      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
-    
-  </header>
-
-
-    <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1"><span class="toc-text">变量对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-%E5%85%A8%E5%B1%80%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="toc-text">一.全局上下文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-%E5%87%BD%E6%95%B0%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="toc-text">二.函数上下文</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E9%98%B6%E6%AE%B5"><span class="toc-text">创建阶段</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E9%98%B6%E6%AE%B5"><span class="toc-text">执行阶段</span></a></li></ol></li></ol>
-    </div>
-  </section>
 
 
   
