@@ -394,49 +394,39 @@
 
 
   
-  <p>夏令营1</p>
-<p><strong>对于类相关知识的复习：</strong></p>
+  <p>css in depth 第一章</p>
+<h3 id="层叠"><a href="#层叠" class="headerlink" title="层叠"></a>层叠</h3><p>层叠根据三个条件解决冲突</p>
 <ol>
-<li>类中的构造器不是必须要写，但若要对类的实例进行初始化操作比如添加上属性就要写</li>
-<li>如果A类继承了B类，且在A类中写了构造器，那么A类构造器中的super是一定要写的super（props）</li>
-<li>类中定义的方法，都是放在类的原型对象上供实例去使用</li>
-<li>render方法放在组件的实例对象上，中的this指向指向组件实例对象</li>
-<li>写在组件中的方法是放在组件的原型对象上，供实例使用，在组件中调用方法时如果直接用this.方法。那么不是通过实例调用，而是直接调用。类中的方法默认开启了局部的严格模式，在方法内部调用this指向的是undefined。所以需要在构造器中改变方法this指向：  this.方法=this.方法.bind（this）或者用箭头函数</li>
-<li>类中直接写赋值语句，不用加let，const</li>
+<li>样式表的来源（其实来源之后还要判断一下是否是内联）</li>
+<li>选择器优先级</li>
+<li>源码顺序</li>
 </ol>
-<p><strong>关于props</strong></p>
+<p>样式表来源主要分：作者样式表，用户代理样式表（优先级从高到低）。用户代理样式表是浏览器默认的一些样式，不会做多余的事情。</p>
+<p>！important 的声明会被当做更高优先级的来源，优先级高于所有没有此声明的样式。</p>
+<h4 id="优先级（推荐使用方法）"><a href="#优先级（推荐使用方法）" class="headerlink" title="优先级（推荐使用方法）"></a>优先级（推荐使用方法）</h4><p>优先级分为两部分：HTML的行内样式和选择器的样式</p>
+<p><strong>行内样式</strong>也叫内联样式，只作用于当前元素，如果要在样式表中覆盖行内声明，需要给声明添加！important</p>
+<h5 id="选择器优先级"><a href="#选择器优先级" class="headerlink" title="选择器优先级"></a>选择器优先级</h5><p>准确规则如下</p>
+<ul>
+<li>顺序为ID，类，标签（优先级从高到低）</li>
+<li>如果ID数量一致，那么类数量多的优先级更高，或者ID，类数量都一样那么标签数量多的优先级高</li>
+</ul>
+<p><em>不要经常使用！important，要学会使用选择器优先级来解决问题，最好刚开始让优先级尽可能低，这样当需要覆盖一些样式时才会有选择空间。</em></p>
+<h4 id="源码顺序"><a href="#源码顺序" class="headerlink" title="源码顺序"></a>源码顺序</h4><p>选择器优先级相同，那么出现晚的样式优先级高，会将之前那个覆盖掉。</p>
+<p>顺序的记忆口诀是：love/hate  即link，visited，hover，active</p>
+<p><strong>经验之谈：</strong></p>
 <ol>
-<li>在批量传递参数的时候可使用{…数组名称}，但仅可在传递标签属性的时候使用，相当于js的…数组名称</li>
-<li>给类自身加属性，使用static</li>
-<li>构造函数仅用于给this.state赋值初始化，或为事件处理函数绑定实例</li>
+<li>在选择器中不要使用ID</li>
+<li>不要使用！important</li>
 </ol>
-<p><strong>关于refs</strong></p>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p>继承属性从dom树的父节点传递到子节点，给父节点添加某一属性，那么每个子节点默认都是该属性。但并不是所有的属性都可以被继承，主要是跟文本有关系的属性：color，font，font-family，line-hight等等之类，还有一些列表属性：list-style，list-style-position等等，还有表格边框属性：border-collapse，border-spacing。</p>
+<p>继承属性路径很难追踪，使用开发者工具是最好的追踪方式。</p>
+<p>有两个特殊值可以赋给任意属性来控制层叠：inherit和initial。若某属性：inherit代表该属性继承其父元素的值。若某属性：initial，则表示重置为默认值</p>
+<h4 id="简写属性"><a href="#简写属性" class="headerlink" title="简写属性"></a>简写属性</h4><p>同时给多个属性赋值的属性。例如font指定了font-style，font-weight，font-size，font-hight，font-family。则可以font：italic  bold  18px/1.2  “helivetica” ，“arial”，sans-serif</p>
+<p>但是尽量避免使用font简写属性，因为设置的属性值太多，可能会遇到问题</p>
+<p>简写属性的顺序：</p>
 <ol>
-<li>字符串形式的ref，最简单的方式，但过时，格式与设置id有点像</li>
-<li>ref回调函数如果是内联函数，更新过程中会被执行两次，第一次传入参数null，第二次传入参数dom元素，也可以定义成 类的绑定函数，但其实没必要，就用内联函数就可以。           ref={e=&gt;this. 名称 = e}</li>
-<li>creatref是react最推荐的方法，生成一个容器来保存ref，但是好麻烦</li>
-<li>最好通过event.target得到发生事件的dom对象，不要过度使用</li>
-</ol>
-<p><strong>关于生命周期</strong></p>
-<ol>
-<li><img src="/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/1.png" class="lazyload" data-srcset="/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/1.png" srcset="data:image/png;base64,666" alt="img"></li>
-</ol>
-<p>这是整个生命周期（旧）流程，但是componentwillreceiveprops有bug，只有在组件第二次接受新prop时才会触发。</p>
-<img src="/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/2.png" class="lazyload" data-srcset="/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/2.png" srcset="data:image/png;base64,666" alt="img" style="zoom:75%;">
-
-<ol start="2">
-<li>新的生命周期流程，更新后的版本<img src="/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/3.png" class="lazyload" data-srcset="/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/3.png" srcset="data:image/png;base64,666" alt="img"></li>
-</ol>
-<p>虚拟dom中key的作用</p>
-<ol>
-<li>简单来说，key是虚拟dom对象的标识，，，在更新显示的时候key起着极其重要的作用</li>
-<li>详细点讲，当state中的数据发生变化，那么react会根据新数据生成新的虚拟dom。后与旧虚拟dom进行比较，找到相同的key，如果内容没变，那么直接使用之前的真实dom，若虚拟dom中内容变了，那么生成新的真实dom替换之前的真实dom。</li>
-<li>最好不用index作为key，数据逆序添加或删除会产生不必要的dom更新，有时也会产生一些错误。</li>
-<li>最好是使用每条数据的唯一标识作为key。</li>
-</ol>
-<p>一些小的复习知识点</p>
-<ol>
-<li>…不能展开一个对象，但{…person}可用于复制对象 或者也用来展开props</li>
+<li>上右下左（设置边距）</li>
+<li>水平，垂直（background-position，box-shadow，text-shadow）</li>
 </ol>
 
   
@@ -455,7 +445,7 @@
               
             
               
-                <p>本文永久链接是：<a href=http://example.com/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/>http://example.com/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/</a></p>
+                <p>本文永久链接是：<a href=http://example.com/2021/07/13/css%20in%20depth%20%E7%AC%AC%E4%B8%80%E7%AB%A0/>http://example.com/2021/07/13/css%20in%20depth%20%E7%AC%AC%E4%B8%80%E7%AB%A0/</a></p>
               
             
           </blockquote>
@@ -472,10 +462,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-07-09T13:28:21+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-07-13T00:16:13+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Jul 9, 2021</p>
+    <p>更新于：Jul 13, 2021</p>
   </a>
 </div>
 
@@ -494,7 +484,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/&title= - Hexo&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2021/07/13/css%20in%20depth%20%E7%AC%AC%E4%B8%80%E7%AB%A0/&title= - Hexo&summary="
           
           >
           
@@ -506,7 +496,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/&title= - Hexo&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2021/07/13/css%20in%20depth%20%E7%AC%AC%E4%B8%80%E7%AB%A0/&title= - Hexo&summary="
           
           >
           
@@ -518,7 +508,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/&title= - Hexo&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2021/07/13/css%20in%20depth%20%E7%AC%AC%E4%B8%80%E7%AB%A0/&title= - Hexo&summary="
           
           >
           
@@ -548,26 +538,14 @@
   
     <div class="prev-next">
       
-        <a class='prev' href='/2021/07/13/css%20in%20depth%20%E7%AC%AC%E4%B8%80%E7%AB%A0/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i></p>
-          <p class='content'>css in depth 第一章
-层叠层叠根据三个条件解决冲突
-
-样式表的来源（其实来源之后还要判断一下是否是内联）
-选择器优先级
-源码顺序
-
-样式表来源主要分：作者样式表，用户代理样式表（优先...</p>
-        </a>
       
-      
-        <a class='next' href='/2021/05/03/%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1/'>
+        <a class='next' href='/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/'>
           <p class='title'><i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>变量对象JavaScript 的可执行代码，具有执行上下文，而每个上下文包括以下 3 个属性：
+          <p class='content'>夏令营1
+对于类相关知识的复习：
 
-变量对象（variable object, 简称 VO）
-作用域链（scope chain）
-t...</p>
+类中的构造器不是必须要写，但若要对类的实例进行初始化操作比如添加上属性就要写
+如果A类继承了B类，且在A类中写了构造器，那么A类构造器中的super是一定要写...</p>
         </a>
       
     </div>
@@ -599,6 +577,20 @@ t...</p>
     
 
 
+
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%82%E5%8F%A0"><span class="toc-text">层叠</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%98%E5%85%88%E7%BA%A7%EF%BC%88%E6%8E%A8%E8%8D%90%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%EF%BC%89"><span class="toc-text">优先级（推荐使用方法）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E5%99%A8%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-text">选择器优先级</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%BA%90%E7%A0%81%E9%A1%BA%E5%BA%8F"><span class="toc-text">源码顺序</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF"><span class="toc-text">继承</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%80%E5%86%99%E5%B1%9E%E6%80%A7"><span class="toc-text">简写属性</span></a></li></ol></li></ol>
+    </div>
+  </section>
 
 
   

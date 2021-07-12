@@ -5,6 +5,10 @@
   <!-- SEO相关 -->
   
     
+      
+        <meta name="robots" content="noindex,follow">
+      
+    
   
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -305,7 +309,7 @@
     <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper post dock' style="display: none;">
+        <div id="full" class='cover-wrapper  dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg"></div>
           
@@ -381,214 +385,75 @@
         
 
 <div class='l_main'>
-  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
   
-
-
-  
-  <div class="article-meta" id="top">
+  <section class="post-list">
     
     
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/10/08/hello-world/">
+        Hello World
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
+Qu...
+      
     
   </div>
-
-
   
-  <p>夏令营1</p>
-<p><strong>对于类相关知识的复习：</strong></p>
-<ol>
-<li>类中的构造器不是必须要写，但若要对类的实例进行初始化操作比如添加上属性就要写</li>
-<li>如果A类继承了B类，且在A类中写了构造器，那么A类构造器中的super是一定要写的super（props）</li>
-<li>类中定义的方法，都是放在类的原型对象上供实例去使用</li>
-<li>render方法放在组件的实例对象上，中的this指向指向组件实例对象</li>
-<li>写在组件中的方法是放在组件的原型对象上，供实例使用，在组件中调用方法时如果直接用this.方法。那么不是通过实例调用，而是直接调用。类中的方法默认开启了局部的严格模式，在方法内部调用this指向的是undefined。所以需要在构造器中改变方法this指向：  this.方法=this.方法.bind（this）或者用箭头函数</li>
-<li>类中直接写赋值语句，不用加let，const</li>
-</ol>
-<p><strong>关于props</strong></p>
-<ol>
-<li>在批量传递参数的时候可使用{…数组名称}，但仅可在传递标签属性的时候使用，相当于js的…数组名称</li>
-<li>给类自身加属性，使用static</li>
-<li>构造函数仅用于给this.state赋值初始化，或为事件处理函数绑定实例</li>
-</ol>
-<p><strong>关于refs</strong></p>
-<ol>
-<li>字符串形式的ref，最简单的方式，但过时，格式与设置id有点像</li>
-<li>ref回调函数如果是内联函数，更新过程中会被执行两次，第一次传入参数null，第二次传入参数dom元素，也可以定义成 类的绑定函数，但其实没必要，就用内联函数就可以。           ref={e=&gt;this. 名称 = e}</li>
-<li>creatref是react最推荐的方法，生成一个容器来保存ref，但是好麻烦</li>
-<li>最好通过event.target得到发生事件的dom对象，不要过度使用</li>
-</ol>
-<p><strong>关于生命周期</strong></p>
-<ol>
-<li><img src="/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/1.png" class="lazyload" data-srcset="/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/1.png" srcset="data:image/png;base64,666" alt="img"></li>
-</ol>
-<p>这是整个生命周期（旧）流程，但是componentwillreceiveprops有bug，只有在组件第二次接受新prop时才会触发。</p>
-<img src="/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/2.png" class="lazyload" data-srcset="/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/2.png" srcset="data:image/png;base64,666" alt="img" style="zoom:75%;">
-
-<ol start="2">
-<li>新的生命周期流程，更新后的版本<img src="/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/3.png" class="lazyload" data-srcset="/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/3.png" srcset="data:image/png;base64,666" alt="img"></li>
-</ol>
-<p>虚拟dom中key的作用</p>
-<ol>
-<li>简单来说，key是虚拟dom对象的标识，，，在更新显示的时候key起着极其重要的作用</li>
-<li>详细点讲，当state中的数据发生变化，那么react会根据新数据生成新的虚拟dom。后与旧虚拟dom进行比较，找到相同的key，如果内容没变，那么直接使用之前的真实dom，若虚拟dom中内容变了，那么生成新的真实dom替换之前的真实dom。</li>
-<li>最好不用index作为key，数据逆序添加或删除会产生不必要的dom更新，有时也会产生一些错误。</li>
-<li>最好是使用每条数据的唯一标识作为key。</li>
-</ol>
-<p>一些小的复习知识点</p>
-<ol>
-<li>…不能展开一个对象，但{…person}可用于复制对象 或者也用来展开props</li>
-</ol>
-
-  
-  
-    
-    <div class='footer'>
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-10-08</time>
+        
+      </div>
       
-      
-      
-        <div class='copyright'>
-          <blockquote>
-            
-              
-                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
-
-              
-            
-              
-                <p>本文永久链接是：<a href=http://example.com/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/>http://example.com/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/</a></p>
-              
-            
-          </blockquote>
+        <div>
+          <a class='readmore' href='/2020/10/08/hello-world/'>
+            Read More
+          </a>
         </div>
       
-      
     </div>
   
-  
-    
 
-
-  <div class='article-meta' id="bottom">
-    <div class='new-meta-box'>
-      
-        
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-07-09T13:28:21+08:00">
-  <a class='notlink'>
-    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Jul 9, 2021</p>
-  </a>
 </div>
 
+          </div>
         
       
+    
+  </section>
+  
+    
+      <br>
+      <div class="prev-next">
         
-          
-
+          <a class="prev" rel="prev" href="/">
+            <section class="post prev white-box shadow" >
+              <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;Previous&nbsp;
+            </section>
+          </a>
         
-      
+        <p class="current">
+          2 / 2
+        </p>
         
-          
-  <div class="new-meta-item share -mob-share-list">
-  <div class="-mob-share-list share-body">
+      </div>
     
-      
-        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
-          
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/&title= - Hexo&summary="
-          
-          >
-          
-            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,666">
-          
-        </a>
-      
-    
-      
-        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
-          
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/&title= - Hexo&summary="
-          
-          >
-          
-            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,666">
-          
-        </a>
-      
-    
-      
-        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
-          
-          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/&title= - Hexo&summary="
-          
-          >
-          
-            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,666">
-          
-        </a>
-      
-    
-      
-    
-      
-    
-  </div>
-</div>
-
-
-
-        
-      
-    </div>
-  </div>
-
-
   
-  
-
-  
-    <div class="prev-next">
-      
-        <a class='prev' href='/2021/07/13/css%20in%20depth%20%E7%AC%AC%E4%B8%80%E7%AB%A0/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i></p>
-          <p class='content'>css in depth 第一章
-层叠层叠根据三个条件解决冲突
-
-样式表的来源（其实来源之后还要判断一下是否是内联）
-选择器优先级
-源码顺序
-
-样式表来源主要分：作者样式表，用户代理样式表（优先...</p>
-        </a>
-      
-      
-        <a class='next' href='/2021/05/03/%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1/'>
-          <p class='title'><i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>变量对象JavaScript 的可执行代码，具有执行上下文，而每个上下文包括以下 3 个属性：
-
-变量对象（variable object, 简称 VO）
-作用域链（scope chain）
-t...</p>
-        </a>
-      
-    </div>
-  
-</article>
-
-
-  
-
-  <article class="post white-box reveal shadow" id="comments">
-    <p ct><i class='fas fa-comments'></i> 评论</p>
-    
-    <div id="valine_container" class="valine_thread">
-  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
-</div>
-
-  </article>
-
-
-
-
 
 
 </div>
@@ -598,8 +463,82 @@ t...</p>
     
     
 
+<section class="widget blogger shadow desktop mobile">
+  <div class='content'>
+    
+      
+        <a class='avatar flat-box rectangle' href='/about/'>
+          <img no-lazy src='https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png'/>
+        </a>
+      
+    
+    
+      <div class='text'>
+        
+        
+        
+          <p><span id="jinrishici-sentence">Hexo</span></p>
+          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+        
+      </div>
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="/atom.xml"
+              class="social fas fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="mailto:me@xxx.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="https://github.com/volantis-x/"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="/"
+              class="social fas fa-headphones-alt flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
 
+  
 
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
 
   
 
