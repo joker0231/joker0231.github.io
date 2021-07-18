@@ -394,49 +394,40 @@
 
 
   
-  <p>夏令营2</p>
-<p>css in depth第二章——相对位置</p>
-<p>响应式设计：可以根据浏览器窗口的大小有不同的响应。在响应式网页中，需要习惯模糊值，1.2em具体是多少px不重要，主要看它在页面上的效果怎么样。</p>
-<p>使用em和rem作为相对长度单位。</p>
-<h4 id="em和rem"><a href="#em和rem" class="headerlink" title="em和rem"></a><strong>em和rem</strong></h4><h5 id="使用em"><a href="#使用em" class="headerlink" title="使用em"></a>使用em</h5><p>在css中，1em等于当前元素的字号，其中却只取决于作用的元素。假如某一元素中字号大小为16px，padding为1em，那么其内间距浏览器会将em前的数据乘以字号大小，最终渲染为16px。</p>
+  <p>css in depth 第一章</p>
+<h3 id="层叠"><a href="#层叠" class="headerlink" title="层叠"></a>层叠</h3><p>层叠根据三个条件解决冲突</p>
+<ol>
+<li>样式表的来源（其实来源之后还要判断一下是否是内联）</li>
+<li>选择器优先级</li>
+<li>源码顺序</li>
+</ol>
+<p>样式表来源主要分：作者样式表，用户代理样式表（优先级从高到低）。用户代理样式表是浏览器默认的一些样式，不会做多余的事情。</p>
+<p>！important 的声明会被当做更高优先级的来源，优先级高于所有没有此声明的样式。</p>
+<h4 id="优先级（推荐使用方法）"><a href="#优先级（推荐使用方法）" class="headerlink" title="优先级（推荐使用方法）"></a>优先级（推荐使用方法）</h4><p>优先级分为两部分：HTML的行内样式和选择器的样式</p>
+<p><strong>行内样式</strong>也叫内联样式，只作用于当前元素，如果要在样式表中覆盖行内声明，需要给声明添加！important</p>
+<h5 id="选择器优先级"><a href="#选择器优先级" class="headerlink" title="选择器优先级"></a>选择器优先级</h5><p>准确规则如下</p>
 <ul>
-<li>使用em来设置padding，height，width，bord-radius等属性会很方便，因为当元素继承了不同的字号，或者改变字号设置，这些元素会跟着字号均匀的缩放。所以只需要改变字号就能整体缩放元素。</li>
-<li>如果用em来定义字号，假如font-side：1.2em那么其字号是根据继承的字号来计算的，继承的是浏览器默认字号，一般是16px。</li>
-<li>当em同时应用在字号和其他属性，浏览器会先计算字号，然后根据字号的计算值去算出其他的属性值。</li>
-<li>如果用em指定多重嵌套的元素字号，会出现bug，此时需要设定两个选择器，第二个选择器选中嵌套的所有子元素，设置字号为1em即可。</li>
+<li>顺序为ID，类，标签（优先级从高到低）</li>
+<li>如果ID数量一致，那么类数量多的优先级更高，或者ID，类数量都一样那么标签数量多的优先级高</li>
 </ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">  <span class="attribute">font-side</span>: <span class="number">16px</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">ul</span>&#123;</span><br><span class="line">  <span class="attribute">font-side</span>:  .<span class="number">8em</span></span><br><span class="line">&#125;//此时会出现字号逐级变小的问题</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">ul</span>&#123;</span><br><span class="line">  <span class="attribute">font-side</span>:  .<span class="number">8em</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">ul</span> <span class="selector-tag">ul</span>&#123;</span><br><span class="line">  <span class="attribute">font-side</span>:<span class="number">1em</span></span><br><span class="line">&#125;//问题解决</span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="使用rem"><a href="#使用rem" class="headerlink" title="使用rem"></a>使用rem</h5><p>rem不是相对于当前元素，而是相对于根元素的单位。</p>
-<p>ps：根节点有一个伪类选择器（：root），可以用来选中他自己，等价于类型选择器html。</p>
-<p><strong><em>一般使用rem设置字号，px设置边框，用em设置其他大部分属性，尤其是内边距，外边距和圆角，或者使用百分比来设置容器宽度。</em></strong></p>
-<h4 id="构建响应式面板"><a href="#构建响应式面板" class="headerlink" title="构建响应式面板"></a>构建响应式面板</h4><ul>
-<li>使用@media规则，根据屏幕的尺寸来改变根元素的字号。</li>
-</ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">:root</span>&#123;</span><br><span class="line">    <span class="attribute">font-side</span>:<span class="number">0.75em</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">min-width:</span><span class="number">800px</span>)&#123;</span><br><span class="line">    <span class="selector-pseudo">:root</span>&#123;</span><br><span class="line">        <span class="attribute">font-side</span>:<span class="number">0.875em</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;//仅作用到宽度800px以上的屏幕，覆盖以前的字号值</span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">min-width:</span><span class="number">1200px</span>)&#123;</span><br><span class="line">    <span class="selector-pseudo">:root</span>&#123;</span><br><span class="line">        <span class="attribute">font-side</span>:<span class="number">1em</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;//仅作用到宽度1200px以上的屏幕，覆盖以前的字号值</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>可以用相对视口高度来定义字号，虽然元素过渡平滑无断点，但缩放不太合理，一般使用calc（）来定义字号，结合em和vw一起，无断点，过渡合理。</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">:root</span>&#123;</span><br><span class="line">    <span class="attribute">font-side</span>:<span class="built_in">calc</span>(<span class="number">0.5em</span> + <span class="number">1vw</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="视口的相对单位"><a href="#视口的相对单位" class="headerlink" title="视口的相对单位"></a>视口的相对单位</h4><ul>
-<li>vh：视口高度的1%</li>
-<li>vw：视口宽度的1%</li>
-<li>vmin：视口宽，高中较小的一方的1%</li>
-<li>vmax：视口宽，高中较大的一方的1%</li>
-</ul>
-<h4 id="无单位的数值和行高"><a href="#无单位的数值和行高" class="headerlink" title="无单位的数值和行高"></a>无单位的数值和行高</h4><p>有些属性允许无单位的值，包括line-height，z-index，font-weight。其中line-height较为特殊，一般使用无单位的数值。因为使用无单位的数值时，继承的是声明值，在每个继承子元素上会重新计算它的计算值，这样得到的结果基本都是正确的。</p>
-<h4 id="自定义属性（css变量）"><a href="#自定义属性（css变量）" class="headerlink" title="自定义属性（css变量）"></a>自定义属性（css变量）</h4><p>变量俺们必须要有两个连字符（–），用来和css属性区分，剩下的部分可以随便命名。</p>
-<p>调用函数var（）就可以使用该变量。并且该函数接受第二个参数，指定备用值，如果第一个参数的变量未定义，就会使用第二个值。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">:root</span>&#123;</span><br><span class="line">    <span class="attribute">--main-font</span>:Helevica,Arial,sans-serif;</span><br><span class="line">    <span class="attribute">--main-color</span>:<span class="number">#000</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.panel</span>&#123;</span><br><span class="line">    <span class="attribute">font-side</span>:<span class="number">1rem</span>;</span><br><span class="line">    <span class="attribute">padding</span>:<span class="number">1em</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>:<span class="number">0.5em</span>;</span><br><span class="line">    <span class="attribute">background-color</span>:<span class="built_in">var</span>(--main-font);</span><br><span class="line">    <span class="attribute">color</span>:<span class="built_in">var</span>(--main-color);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>自定义属性就像作用域变量一样，因为它的值会被后代元素继承。</p>
-<p>还可以使用JavaScript来改变自定义属性。</p>
+<p><em>不要经常使用！important，要学会使用选择器优先级来解决问题，最好刚开始让优先级尽可能低，这样当需要覆盖一些样式时才会有选择空间。</em></p>
+<h4 id="源码顺序"><a href="#源码顺序" class="headerlink" title="源码顺序"></a>源码顺序</h4><p>选择器优先级相同，那么出现晚的样式优先级高，会将之前那个覆盖掉。</p>
+<p>顺序的记忆口诀是：love/hate  即link，visited，hover，active</p>
+<p><strong>经验之谈：</strong></p>
+<ol>
+<li>在选择器中不要使用ID</li>
+<li>不要使用！important</li>
+</ol>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p>继承属性从dom树的父节点传递到子节点，给父节点添加某一属性，那么每个子节点默认都是该属性。但并不是所有的属性都可以被继承，主要是跟文本有关系的属性：color，font，font-family，line-hight等等之类，还有一些列表属性：list-style，list-style-position等等，还有表格边框属性：border-collapse，border-spacing。</p>
+<p>继承属性路径很难追踪，使用开发者工具是最好的追踪方式。</p>
+<p>有两个特殊值可以赋给任意属性来控制层叠：inherit和initial。若某属性：inherit代表该属性继承其父元素的值。若某属性：initial，则表示重置为默认值</p>
+<h4 id="简写属性"><a href="#简写属性" class="headerlink" title="简写属性"></a>简写属性</h4><p>同时给多个属性赋值的属性。例如font指定了font-style，font-weight，font-size，font-hight，font-family。则可以font：italic  bold  18px/1.2  “helivetica” ，“arial”，sans-serif</p>
+<p>但是尽量避免使用font简写属性，因为设置的属性值太多，可能会遇到问题</p>
+<p>简写属性的顺序：</p>
+<ol>
+<li>上右下左（设置边距）</li>
+<li>水平，垂直（background-position，box-shadow，text-shadow）</li>
+</ol>
 
   
   
@@ -454,7 +445,7 @@
               
             
               
-                <p>本文永久链接是：<a href=http://example.com/2021/07/17/%E5%A4%8F%E4%BB%A4%E8%90%A52/>http://example.com/2021/07/17/%E5%A4%8F%E4%BB%A4%E8%90%A52/</a></p>
+                <p>本文永久链接是：<a href=http://example.com/2021/07/13/%E5%B1%82%E5%8F%A0%E4%BC%98%E5%85%88%E7%BA%A7%E7%BB%A7%E6%89%BF/>http://example.com/2021/07/13/%E5%B1%82%E5%8F%A0%E4%BC%98%E5%85%88%E7%BA%A7%E7%BB%A7%E6%89%BF/</a></p>
               
             
           </blockquote>
@@ -471,10 +462,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-07-17T23:43:09+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-07-13T00:16:13+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Jul 17, 2021</p>
+    <p>更新于：Jul 13, 2021</p>
   </a>
 </div>
 
@@ -493,7 +484,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2021/07/17/%E5%A4%8F%E4%BB%A4%E8%90%A52/&title= - Hexo&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2021/07/13/%E5%B1%82%E5%8F%A0%E4%BC%98%E5%85%88%E7%BA%A7%E7%BB%A7%E6%89%BF/&title= - Hexo&summary="
           
           >
           
@@ -505,7 +496,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2021/07/17/%E5%A4%8F%E4%BB%A4%E8%90%A52/&title= - Hexo&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2021/07/13/%E5%B1%82%E5%8F%A0%E4%BC%98%E5%85%88%E7%BA%A7%E7%BB%A7%E6%89%BF/&title= - Hexo&summary="
           
           >
           
@@ -517,7 +508,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2021/07/17/%E5%A4%8F%E4%BB%A4%E8%90%A52/&title= - Hexo&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2021/07/13/%E5%B1%82%E5%8F%A0%E4%BC%98%E5%85%88%E7%BA%A7%E7%BB%A7%E6%89%BF/&title= - Hexo&summary="
           
           >
           
@@ -547,17 +538,21 @@
   
     <div class="prev-next">
       
+        <a class='prev' href='/2021/07/17/%E7%9B%B8%E5%AF%B9%E5%8D%95%E4%BD%8D/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i></p>
+          <p class='content'>夏令营2
+css in depth第二章——相对位置
+响应式设计：可以根据浏览器窗口的大小有不同的响应。在响应式网页中，需要习惯模糊值，1.2em具体是多少px不重要，主要看它在页面上的效果怎么...</p>
+        </a>
       
-        <a class='next' href='/2021/07/13/css%20in%20depth%20%E7%AC%AC%E4%B8%80%E7%AB%A0/'>
+      
+        <a class='next' href='/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/'>
           <p class='title'><i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>css in depth 第一章
-层叠层叠根据三个条件解决冲突
+          <p class='content'>夏令营1
+对于类相关知识的复习：
 
-样式表的来源（其实来源之后还要判断一下是否是内联）
-选择器优先级
-源码顺序
-
-样式表来源主要分：作者样式表，用户代理样式表（优先...</p>
+类中的构造器不是必须要写，但若要对类的实例进行初始化操作比如添加上属性就要写
+如果A类继承了B类，且在A类中写了构造器，那么A类构造器中的super是一定要写...</p>
         </a>
       
     </div>
@@ -600,7 +595,7 @@
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#em%E5%92%8Crem"><span class="toc-text">em和rem</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8em"><span class="toc-text">使用em</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8rem"><span class="toc-text">使用rem</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA%E5%93%8D%E5%BA%94%E5%BC%8F%E9%9D%A2%E6%9D%BF"><span class="toc-text">构建响应式面板</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%86%E5%8F%A3%E7%9A%84%E7%9B%B8%E5%AF%B9%E5%8D%95%E4%BD%8D"><span class="toc-text">视口的相对单位</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%A0%E5%8D%95%E4%BD%8D%E7%9A%84%E6%95%B0%E5%80%BC%E5%92%8C%E8%A1%8C%E9%AB%98"><span class="toc-text">无单位的数值和行高</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B1%9E%E6%80%A7%EF%BC%88css%E5%8F%98%E9%87%8F%EF%BC%89"><span class="toc-text">自定义属性（css变量）</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%82%E5%8F%A0"><span class="toc-text">层叠</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%98%E5%85%88%E7%BA%A7%EF%BC%88%E6%8E%A8%E8%8D%90%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%EF%BC%89"><span class="toc-text">优先级（推荐使用方法）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E5%99%A8%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-text">选择器优先级</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%BA%90%E7%A0%81%E9%A1%BA%E5%BA%8F"><span class="toc-text">源码顺序</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF"><span class="toc-text">继承</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%80%E5%86%99%E5%B1%9E%E6%80%A7"><span class="toc-text">简写属性</span></a></li></ol></li></ol>
     </div>
   </section>
 
