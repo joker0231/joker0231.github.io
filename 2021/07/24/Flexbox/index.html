@@ -5,10 +5,6 @@
   <!-- SEO相关 -->
   
     
-      
-        <meta name="robots" content="index,follow">
-      
-    
   
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -58,7 +54,7 @@
 <body>
   
 
-<header id="l_header" class="l_header auto shadow blur " style='opacity: 0' >
+<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -309,7 +305,7 @@
     <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper  dock' style="display: ;">
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg"></div>
           
@@ -374,7 +370,7 @@
   </div>
 </div>
 
-          <div id="scroll-down" style="display: ;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
+          <div id="scroll-down" style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
         </div>
     
   
@@ -385,558 +381,170 @@
         
 
 <div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
   
-  <section class="post-list">
-    
-      
-        
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-      
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/07/24/Flexbox/">
-        Jul 24, 2021
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        Flexbox给元素添加display：flex，那么该元素就变成一个弹性容器，它的直接子元素变成了弹性子元素（高度相同，该高度由他们的内容决定）。同时子元素按照主轴线排列，但轴的方向可以改变。
-flex中的注意事项：
 
-弹性盒子中的auto外边距会填充所有可用空间。
-flex属性是三个不同大小属性的简写：flex-grow，flex-shrink，flex-basis，一般设定flex是设...
-      
+
+  
+  <div class="article-meta" id="top">
+    
+    
     
   </div>
+
+
   
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-07-24</time>
-        
-      </div>
+  <h3 id="Flexbox"><a href="#Flexbox" class="headerlink" title="Flexbox"></a>Flexbox</h3><p>给元素添加display：flex，那么该元素就变成一个弹性容器，它的直接子元素变成了弹性子元素（高度相同，该高度由他们的内容决定）。同时子元素按照主轴线排列，但轴的方向可以改变。</p>
+<p>flex中的注意事项：</p>
+<ol>
+<li>弹性盒子中的auto外边距会填充所有可用空间。</li>
+<li>flex属性是三个不同大小属性的简写：flex-grow，flex-shrink，flex-basis，一般设定flex是设定flex-grow的值，其他两个是默认1和0%。      <strong><em>推荐简写属性flex而不是分别声明</em></strong>                </li>
+</ol>
+<ul>
+<li><p>flex-basis：定义了元素大小的基准值，可以设定为任意的width值，包括px，em，百分比，初始值是auto。初始主尺寸确定后需要在主轴方向上扩大或者缩小来适应弹性容器的大小。</p>
+</li>
+<li><p>flex-grow：用来规定缩放的规则。每个弹性子元素加起来的宽度不一定刚好填满弹性容器的宽度，多出来的留白会按照flex-grow分给每个弹性子元素。如果一个弹性子元素flex-grow值为0，那么宽度不会增长，如果值非零，那么该元素会扩大到剩余空间被分完。flex-grow的值越大，元素权重越大，例如值为2的元素增长的宽度是值为1的元素增长的两倍。</p>
+</li>
+<li><p>flex-shrink：和flex-grow相似，用来处理溢出的。值越大，收缩的越多</p>
+</li>
+<li><p>css中处理高度的方式和处理宽度的方式本质上不一样，弹性容器会占据100%的可用宽度，但高度由自己决定，如果想要高度浏览器自行调整，则需要改变主轴方向，将flex-direction设置为column，可保证左右板块高度始终相同。</p>
+</li>
+</ul>
+
+  
+  
+    
+    <div class='footer'>
       
-        <div>
-          <a class='readmore' href='/2021/07/24/Flexbox/'>
-            Read More
-          </a>
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=http://example.com/2021/07/24/Flexbox/>http://example.com/2021/07/24/Flexbox/</a></p>
+              
+            
+          </blockquote>
         </div>
+      
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-07-24T15:55:40+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Jul 24, 2021</p>
+  </a>
 </div>
 
-          </div>
         
       
         
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/07/23/%E7%90%86%E8%A7%A3%E6%B5%AE%E5%8A%A8/">
-        Jul 23, 2021
-      </a>
-    </h2>
-  
-  <div class='md'>
+          
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
     
       
-        css中的BFC详解一、何为BFC​    BFC（Block Formatting Context）格式化上下文，是Web页面中盒模型布局的CSS渲染模式，指一个独立的渲染区域或者说是一个隔离的独立容器。
-二、形成BFC的条件   1、浮动元素，float 除 none 以外的值；   2、定位元素，position（absolute，fixed）；   3、display 为以下其中之一...
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2021/07/24/Flexbox/&title= - Hexo&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2021/07/24/Flexbox/&title= - Hexo&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2021/07/24/Flexbox/&title= - Hexo&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+    
       
     
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-07-23</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/07/23/%E7%90%86%E8%A7%A3%E6%B5%AE%E5%8A%A8/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
 </div>
 
-          </div>
+
+
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/07/18/%E7%9B%92%E6%A8%A1%E5%9E%8B/">
-        Jul 18, 2021
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        盒模型宽度问题给一个元素设置宽和高时，指定的是内容的宽和高，所有的内边距，边框，外边距都是追加到该宽度之上的。所以在设置宽和高时要避免魔术数值（根据该样式试出来的值），替换它的方法可以放浏览器计算，用calc（）函数减去边框多出来的值。
-还可以通过全局设置box-sizing来改变盒模型的计算方法，使得设置长宽属性时会包括内容，内边距和边框大小总和。也可以单个元素进行修改。
-12345*,:...
-      
-    
+    </div>
   </div>
+
+
   
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-07-18</time>
-        
-      </div>
+  
+
+  
+    <div class="prev-next">
       
-        <div>
-          <a class='readmore' href='/2021/07/18/%E7%9B%92%E6%A8%A1%E5%9E%8B/'>
-            Read More
-          </a>
-        </div>
+      
+        <a class='next' href='/2021/07/23/%E7%90%86%E8%A7%A3%E6%B5%AE%E5%8A%A8/'>
+          <p class='title'><i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>css中的BFC详解一、何为BFC​    BFC（Block Formatting Context）格式化上下文，是Web页面中盒模型布局的CSS渲染模式，指一个独立的渲染区域或者说是一个隔离...</p>
+        </a>
       
     </div>
   
+</article>
 
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
 </div>
 
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/07/17/%E7%9B%B8%E5%AF%B9%E5%8D%95%E4%BD%8D/">
-        Jul 17, 2021
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        夏令营2
-css in depth第二章——相对位置
-响应式设计：可以根据浏览器窗口的大小有不同的响应。在响应式网页中，需要习惯模糊值，1.2em具体是多少px不重要，主要看它在页面上的效果怎么样。
-使用em和rem作为相对长度单位。
-em和rem使用em在css中，1em等于当前元素的字号，其中却只取决于作用的元素。假如某一元素中字号大小为16px，padding为1em，那么其内间距浏览...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-07-17</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/07/17/%E7%9B%B8%E5%AF%B9%E5%8D%95%E4%BD%8D/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/07/13/%E5%B1%82%E5%8F%A0%E4%BC%98%E5%85%88%E7%BA%A7%E7%BB%A7%E6%89%BF/">
-        Jul 13, 2021
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        css in depth 第一章
-层叠层叠根据三个条件解决冲突
-
-样式表的来源（其实来源之后还要判断一下是否是内联）
-选择器优先级
-源码顺序
-
-样式表来源主要分：作者样式表，用户代理样式表（优先级从高到低）。用户代理样式表是浏览器默认的一些样式，不会做多余的事情。
-！important 的声明会被当做更高优先级的来源，优先级高于所有没有此声明的样式。
-优先级（推荐使用方法）优先级分为两部分：...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-07-13</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/07/13/%E5%B1%82%E5%8F%A0%E4%BC%98%E5%85%88%E7%BA%A7%E7%BB%A7%E6%89%BF/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/">
-        Jul 9, 2021
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        夏令营1
-对于类相关知识的复习：
-
-类中的构造器不是必须要写，但若要对类的实例进行初始化操作比如添加上属性就要写
-如果A类继承了B类，且在A类中写了构造器，那么A类构造器中的super是一定要写的super（props）
-类中定义的方法，都是放在类的原型对象上供实例去使用
-render方法放在组件的实例对象上，中的this指向指向组件实例对象
-写在组件中的方法是放在组件的原型对象上，供实例使...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-07-09</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/03/%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1/">
-        May 3, 2021
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        变量对象JavaScript 的可执行代码，具有执行上下文，而每个上下文包括以下 3 个属性：
-
-变量对象（variable object, 简称 VO）
-作用域链（scope chain）
-this
-
-
-什么是变量对象呢？先看定义：
-
-变量对象是与执行上下文相关的数据作用域，用于存储执行上下文中的变量和函数声明。
-
-变量对象是与执行上下文对应的概念，在执行上下文的创建阶段，它依次存储着在上...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-03</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/03/%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/03/%E5%85%B3%E4%BA%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/">
-        May 3, 2021
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        关于深拷贝和浅拷贝首先需要引入基本数据类型与引用数据类型的概念。
-基本数据类型有哪些，number，string，boolean，null，undefined，symbol以及ES10新增的BigInt(任意精度整数)七类。
-引用数据类型(Object类)有常规名值对的无序对象{a:1}**，数组[1,2,3]，以及函数**等。
-而这两类数据存储分别是这样的：
-a.基本类型–名值存储在栈内存...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-03</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/03/%E5%85%B3%E4%BA%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/12/10/http/">
-        http
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        状态码当客户端向服务器端发送请求时，描述返回的请求结果。
-数字的第一位指定了响应类别，后两位无分类。
+  </article>
 
 
 
 
-这一类型的状态码，代表请求已被接受，需要继续处理。这类响应是临时响应，只包含状态行和某些可选的响应头信息，并以空行结束。
-
-这一类型的状态码，代表请求已成功被服务器接收、理解、并接受
-
-mata信息（HTML语言head区的一个辅助性标签）
-位于文档的头部，不包含任何内容。 标签的属...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-12-10</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/12/10/http/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/12/05/%E7%BB%A7%E6%89%BF/">
-        Dec 5, 2020
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        继承A 对象通过继承B对象，就能直接拥有B对象的所有属性和方法。这对于代码的复用非常有用，
-JavaScript通过使用“类”（class）和原型对象（prototype）实现。常见的有六种继承方式。
-方法一：原型链继承关键在于：子类型的原型为父类型的一个实例对象。
-
-
-让父类的属性和方法在子类实例的原型链上。
-
-CHILD .prototype = new PARENT（）；s
-
-CHIL...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-12-05</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/12/05/%E7%BB%A7%E6%89%BF/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-    
-  </section>
-  
-    
-      <br>
-      <div class="prev-next">
-        
-        <p class="current">
-          1 / 2
-        </p>
-        
-          <a class="next" rel="next" href="/page/2/">
-            <section class="post next white-box shadow">
-              &nbsp;Next&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
-            </section>
-          </a>
-        
-      </div>
-    
-  
 
 
 </div>
@@ -946,82 +554,22 @@ CHIL...
     
     
 
-<section class="widget blogger shadow desktop mobile">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box rectangle' href='/about/'>
-          <img no-lazy src='https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-        
-        
-          <p><span id="jinrishici-sentence">Hexo</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="/atom.xml"
-              class="social fas fa-rss flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="mailto:me@xxx.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/volantis-x/"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="/"
-              class="social fas fa-headphones-alt flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
 
-  
 
-  
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
     
+  <header>
     
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
 
-  
 
-  
-    
-    
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Flexbox"><span class="toc-text">Flexbox</span></a></li></ol>
+    </div>
+  </section>
 
-  
 
   
 
@@ -1044,7 +592,7 @@ CHIL...
 
   var l_header=document.getElementById("l_header");
   
-  l_header.classList.remove("show");
+  l_header.classList.add("show");
   
 </script>
 
