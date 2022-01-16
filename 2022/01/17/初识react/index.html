@@ -406,14 +406,14 @@
 <p>你要去一个叫201的房间（获取对象），你怎么去呢? 用DOM的方法，你只需要走到二层，然后到第一个房间就行了，而你是用走，爬，甚至跳舞的方式过去（即：使用不同的编程语言）都没关系，你只要按照DOM的规定，最终都能找到这个房间。</p>
 <p>在react使用中，我们也可以简单理解DOM为dom树，浏览器首先将收到的html代码，<strong>通过html解析器解析构建为一颗DOM树。</strong>DOM树就像是一颗倒长着的大树，这样的对象模型决定了节点之间都有一定的关联，它们关系可能有父子、有兄弟，我们可以顺着这颗树做出许多操作。</p>
 <p>在传统的页面开发模式中，每次需要更新页面时，都要手动操作 DOM 来进行更新。而在前端开发中，<strong>性能消耗最大</strong>的就是 <strong>DOM 操作</strong>，而且这部分代码会让整体项目的代码变得难以维护。</p>
-<p><img src="https://img-blog.csdn.net/20180809105945482?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyOTE1OTg4/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" class="lazyload" data-srcset="https://img-blog.csdn.net/20180809105945482?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyOTE1OTg4/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" srcset="data:image/png;base64,666" alt="这里写图片描述"></p>
+<p><img src="/2022/01/17/%E5%88%9D%E8%AF%86react/5.png" class="lazyload" data-srcset="/2022/01/17/%E5%88%9D%E8%AF%86react/5.png" srcset="data:image/png;base64,666" alt="img"></p>
 <p>于是就涉及到react非常重要的一个概念：虚拟DOM了</p>
 <h3 id="虚拟DOM"><a href="#虚拟DOM" class="headerlink" title="虚拟DOM"></a>虚拟DOM</h3><p>React 把真实 DOM 树转换成 JavaScript 对象树，也就是 <strong>Virtual DOM</strong>。它的核心是通过<strong>DIFF算法</strong>比较改变前后的DOM区别，然后用最少的DOM语句对DOM进行操作，只更新改变部分的 Dom ,这就大大提高了性能。</p>
-<p><img src="https://img-blog.csdn.net/20180809110132839?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyOTE1OTg4/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" class="lazyload" data-srcset="https://img-blog.csdn.net/20180809110132839?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyOTE1OTg4/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" srcset="data:image/png;base64,666" alt="这里写图片描述"></p>
+<p><img src="/2022/01/17/%E5%88%9D%E8%AF%86react/6.png" class="lazyload" data-srcset="/2022/01/17/%E5%88%9D%E8%AF%86react/6.png" srcset="data:image/png;base64,666" alt="这里写图片描述"></p>
 <p>（简单说一下DIFF算法：是一个比较计算层次结构区别的算法，主要是用来计算DOM之间的差异。</p>
 <p>对数据和状态所做的任何改动，都会被自动且高效的同步到虚拟DOM，最后再批量同步到真实DOM中，而不是每次改变都去操作一下DOM。</p>
 <p>再举个栗子：比如说要进行这样的DOM转换(左边的DOM结构换成右边的DOM结构)：</p>
-<p><img src="https://img-blog.csdnimg.cn/20190406114009788.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzk0Njc1Ng==,size_16,color_FFFFFF,t_70" class="lazyload" data-srcset="https://img-blog.csdnimg.cn/20190406114009788.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzk0Njc1Ng==,size_16,color_FFFFFF,t_70" srcset="data:image/png;base64,666" alt="img"></p>
+<p><img src="/2022/01/17/%E5%88%9D%E8%AF%86react/4.png" class="lazyload" data-srcset="/2022/01/17/%E5%88%9D%E8%AF%86react/4.png" srcset="data:image/png;base64,666" alt="img"></p>
 <ul>
 <li>不用Virtual DOM的做法是：先删除四个li，再插入5个li。</li>
 <li>使用Virtual DOM的做法是：通过计算比较两个结构的差异，发现只需改变四个li的innerHTML，再插入一个li即可。</li>
@@ -456,14 +456,14 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Clock</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="built_in">super</span>(props);</span><br><span class="line">    <span class="built_in">this</span>.state = &#123;<span class="attr">date</span>: <span class="keyword">new</span> <span class="built_in">Date</span>()&#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  componentDidMount() &#123;  &#125;</span><br><span class="line">  componentWillUnmount() &#123;  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;Hello, world!&lt;/h1&gt;</span><br><span class="line">        &lt;h2&gt;It is &#123;<span class="built_in">this</span>.state.date.toLocaleTimeString()&#125;.&lt;/h2&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>这些方法叫做“生命周期方法”。</p>
-<p><img src="https://joker0231.github.io/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/1.png" class="lazyload" data-srcset="https://joker0231.github.io/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/1.png" srcset="data:image/png;base64,666" alt="img"></p>
-<p><img src="https://joker0231.github.io/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/2.png" class="lazyload" data-srcset="https://joker0231.github.io/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/2.png" srcset="data:image/png;base64,666" alt="img"></p>
+<p><img src="/2022/01/17/%E5%88%9D%E8%AF%86react/1.png" class="lazyload" data-srcset="/2022/01/17/%E5%88%9D%E8%AF%86react/1.png" srcset="data:image/png;base64,666" alt="img"></p>
+<p><img src="/2022/01/17/%E5%88%9D%E8%AF%86react/2.png" class="lazyload" data-srcset="/2022/01/17/%E5%88%9D%E8%AF%86react/2.png" srcset="data:image/png;base64,666" alt="img"></p>
 <p>虽然现在最新的 React 版本都推荐使用函数组件结合 hooks 的方式来组织应用，而且在函数组件中淡化了对生命周期的介绍，但是对于类组件生命周期的学习理解能够帮助我们以追根溯源的方式，更全面的建立对 React 框架的观感，同时从底层认识 React 中两个重要的阶段：render 与 commit ，帮助我们编写正确且高效的代码。</p>
 <h3 id="Hooks-与-生命周期函数"><a href="#Hooks-与-生命周期函数" class="headerlink" title="Hooks 与 生命周期函数"></a>Hooks 与 生命周期函数</h3><p>我们经常维护一些组件，组件起初很简单，但是逐渐会被状态逻辑和副作用充斥。每个生命周期常常包含一些不相关的逻辑。例如，组件常常在 <code>componentDidMount</code> 和 <code>componentDidUpdate</code> 中获取数据。但是，同一个 <code>componentDidMount</code> 中可能也包含很多其它的逻辑，如设置事件监听，而之后需在 <code>componentWillUnmount</code> 中清除。相互关联且需要对照修改的代码被进行了拆分，而完全不相关的代码却在同一个方法中组合在一起。如此很容易产生 bug，并且导致逻辑不一致。</p>
 <p>为了解决这个问题，<strong>Hook 将组件中相互关联的部分拆分成更小的函数（比如设置订阅或请求数据）</strong>，而并非强制按照生命周期划分。你还可以使用 reducer 来管理组件的内部状态，使其更加可预测。</p>
 <p>生命周期函数只存在于类组件，对于没有 Hooks 之前的函数组件而言，没有组件生命周期的概念（函数组件没有 render 之外的过程），但是有了 Hooks 之后，问题就变得有些复杂了。</p>
 <p>Hooks 能够让函数组件拥有使用与管理 state 的能力，也就演化出了函数组件生命周期的概念（render 之外新增了其他过程），涉及到的 Hook 主要有几个：useState、useMemo、useEffect。</p>
-<p><img src="/2022/01/17/%E5%88%9D%E8%AF%86react/Users\王语辰\AppData\Roaming\Typora\typora-user-images\image-20220117015905846.png" class="lazyload" data-srcset="/2022/01/17/%E5%88%9D%E8%AF%86react/Users\王语辰\AppData\Roaming\Typora\typora-user-images\image-20220117015905846.png" srcset="data:image/png;base64,666" alt="image-20220117015905846"></p>
+<p><img src="/2022/01/17/%E5%88%9D%E8%AF%86react/4.png" class="lazyload" data-srcset="/2022/01/17/%E5%88%9D%E8%AF%86react/4.png" srcset="data:image/png;base64,666" alt="image-20220117015905846"></p>
 <p>整体来说，大部分生命周期都可以利用 Hook 来模拟实现，而一些难以模拟的，往往也是 React 不推荐的反模式。</p>
 <p>至于为什么设计 Hook，为什么要赋予函数组件使用与管理 state 的能力，React 官网也在 Hook 介绍 做了深入而详细的介绍，总结下来有以下几个点：</p>
 <ol>
@@ -516,7 +516,7 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2022-01-17T02:18:59+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2022-01-17T02:30:57+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：Jan 17, 2022</p>
