@@ -394,36 +394,94 @@
 
 
   
-  <h1 id="egret白鹭引擎"><a href="#egret白鹭引擎" class="headerlink" title="egret白鹭引擎"></a>egret白鹭引擎</h1><h2 id="egret是什么？"><a href="#egret是什么？" class="headerlink" title="egret是什么？"></a>egret是什么？</h2><p>Egret是一套HTML5游戏开发解决方案，产品包含Egret Engine，Egret Wing，EgretVS，Res Depot，Texture Merger，TS Conversion，Egret Feather，Egret Inspector，DragonBones，Lakeshore等。而核心产品是Egret Engine，是一个基于TypeScript语言开发的一个HTML5游戏引擎，其余的大多是开发和辅助工具。使用typescript进行开发，有js基础的话，看了一下Demo和API基本一两天就可以进行实际开发了。</p>
-<p>创建项目的时候有两个选项，egret game 和egret UI，主要是勾选的拓展库不同，创建的时候可以吧ui库和game库都勾选，后期就比较方便，其他的库就按需勾选。如果用这个游戏引擎来开发一些轻交互的小游戏，还是很方便的，但是这个引擎还是有很多bug，比如动画循环，插入音效，这种还是会出现问题。</p>
-<p>.wing文件夹存放使用wing打开的配置文件<br>bin-debug文件夹存放调试时将ts转为js文件<br>bin-release文件夹存放打包输出文件(打包后才会出现)<br>libs文件夹存放弓|擎源码以及三方库文件.<br>resources文件夹存放资源文件包括图片、json、 动画、exmI等文件<br>scripts文件夹存放一些配置文件， 比如android ios wxgame的配置脚本文件<br>src文件夹存放开发源码<br>template文件夹存放模板文件<br>egretProperties.json文件三方库的配置文件</p>
-<p>fallen作为一个轻交互绘本类游戏，更多的部分是动画的自动或者循环播放，只需要控制好动画播放的时间间隔，这个部分使用egret.Tween就足够了</p>
-<img src="/2021/09/17/egret%E7%99%BD%E9%B9%AD%E5%BC%95%E6%93%8E/1.png" class="lazyload" data-srcset="/2021/09/17/egret%E7%99%BD%E9%B9%AD%E5%BC%95%E6%93%8E/1.png" srcset="data:image/png;base64,666" alt="img" style="zoom: 67%;">
+  <h1 id="初识react"><a href="#初识react" class="headerlink" title="初识react"></a>初识react</h1><h2 id="一-什么是react"><a href="#一-什么是react" class="headerlink" title="一.什么是react"></a>一.什么是react</h2><p>先来看看官方是怎么说的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">React is a JavaScript library for creating user interfaces by Facebook and Instagram. Many people choose to think of React as the V in MVC.</span><br></pre></td></tr></table></figure>
 
+<p>简单来说react是Facebook自行开发的一套用于构建用户界面的JavaScript库。主要针对当时的Facebook公司在创建ins网站时遇到的两个问题：</p>
+<p>1.<strong>数据绑定的时候，大量操作真实dom，性能成本太高</strong></p>
+<p>2.<strong>网站的数据流向太混乱，不好控制</strong></p>
+<p>因为facebook公司对于当时市面上的所有js类库都不满意，所以自己开发了一个。React不是一个完整的MVC框架（经典MVC模式中，M是指业务模型，V是指用户界面，C则是控制器）而是侧重于UI,，提供了简单的view层解决方法，它的核心功能主要是<strong>构建组件</strong>，并提供类似控制器的函数接口和生命周期函数来构建并操控用户界面。</p>
+<h2 id="二-react的三大原理"><a href="#二-react的三大原理" class="headerlink" title="二.react的三大原理"></a>二.react的三大原理</h2><h3 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h3><p>在介绍react之前先简单讲一讲dom这个东西，dom全称是Document Object Model（文档对象模型）就是文档对应的对象模型。对于XML应用开发来说，<strong>DOM就是一个对象化的XML数据接口，一个与语言无关、与平台无关的标准接口规范。</strong>文档代表的是数据，而DOM则代表了如何去处理这些数据。</p>
+<p>举个栗子：如果将文档的内容视为一栋办公楼，那DOM就是一种对办公楼内空间分配的标准，它规定了，这个办公楼的空间，应该是先分楼层，再分房间的方式，方便访客找到这个房间。</p>
+<p>你要去一个叫201的房间（获取对象），你怎么去呢? 用DOM的方法，你只需要走到二层，然后到第一个房间就行了，而你是用走，爬，甚至跳舞的方式过去（即：使用不同的编程语言）都没关系，你只要按照DOM的规定，最终都能找到这个房间。</p>
+<p>在react使用中，我们也可以简单理解DOM为dom树，浏览器首先将收到的html代码，<strong>通过html解析器解析构建为一颗DOM树。</strong>DOM树就像是一颗倒长着的大树，这样的对象模型决定了节点之间都有一定的关联，它们关系可能有父子、有兄弟，我们可以顺着这颗树做出许多操作。</p>
+<p>在传统的页面开发模式中，每次需要更新页面时，都要手动操作 DOM 来进行更新。而在前端开发中，<strong>性能消耗最大</strong>的就是 <strong>DOM 操作</strong>，而且这部分代码会让整体项目的代码变得难以维护。</p>
+<p><img src="https://img-blog.csdn.net/20180809105945482?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyOTE1OTg4/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" class="lazyload" data-srcset="https://img-blog.csdn.net/20180809105945482?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyOTE1OTg4/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" srcset="data:image/png;base64,666" alt="这里写图片描述"></p>
+<p>于是就涉及到react非常重要的一个概念：虚拟DOM了</p>
+<h3 id="虚拟DOM"><a href="#虚拟DOM" class="headerlink" title="虚拟DOM"></a>虚拟DOM</h3><p>React 把真实 DOM 树转换成 JavaScript 对象树，也就是 <strong>Virtual DOM</strong>。它的核心是通过<strong>DIFF算法</strong>比较改变前后的DOM区别，然后用最少的DOM语句对DOM进行操作，只更新改变部分的 Dom ,这就大大提高了性能。</p>
+<p><img src="https://img-blog.csdn.net/20180809110132839?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyOTE1OTg4/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" class="lazyload" data-srcset="https://img-blog.csdn.net/20180809110132839?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyOTE1OTg4/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" srcset="data:image/png;base64,666" alt="这里写图片描述"></p>
+<p>（简单说一下DIFF算法：是一个比较计算层次结构区别的算法，主要是用来计算DOM之间的差异。</p>
+<p>对数据和状态所做的任何改动，都会被自动且高效的同步到虚拟DOM，最后再批量同步到真实DOM中，而不是每次改变都去操作一下DOM。</p>
+<p>再举个栗子：比如说要进行这样的DOM转换(左边的DOM结构换成右边的DOM结构)：</p>
+<p><img src="https://img-blog.csdnimg.cn/20190406114009788.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzk0Njc1Ng==,size_16,color_FFFFFF,t_70" class="lazyload" data-srcset="https://img-blog.csdnimg.cn/20190406114009788.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzk0Njc1Ng==,size_16,color_FFFFFF,t_70" srcset="data:image/png;base64,666" alt="img"></p>
+<ul>
+<li>不用Virtual DOM的做法是：先删除四个li，再插入5个li。</li>
+<li>使用Virtual DOM的做法是：通过计算比较两个结构的差异，发现只需改变四个li的innerHTML，再插入一个li即可。</li>
+</ul>
+<h3 id="组件化"><a href="#组件化" class="headerlink" title="组件化"></a>组件化</h3><p>通过 React 构建组件，使得代码更加容易得到复用，能够很好的应用在大项目的开发中。为程序编写独立的模块化 UI 组件，并且它们可以引入其他组件，这等同于提高了代码的可维护性。</p>
+<p>在这其中又分为函数组件与 class 组件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Welcome</span>(<span class="params">props</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello, &#123;props.name&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Welcome</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello, &#123;this.props.name&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-
-<p>最常用的几个：</p>
-<img src="/2021/09/17/egret%E7%99%BD%E9%B9%AD%E5%BC%95%E6%93%8E/2.png" class="lazyload" data-srcset="/2021/09/17/egret%E7%99%BD%E9%B9%AD%E5%BC%95%E6%93%8E/2.png" srcset="data:image/png;base64,666" alt="img" style="zoom: 67%;">
-
-<img src="/2021/09/17/egret%E7%99%BD%E9%B9%AD%E5%BC%95%E6%93%8E/3.png" class="lazyload" data-srcset="/2021/09/17/egret%E7%99%BD%E9%B9%AD%E5%BC%95%E6%93%8E/3.png" srcset="data:image/png;base64,666" alt="img" style="zoom: 80%;">
-
-<p>游戏中涉及到的交互（我负责的部分），大概只涉及到点击跳转，移动物体，音效，点击触发一些效果或者是滑动触发效果。总体来说交互不是很难。</p>
-<img src="/2021/09/17/egret%E7%99%BD%E9%B9%AD%E5%BC%95%E6%93%8E/5.png" class="lazyload" data-srcset="/2021/09/17/egret%E7%99%BD%E9%B9%AD%E5%BC%95%E6%93%8E/5.png" srcset="data:image/png;base64,666" alt="img" style="zoom: 67%;">
-
-<img src="/2021/09/17/egret%E7%99%BD%E9%B9%AD%E5%BC%95%E6%93%8E/4.png" class="lazyload" data-srcset="/2021/09/17/egret%E7%99%BD%E9%B9%AD%E5%BC%95%E6%93%8E/4.png" srcset="data:image/png;base64,666" alt="img" style="zoom: 67%;">
-
-<p>白鹭引擎本身提供了很多api可以直接调用，还有很多工具，比如说egret UI editor就是可以用小图标来制作游戏背景，还有龙骨主要用来制作动画，但是这两我都没怎么用过…egretwing以及被vscode替代了，不需要下载这个工具。</p>
-<p>总结的一些小经验：</p>
+<p>现在更加追求的是函数式编程，具体的组件如何编写react官方文档都有，所以我这里就说一下这两种组件有什么<strong>区别</strong>：</p>
 <ol>
-<li><p>点击区域可以使用egret.TouchEvent判断，通过获取触摸点可以完成很多操作，比如说移动物体，判断点击区域，判断点击次数之类的问题。相比较起之前写一些网页是在某个元素上面设置onclick时间，游戏更多的是获取玩家触摸点然后判断是否在某个元素上面，我觉得还是有一些不同。</p>
+<li>语法上的区别：</li>
+</ol>
+<p>函数式组件是一个纯函数，它是需要接受props参数并且返回一个React元素就可以了。类组件是需要继承React.Component的，而且class组件需要创建render并且返回React元素，语法上来讲更复杂。</p>
+<ol start="2">
+<li>调用方式</li>
+</ol>
+<p>函数式组件可以直接调用，返回一个新的React元素；类组件在调用时是需要创建一个实例的，然后通过调用实例里的render方法来返回一个React元素。</p>
+<ol start="3">
+<li>状态管理</li>
+</ol>
+<p>函数式组件没有状态管理，类组件有状态管理。</p>
+<ol start="4">
+<li>使用场景</li>
+</ol>
+<p>类组件没有具体的要求。函数式组件一般是用在大型项目中来分割大组件（函数式组件不用创建实例，所有更高效），一般情况下能用函数式组件就不用类组件，提升效率。</p>
+<h3 id="响应式UI"><a href="#响应式UI" class="headerlink" title="响应式UI"></a>响应式UI</h3><p>根据react的响应式UI特性，开发者在开发时只需关注状态转移（数据），当状态发生变化，React框架会自动根据新的状态重新构建UI。不需要再去操心DOM的更新。</p>
+<h2 id="三-react核心特点"><a href="#三-react核心特点" class="headerlink" title="三.react核心特点"></a>三.react核心特点</h2><h3 id="JSX"><a href="#JSX" class="headerlink" title="JSX"></a>JSX</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> element = <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello, world!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>它既不是字符串也不是 HTML。它被称为 JSX，是一个 JavaScript 的语法扩展。在 React 中配合使用 JSX，JSX 可以很好地描述 UI 应该呈现出它应有交互的本质形式。</p>
+<p>JSX 将 HTML 语法直接加入到 JavaScript 代码中，再通过翻译器转换到纯 JavaScript 后由浏览器执行。在实际开发中，JSX 在产品打包阶段都已经编译成纯 JavaScript，不会带来任何副作用，反而会让代码更加直观并易于维护。</p>
+<h3 id="state"><a href="#state" class="headerlink" title="state"></a>state</h3><p>React把组件看成一个状态机。通过与用户的交互，实现不同状态，然后渲染UI，让用户界面和数据保持一致。组件的任何UI改变，都可以从State的变化中反映出来；State中的所有状态都用于反映UI的变化，不应有多余状态。</p>
+<p>props 是父组件影响子组件的渠道，即这种影响对于组件自身来说，是外生型的。而通常组件也可能有一些内生的属性或数据，会对组件自身产生影响。如组件自身有一个定时器，每隔1秒改变组件中某个文本的显示。这种情况下，我们就需要用到 state 了，我们称之为状态。</p>
+<p>通常我们在组件的 constructor() 方法中去构造我们的 state 数据结构。而在后续的操作中，通过组件的 setState() 方法来改变 state 中的值。</p>
+<p>举个栗子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Clock</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="built_in">super</span>(props);</span><br><span class="line">    <span class="built_in">this</span>.state = &#123;<span class="attr">tickCount</span>: <span class="number">0</span>&#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    <span class="built_in">this</span>.timerID = <span class="built_in">setInterval</span>(</span><br><span class="line">      () =&gt; <span class="built_in">this</span>.tick(),</span><br><span class="line">      <span class="number">1000</span></span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  componentWillUnmount() &#123;</span><br><span class="line">    <span class="built_in">clearInterval</span>(<span class="built_in">this</span>.timerID);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  tick() &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; tickCount &#125; = <span class="built_in">this</span>.state;</span><br><span class="line">    <span class="built_in">this</span>.setState(&#123;</span><br><span class="line">      tickCount: tickCount + <span class="number">1</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;Hello, world!&lt;/h1&gt;</span><br><span class="line">        &lt;h2&gt;It is &#123;<span class="built_in">this</span>.state.tickCount&#125;.&lt;/h2&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;Clock /&gt;,</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">&#x27;root&#x27;</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，在 constructor 方法中定义了 state 对象，然后每次定时器调用 tick() 时，都会通过 setState 来改变 state 的 tickCount 值。</p>
+<p>但是也不是所有组件都必须有状态，有可能组件的所有数据都来自于props，从外部传人，自身不存在能够影响组件渲染的状态，称为无状态组件，但是一般建议通过函数的方式来构建。</p>
+<h3 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h3><p>我们可以为 class 组件声明一些特殊的方法，当组件挂载或卸载时就会去执行这些方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Clock</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="built_in">super</span>(props);</span><br><span class="line">    <span class="built_in">this</span>.state = &#123;<span class="attr">date</span>: <span class="keyword">new</span> <span class="built_in">Date</span>()&#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  componentDidMount() &#123;  &#125;</span><br><span class="line">  componentWillUnmount() &#123;  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;Hello, world!&lt;/h1&gt;</span><br><span class="line">        &lt;h2&gt;It is &#123;<span class="built_in">this</span>.state.date.toLocaleTimeString()&#125;.&lt;/h2&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这些方法叫做“生命周期方法”。</p>
+<p><img src="https://joker0231.github.io/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/1.png" class="lazyload" data-srcset="https://joker0231.github.io/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/1.png" srcset="data:image/png;base64,666" alt="img"></p>
+<p><img src="https://joker0231.github.io/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/2.png" class="lazyload" data-srcset="https://joker0231.github.io/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/2.png" srcset="data:image/png;base64,666" alt="img"></p>
+<p>虽然现在最新的 React 版本都推荐使用函数组件结合 hooks 的方式来组织应用，而且在函数组件中淡化了对生命周期的介绍，但是对于类组件生命周期的学习理解能够帮助我们以追根溯源的方式，更全面的建立对 React 框架的观感，同时从底层认识 React 中两个重要的阶段：render 与 commit ，帮助我们编写正确且高效的代码。</p>
+<h3 id="Hooks-与-生命周期函数"><a href="#Hooks-与-生命周期函数" class="headerlink" title="Hooks 与 生命周期函数"></a>Hooks 与 生命周期函数</h3><p>我们经常维护一些组件，组件起初很简单，但是逐渐会被状态逻辑和副作用充斥。每个生命周期常常包含一些不相关的逻辑。例如，组件常常在 <code>componentDidMount</code> 和 <code>componentDidUpdate</code> 中获取数据。但是，同一个 <code>componentDidMount</code> 中可能也包含很多其它的逻辑，如设置事件监听，而之后需在 <code>componentWillUnmount</code> 中清除。相互关联且需要对照修改的代码被进行了拆分，而完全不相关的代码却在同一个方法中组合在一起。如此很容易产生 bug，并且导致逻辑不一致。</p>
+<p>为了解决这个问题，<strong>Hook 将组件中相互关联的部分拆分成更小的函数（比如设置订阅或请求数据）</strong>，而并非强制按照生命周期划分。你还可以使用 reducer 来管理组件的内部状态，使其更加可预测。</p>
+<p>生命周期函数只存在于类组件，对于没有 Hooks 之前的函数组件而言，没有组件生命周期的概念（函数组件没有 render 之外的过程），但是有了 Hooks 之后，问题就变得有些复杂了。</p>
+<p>Hooks 能够让函数组件拥有使用与管理 state 的能力，也就演化出了函数组件生命周期的概念（render 之外新增了其他过程），涉及到的 Hook 主要有几个：useState、useMemo、useEffect。</p>
+<p><img src="/2022/01/17/%E5%88%9D%E8%AF%86react/Users\王语辰\AppData\Roaming\Typora\typora-user-images\image-20220117015905846.png" class="lazyload" data-srcset="/2022/01/17/%E5%88%9D%E8%AF%86react/Users\王语辰\AppData\Roaming\Typora\typora-user-images\image-20220117015905846.png" srcset="data:image/png;base64,666" alt="image-20220117015905846"></p>
+<p>整体来说，大部分生命周期都可以利用 Hook 来模拟实现，而一些难以模拟的，往往也是 React 不推荐的反模式。</p>
+<p>至于为什么设计 Hook，为什么要赋予函数组件使用与管理 state 的能力，React 官网也在 Hook 介绍 做了深入而详细的介绍，总结下来有以下几个点：</p>
+<ol>
+<li><p>便于分离与复用组件的状态逻辑（Mixin，高阶组件，渲染回调模式等）</p>
 </li>
-<li><p>因为图片比较多，游戏的进行主要就是叠加图片以达到动画效果，有时候会出现无法移动或者被覆盖的问题。后来找设计调整图片，需要移动的图旁边不能有透明图层，如果图层不想被覆盖必须要按照图片叠加顺序来声明并且把图片添加到舞台。</p>
+<li><p>复杂组件变得难以理解（状态与副作用越来越多，生命周期函数滥用）</p>
 </li>
-<li><p>不要写多重判断！！吃了巨大的亏（悲。添加事件侦听器之后进行判断，有时候不知道为什么egret总是会出现各种各样的问题，每次问题还不一样，应该还是有bug。所以多分几个方法来写，最多两层判断。</p>
+<li><p>类组件中难以理解的 this 指向（bind 语法）</p>
 </li>
-<li><p>写游戏的时候，自己本身的逻辑很重要，有时候（又要绕回判断说事）代码写的太复杂容易把自己绕进去。学会复用代码。</p>
+<li><p>类组件难以被进一步优化（组件预编译，不能很好被压缩，热重载不稳定）</p>
 </li>
 </ol>
+<p>举个栗子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; useState &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Example</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 声明一个叫 “count” 的 state 变量。  </span></span><br><span class="line">  <span class="keyword">const</span> [count, setCount] = useState(<span class="number">0</span>);</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;p&gt;You clicked &#123;count&#125; times&lt;/p&gt;</span><br><span class="line">      &lt;button onClick=&#123;<span class="function">() =&gt;</span> setCount(count + <span class="number">1</span>)&#125;&gt;</span><br><span class="line">        Click me</span><br><span class="line">      &lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这里，<code>useState</code> 就是一个 <em>Hook</em>。<code>useState</code> 会返回一对值：初始状态和一个让你更新它的函数。</p>
+<p>react中更多hook信息还是去官网看吧，hook是react函数编程非常非常重要的一环，不仅仅是看完官网就可以了，自己可以查其他的博客辅助理解。</p>
+<p><a target="_blank" rel="noopener" href="https://zh-hans.reactjs.org/docs/hooks-reference.html">https://zh-hans.reactjs.org/docs/hooks-reference.html</a></p>
 
   
   
@@ -441,7 +499,7 @@
               
             
               
-                <p>本文永久链接是：<a href=http://example.com/2021/09/17/egret%E7%99%BD%E9%B9%AD%E5%BC%95%E6%93%8E/>http://example.com/2021/09/17/egret%E7%99%BD%E9%B9%AD%E5%BC%95%E6%93%8E/</a></p>
+                <p>本文永久链接是：<a href=http://example.com/2022/01/17/%E5%88%9D%E8%AF%86react/>http://example.com/2022/01/17/%E5%88%9D%E8%AF%86react/</a></p>
               
             
           </blockquote>
@@ -458,10 +516,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-09-17T14:08:57+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2022-01-17T02:18:59+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Sep 17, 2021</p>
+    <p>更新于：Jan 17, 2022</p>
   </a>
 </div>
 
@@ -480,7 +538,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2021/09/17/egret%E7%99%BD%E9%B9%AD%E5%BC%95%E6%93%8E/&title= - Hexo&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2022/01/17/%E5%88%9D%E8%AF%86react/&title= - Hexo&summary="
           
           >
           
@@ -492,7 +550,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2021/09/17/egret%E7%99%BD%E9%B9%AD%E5%BC%95%E6%93%8E/&title= - Hexo&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2022/01/17/%E5%88%9D%E8%AF%86react/&title= - Hexo&summary="
           
           >
           
@@ -504,7 +562,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2021/09/17/egret%E7%99%BD%E9%B9%AD%E5%BC%95%E6%93%8E/&title= - Hexo&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2022/01/17/%E5%88%9D%E8%AF%86react/&title= - Hexo&summary="
           
           >
           
@@ -534,17 +592,10 @@
   
     <div class="prev-next">
       
-        <a class='prev' href='/2022/01/17/%E5%88%9D%E8%AF%86react/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i></p>
-          <p class='content'>初识react一.什么是react先来看看官方是怎么说的
-1React is a JavaScript library for creating user interfaces by Faceb...</p>
-        </a>
       
-      
-        <a class='next' href='/2021/09/12/%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87/'>
+        <a class='next' href='/2021/09/17/egret%E7%99%BD%E9%B9%AD%E5%BC%95%E6%93%8E/'>
           <p class='title'><i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>变量提升提升是什么意思？顾名思义，就是把下面的东西提到上面。在JS中，就是把定义在后面的东西（变量或函数）提升到前面中定义。但变量提升只是提升变量的声明，并不会把赋值也提升上来。
-首先涉及到js...</p>
+          <p class='content'>egret白鹭引擎egret是什么？Egret是一套HTML5游戏开发解决方案，产品包含Egret Engine，Egret Wing，EgretVS，Res Depot，Texture Mer...</p>
         </a>
       
     </div>
@@ -587,7 +638,7 @@
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#egret%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">egret是什么？</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80-%E4%BB%80%E4%B9%88%E6%98%AFreact"><span class="toc-text">一.什么是react</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C-react%E7%9A%84%E4%B8%89%E5%A4%A7%E5%8E%9F%E7%90%86"><span class="toc-text">二.react的三大原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM"><span class="toc-text">DOM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%99%9A%E6%8B%9FDOM"><span class="toc-text">虚拟DOM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E5%8C%96"><span class="toc-text">组件化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%8D%E5%BA%94%E5%BC%8FUI"><span class="toc-text">响应式UI</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89-react%E6%A0%B8%E5%BF%83%E7%89%B9%E7%82%B9"><span class="toc-text">三.react核心特点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JSX"><span class="toc-text">JSX</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#state"><span class="toc-text">state</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-text">生命周期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hooks-%E4%B8%8E-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%87%BD%E6%95%B0"><span class="toc-text">Hooks 与 生命周期函数</span></a></li></ol></li></ol>
     </div>
   </section>
 

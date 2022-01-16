@@ -5,6 +5,8 @@
   <!-- SEO相关 -->
   
     
+      <meta name="robots" content="noindex,follow">
+    
   
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -19,7 +21,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>Hexo</title>
+  <title>Archive: 2022/1 - Hexo</title>
   
 
   
@@ -54,7 +56,7 @@
 <body>
   
 
-<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
+<header id="l_header" class="l_header auto shadow blur " style='opacity: 0' >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -305,7 +307,7 @@
     <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper post dock' style="display: none;">
+        <div id="half" class='cover-wrapper  dock' style="display: ;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg"></div>
           
@@ -381,193 +383,72 @@
         
 
 <div class='l_main'>
-  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
-  
-
-
-  
-  <div class="article-meta" id="top">
+	
+		
+  <section class="post-list">
+    
+      
+        
+          
+        
+      
     
     
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2022/01/17/%E5%88%9D%E8%AF%86react/">
+        Jan 17, 2022
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        初识react一.什么是react先来看看官方是怎么说的
+1React is a JavaScript library for creating user interfaces by Facebook and Instagram. Many people choose to think of React as the V in MVC.
+
+简单来说react是Facebook自行开发的一套用...
+      
     
   </div>
-
-
   
-  <h1 id="egret白鹭引擎"><a href="#egret白鹭引擎" class="headerlink" title="egret白鹭引擎"></a>egret白鹭引擎</h1><h2 id="egret是什么？"><a href="#egret是什么？" class="headerlink" title="egret是什么？"></a>egret是什么？</h2><p>Egret是一套HTML5游戏开发解决方案，产品包含Egret Engine，Egret Wing，EgretVS，Res Depot，Texture Merger，TS Conversion，Egret Feather，Egret Inspector，DragonBones，Lakeshore等。而核心产品是Egret Engine，是一个基于TypeScript语言开发的一个HTML5游戏引擎，其余的大多是开发和辅助工具。使用typescript进行开发，有js基础的话，看了一下Demo和API基本一两天就可以进行实际开发了。</p>
-<p>创建项目的时候有两个选项，egret game 和egret UI，主要是勾选的拓展库不同，创建的时候可以吧ui库和game库都勾选，后期就比较方便，其他的库就按需勾选。如果用这个游戏引擎来开发一些轻交互的小游戏，还是很方便的，但是这个引擎还是有很多bug，比如动画循环，插入音效，这种还是会出现问题。</p>
-<p>.wing文件夹存放使用wing打开的配置文件<br>bin-debug文件夹存放调试时将ts转为js文件<br>bin-release文件夹存放打包输出文件(打包后才会出现)<br>libs文件夹存放弓|擎源码以及三方库文件.<br>resources文件夹存放资源文件包括图片、json、 动画、exmI等文件<br>scripts文件夹存放一些配置文件， 比如android ios wxgame的配置脚本文件<br>src文件夹存放开发源码<br>template文件夹存放模板文件<br>egretProperties.json文件三方库的配置文件</p>
-<p>fallen作为一个轻交互绘本类游戏，更多的部分是动画的自动或者循环播放，只需要控制好动画播放的时间间隔，这个部分使用egret.Tween就足够了</p>
-<img src="/2021/09/17/egret%E7%99%BD%E9%B9%AD%E5%BC%95%E6%93%8E/1.png" class="lazyload" data-srcset="/2021/09/17/egret%E7%99%BD%E9%B9%AD%E5%BC%95%E6%93%8E/1.png" srcset="data:image/png;base64,666" alt="img" style="zoom: 67%;">
-
-
-
-<p>最常用的几个：</p>
-<img src="/2021/09/17/egret%E7%99%BD%E9%B9%AD%E5%BC%95%E6%93%8E/2.png" class="lazyload" data-srcset="/2021/09/17/egret%E7%99%BD%E9%B9%AD%E5%BC%95%E6%93%8E/2.png" srcset="data:image/png;base64,666" alt="img" style="zoom: 67%;">
-
-<img src="/2021/09/17/egret%E7%99%BD%E9%B9%AD%E5%BC%95%E6%93%8E/3.png" class="lazyload" data-srcset="/2021/09/17/egret%E7%99%BD%E9%B9%AD%E5%BC%95%E6%93%8E/3.png" srcset="data:image/png;base64,666" alt="img" style="zoom: 80%;">
-
-<p>游戏中涉及到的交互（我负责的部分），大概只涉及到点击跳转，移动物体，音效，点击触发一些效果或者是滑动触发效果。总体来说交互不是很难。</p>
-<img src="/2021/09/17/egret%E7%99%BD%E9%B9%AD%E5%BC%95%E6%93%8E/5.png" class="lazyload" data-srcset="/2021/09/17/egret%E7%99%BD%E9%B9%AD%E5%BC%95%E6%93%8E/5.png" srcset="data:image/png;base64,666" alt="img" style="zoom: 67%;">
-
-<img src="/2021/09/17/egret%E7%99%BD%E9%B9%AD%E5%BC%95%E6%93%8E/4.png" class="lazyload" data-srcset="/2021/09/17/egret%E7%99%BD%E9%B9%AD%E5%BC%95%E6%93%8E/4.png" srcset="data:image/png;base64,666" alt="img" style="zoom: 67%;">
-
-<p>白鹭引擎本身提供了很多api可以直接调用，还有很多工具，比如说egret UI editor就是可以用小图标来制作游戏背景，还有龙骨主要用来制作动画，但是这两我都没怎么用过…egretwing以及被vscode替代了，不需要下载这个工具。</p>
-<p>总结的一些小经验：</p>
-<ol>
-<li><p>点击区域可以使用egret.TouchEvent判断，通过获取触摸点可以完成很多操作，比如说移动物体，判断点击区域，判断点击次数之类的问题。相比较起之前写一些网页是在某个元素上面设置onclick时间，游戏更多的是获取玩家触摸点然后判断是否在某个元素上面，我觉得还是有一些不同。</p>
-</li>
-<li><p>因为图片比较多，游戏的进行主要就是叠加图片以达到动画效果，有时候会出现无法移动或者被覆盖的问题。后来找设计调整图片，需要移动的图旁边不能有透明图层，如果图层不想被覆盖必须要按照图片叠加顺序来声明并且把图片添加到舞台。</p>
-</li>
-<li><p>不要写多重判断！！吃了巨大的亏（悲。添加事件侦听器之后进行判断，有时候不知道为什么egret总是会出现各种各样的问题，每次问题还不一样，应该还是有bug。所以多分几个方法来写，最多两层判断。</p>
-</li>
-<li><p>写游戏的时候，自己本身的逻辑很重要，有时候（又要绕回判断说事）代码写的太复杂容易把自己绕进去。学会复用代码。</p>
-</li>
-</ol>
-
-  
-  
-    
-    <div class='footer'>
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2022-01-17</time>
+        
+      </div>
       
-      
-      
-        <div class='copyright'>
-          <blockquote>
-            
-              
-                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
-
-              
-            
-              
-                <p>本文永久链接是：<a href=http://example.com/2021/09/17/egret%E7%99%BD%E9%B9%AD%E5%BC%95%E6%93%8E/>http://example.com/2021/09/17/egret%E7%99%BD%E9%B9%AD%E5%BC%95%E6%93%8E/</a></p>
-              
-            
-          </blockquote>
+        <div>
+          <a class='readmore' href='/2022/01/17/%E5%88%9D%E8%AF%86react/'>
+            Read More
+          </a>
         </div>
       
-      
     </div>
   
-  
-    
 
-
-  <div class='article-meta' id="bottom">
-    <div class='new-meta-box'>
-      
-        
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-09-17T14:08:57+08:00">
-  <a class='notlink'>
-    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Sep 17, 2021</p>
-  </a>
 </div>
 
+          </div>
         
       
-        
-          
-
-        
-      
-        
-          
-  <div class="new-meta-item share -mob-share-list">
-  <div class="-mob-share-list share-body">
     
-      
-        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
-          
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2021/09/17/egret%E7%99%BD%E9%B9%AD%E5%BC%95%E6%93%8E/&title= - Hexo&summary="
-          
-          >
-          
-            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,666">
-          
-        </a>
-      
-    
-      
-        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
-          
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2021/09/17/egret%E7%99%BD%E9%B9%AD%E5%BC%95%E6%93%8E/&title= - Hexo&summary="
-          
-          >
-          
-            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,666">
-          
-        </a>
-      
-    
-      
-        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
-          
-          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2021/09/17/egret%E7%99%BD%E9%B9%AD%E5%BC%95%E6%93%8E/&title= - Hexo&summary="
-          
-          >
-          
-            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,666">
-          
-        </a>
-      
-    
-      
-    
-      
-    
-  </div>
-</div>
-
-
-
-        
-      
-    </div>
-  </div>
-
-
+  </section>
   
+    
   
 
-  
-    <div class="prev-next">
-      
-        <a class='prev' href='/2022/01/17/%E5%88%9D%E8%AF%86react/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i></p>
-          <p class='content'>初识react一.什么是react先来看看官方是怎么说的
-1React is a JavaScript library for creating user interfaces by Faceb...</p>
-        </a>
-      
-      
-        <a class='next' href='/2021/09/12/%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87/'>
-          <p class='title'><i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>变量提升提升是什么意思？顾名思义，就是把下面的东西提到上面。在JS中，就是把定义在后面的东西（变量或函数）提升到前面中定义。但变量提升只是提升变量的声明，并不会把赋值也提升上来。
-首先涉及到js...</p>
-        </a>
-      
-    </div>
-  
-</article>
 
-
-  
-
-  <article class="post white-box reveal shadow" id="comments">
-    <p ct><i class='fas fa-comments'></i> 评论</p>
-    
-    <div id="valine_container" class="valine_thread">
-  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
-</div>
-
-  </article>
-
-
-
-
-
-
+	
 </div>
 <aside class='l_side'>
   
@@ -575,28 +456,87 @@
     
     
 
-
-
-  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+<section class="widget blogger shadow desktop mobile">
+  <div class='content'>
     
-  <header>
+      
+        <a class='avatar flat-box rectangle' href='/about/'>
+          <img no-lazy src='https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png'/>
+        </a>
+      
     
-      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
     
-  </header>
+      <div class='text'>
+        
+        
+        
+          <p><span id="jinrishici-sentence">Hexo</span></p>
+          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+        
+      </div>
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="/atom.xml"
+              class="social fas fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="mailto:me@xxx.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="https://github.com/volantis-x/"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="/"
+              class="social fas fa-headphones-alt flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
 
+  
 
-    <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#egret%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">egret是什么？</span></a></li></ol>
-    </div>
-  </section>
+  
+    
+    
 
+  
+
+  
+    
+    
+
+  
 
   
 
 
 </aside>
-
 
 
         
@@ -613,7 +553,7 @@
 
   var l_header=document.getElementById("l_header");
   
-  l_header.classList.add("show");
+  l_header.classList.remove("show");
   
 </script>
 
