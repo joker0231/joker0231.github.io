@@ -5,10 +5,6 @@
   <!-- SEO相关 -->
   
     
-      
-        <meta name="robots" content="noindex,follow">
-      
-    
   
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -309,7 +305,7 @@
     <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper  dock' style="display: none;">
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg"></div>
           
@@ -385,531 +381,243 @@
         
 
 <div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
   
-  <section class="post-list">
+
+
+  
+  <div class="article-meta" id="top">
     
     
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/07/23/%E7%90%86%E8%A7%A3%E6%B5%AE%E5%8A%A8/">
-        Jul 23, 2021
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        css中的BFC详解一、何为BFC​    BFC（Block Formatting Context）格式化上下文，是Web页面中盒模型布局的CSS渲染模式，指一个独立的渲染区域或者说是一个隔离的独立容器。
-二、形成BFC的条件   1、浮动元素，float 除 none 以外的值；   2、定位元素，position（absolute，fixed）；   3、display 为以下其中之一...
-      
     
   </div>
+
+
   
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-07-23</time>
-        
-      </div>
+  <h1 id="渲染流程"><a href="#渲染流程" class="headerlink" title="渲染流程"></a>渲染流程</h1><p>接上一话，导航被提交以后的渲染流程是怎样工作的。渲染阶段至关重要，关乎优化页面卡顿问题。这篇博客介绍从网络流程向渲染流程传输HTML，CSS和js文件到整个页面完全被渲染出来，背后的原理和一整条流水线。</p>
+<p>按照渲染的时间顺序，流水线可分为如下几个子阶段：构建 DOM 树、样式计算、布局阶段、分层、绘制、分块、光栅化和合成。</p>
+<h2 id="构建DOM树"><a href="#构建DOM树" class="headerlink" title="构建DOM树"></a>构建DOM树</h2><p>为什么要构建DOM树呢？因为浏览器没办法直接理解和使用html，所以要通过浏览器HTML解析器，把它转换成浏览器能理解的结构，也就是DOM树了。</p>
+<p>从表象来看，DOM结构和HTML内容一样，但是DOM不同在于它是保存在内存中的树状结构，可以通过js来查询和修改其内容。</p>
+<h2 id="样式计算"><a href="#样式计算" class="headerlink" title="样式计算"></a>样式计算</h2><p>样式计算的目的是为了计算出 DOM 节点中每个元素的具体样式。</p>
+<h3 id="1-转换css"><a href="#1-转换css" class="headerlink" title="1.转换css"></a>1.转换css</h3><p>css就好像html文件一样，浏览器无法直接理解，所以在渲染流程接受css文件之前，会将css文件转换成 styleSheets以供浏览器理解。可以通过 document.styleSheets访问到，也可以被修改和查询。</p>
+<h3 id="2-转换属性值"><a href="#2-转换属性值" class="headerlink" title="2.转换属性值"></a>2.转换属性值</h3><p> CSS 文本中有很多属性值，如 2em、blue、bold，这些类型数值不容易被渲染引擎理解，所以需要将所有值转换为渲染引擎容易理解的、标准化的计算值，这个过程就是属性值标准化。 </p>
+<p>被转换成px，rgb表示的颜色等等</p>
+<h3 id="3-计算出每个节点的具体样式"><a href="#3-计算出每个节点的具体样式" class="headerlink" title="3.计算出每个节点的具体样式"></a>3.计算出每个节点的具体样式</h3><p>属性都已经标准化了，接下来就只需要对应到每个节点了。这里就涉及到 CSS 的继承规则和层叠规则。</p>
+<p>所谓继承规则，举个栗子,，比如开发者在网页中设置p段落标签，但是在css中并没有设置该标签的对应样式，但是我们在浏览器中仍可以看到这个段落文字。那么这里的文字大小颜色，margin值等等一系列属性到底是哪里来的呢？来源于默认样式和对父节点样式的继承。</p>
+<p>这就是最简单的继承规则的应用，假设这个p标签的路径是 html.body.div.p，那么p这个DOM节点就包含了父节点的样式。 这里需要特别提下 UserAgent 样式，它是浏览器提供的一组默认样式，如果你不提供任何样式，默认使用的就是 UserAgent 样式。 </p>
+<p>第二个规则是层叠规则。 层叠是 CSS 的一个基本特征，它是一个定义了如何合并来自多个源的属性值的算法。  当你随机打开一个页面，查看源代码，你会发现，同一个元素，不止有一个CSS选择器及对应的样式。而一个元素只能应用一个样式，那么一堆样式中究竟是应用哪一个呢？ </p>
+<p>首先样式的来源分为五种。</p>
+<p>1、浏览器默认的样式；</p>
+<p>2、用户自定义样式。一些页面中会提供一些让用户自定义字体大小颜色等的快捷键；</p>
+<p>3、外部样式，即<link>引用的CSS后缀文件；</p>
+<p>4、内部样式，即写在<style></style>标签内的样式；</p>
+<p>5、内联样式，即直接写在style属性内的样式</p>
+<p>其中后三种都可以被归为开发者设定。 层叠规则如下：</p>
+<ol>
+<li>按显式权重对应用到该元素的所有声明进行排序，有!important标志的声明的权重要高于不带!important标志的声明。 </li>
+<li>开发者的样式和读者样式斗都比用户代理的默认样式强。 </li>
+<li>按特殊性对应用到给定元素的所有声明进行排序，有较高特殊性的元素权重要大于有较低特殊性的元素。 </li>
+<li>按出现顺序对应用到给定元素的所有声明进行排序，后面出现的声明权重要大于前面出现的声明，即后定义的样式会覆盖前面定义的样式。 </li>
+</ol>
+<p>其中第三点 <strong>选择器的特殊性</strong> 很重要它们满足这样的优先级：</p>
+<p>1、对于内联样式，特殊性首位加1，即1，0，0，0。</p>
+<p>2、对于选择器中出现的ID属性值，加0，1，0，0， 有多少个ID值就在第二位加几位。</p>
+<p>3、对于选择器中出现的类属性值，属性选择及伪类，加0，0，1，0，共出现多少个就在第三位加几位。</p>
+<p>4、对于选择器中出现的元素，以及伪元素，加0，0，0，1，共出现多少个就在第四位加几位。</p>
+<p>样式计算阶段遵守 CSS 的继承和层叠两个规则计算出 DOM 节点中每个元素的具体样式。</p>
+<h2 id="布局阶段"><a href="#布局阶段" class="headerlink" title="布局阶段"></a>布局阶段</h2><p>有了 DOM 树和 DOM 树中元素的样式， 我们还需要知道 DOM 元素的几何位置信息。那么接下来就需要计算出 DOM 树中可见元素的几何位置，我们把这个计算过程叫做布局。  在布局阶段需要完成两个任务：创建布局树和布局计算。 </p>
+<h3 id="创建布局树"><a href="#创建布局树" class="headerlink" title="创建布局树"></a>创建布局树</h3><p> 浏览器大体上完成了下面这些工作：</p>
+<ol>
+<li>遍历 DOM 树中的所有可见节点，并把这些节点加到布局树中；</li>
+<li>而不可见的节点会被布局树忽略掉，如 head 标签下面的全部内容，再比如 body.p.span 这个元素，因为它的属性包含 dispaly:none，所以这个元素也没有被包进布局树。 </li>
+</ol>
+<p><img src="https://static001.geekbang.org/resource/image/8e/0e/8e48b77dd48bdc509958e73b9935710e.png" class="lazyload" data-srcset="https://static001.geekbang.org/resource/image/8e/0e/8e48b77dd48bdc509958e73b9935710e.png" srcset="data:image/png;base64,666" alt="img"></p>
+<h3 id="布局计算"><a href="#布局计算" class="headerlink" title="布局计算"></a>布局计算</h3><p>布局计算也是个非常复杂的东西，这里就不展开讲，毕竟主要是讲渲染流程，反正布局计算的结果计算好，也就是每个元素的几何坐标位置，以后会被重新写到布局树里面。</p>
+<h2 id="分层"><a href="#分层" class="headerlink" title="分层"></a>分层</h2><p>在开始绘制页面之前，因为页面中有很多复杂的效果，如一些复杂的 3D 变换、页面滚动，或者使用 z-indexing 做 z 轴排序等，为了更加方便地实现这些效果，渲染引擎还需要为特定的节点生成专用的图层，并生成一棵对应的图层树。</p>
+<p>浏览器的页面实际上被分成了很多图层，这些图层叠加后合成了最终的页面。但不是每个节点都是一个图层 如果一个节点没有对应的层，那么这个节点就从属于父节点的图层。</p>
+<p><img src="https://static001.geekbang.org/resource/image/e8/61/e8a7e60a2a08e05239456284d2aa4061.png" class="lazyload" data-srcset="https://static001.geekbang.org/resource/image/e8/61/e8a7e60a2a08e05239456284d2aa4061.png" srcset="data:image/png;base64,666" alt="img"></p>
+<p> 渲染引擎会为哪些节点创建新的图层？：</p>
+<p> 1.拥有层叠上下文属性的元素 层叠上下文属性：明确定位属性的元素（position），定义透明属性的元素（opacity），使 用css滤镜元素（filter），设置z-index属性的元素。</p>
+<p>2.需要裁剪的地方。就比如我们定义了一个div，但是div里面的文字超出我们定义div的面积，那么就会产生剪裁，渲染引擎会把裁剪文字内容的一部分用于显示在 div 区域，或者出现滚动条，也会被提升为单独的一层。</p>
+<h2 id="图层绘制"><a href="#图层绘制" class="headerlink" title="图层绘制"></a>图层绘制</h2><p>说了半天终于来到了绘制的阶段，渲染引擎会对图层树中的每个图层进行绘制。渲染引擎会把 一个图层的绘制拆分成很多小的绘制指令，然后再把这些指令按照顺序组成一个待绘制列表，按照列表去绘制每一个元素。</p>
+<h2 id="栅格化（raster）操作"><a href="#栅格化（raster）操作" class="headerlink" title="栅格化（raster）操作"></a>栅格化（raster）操作</h2><p> 实际上绘制操作是由渲染引擎中的合成线程来完成的。 渲染进程中的主线程将绘制列表传递给合成线程。</p>
+<p><img src="https://static001.geekbang.org/resource/image/46/41/46d33b6e5fca889ecbfab4516c80a441.png" class="lazyload" data-srcset="https://static001.geekbang.org/resource/image/46/41/46d33b6e5fca889ecbfab4516c80a441.png" srcset="data:image/png;base64,666" alt="img"></p>
+<p>通常一个页面可能很长，但是用户只能看到一部分，这一部分就是视口。如果一次性绘制所有图层所有内容，开销太大也没有必要。所以合成线程需要图层划分为图块，按照视口附近的图块来优先生成位图。</p>
+<p>而实际生成位图的操作是由栅格化来执行的。所谓栅格化，是指将图块转换为位图。渲染进程维护了一个栅格化的线程池，所有的图块栅格化都是在线程池内执行的。 通常，栅格化过程都会使用 GPU 来<strong>加速</strong>生成，使用 GPU 生成位图的过程叫快速栅格化，或者 GPU 栅格化，生成的位图被保存在 GPU 内存中。 </p>
+<p><img src="https://static001.geekbang.org/resource/image/a8/87/a8d954cd8e4722ee03d14afaa14c3987.png" class="lazyload" data-srcset="https://static001.geekbang.org/resource/image/a8/87/a8d954cd8e4722ee03d14afaa14c3987.png" srcset="data:image/png;base64,666" alt="img"></p>
+<h2 id="合成和显示"><a href="#合成和显示" class="headerlink" title="合成和显示"></a>合成和显示</h2><p> 一旦所有图块都被光栅化，合成线程就会生成一个绘制图块的命令——“DrawQuad”，然后将该命令提交给浏览器进程。</p>
+<p>浏览器进程里面有一个叫 viz 的组件，用来接收合成线程发过来的 DrawQuad 命令，然后根据 DrawQuad 命令，将其页面内容绘制到内存中，最后再将内存显示在屏幕上。 </p>
+<p>到这里，渲染流程就结束啦。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>整体流程放在这里。</p>
+<p><img src="https://static001.geekbang.org/resource/image/97/37/975fcbf7f83cc20d216f3d68a85d0f37.png" class="lazyload" data-srcset="https://static001.geekbang.org/resource/image/97/37/975fcbf7f83cc20d216f3d68a85d0f37.png" srcset="data:image/png;base64,666" alt="img"></p>
+<p> 结合上图，一个完整的渲染流程大致可总结为如下：</p>
+<ol>
+<li>渲染进程将 HTML 内容转换为能够读懂的 DOM 树结构。</li>
+<li>渲染引擎将 CSS 样式表转化为浏览器可以理解的 styleSheets，计算出 DOM 节点的样式。</li>
+<li>创建布局树，并计算元素的布局信息。</li>
+<li>对布局树进行分层，并生成分层树。</li>
+<li>为每个图层生成绘制列表，并将其提交到合成线程。</li>
+<li>合成线程将图层分成图块，并在光栅化线程池中将图块转换成位图。</li>
+<li>合成线程发送绘制图块命令 DrawQuad 给浏览器进程。</li>
+<li>浏览器进程根据 DrawQuad 消息生成页面，并显示到显示器上。 </li>
+</ol>
+<p>这里再多说一下相关概念：</p>
+<h2 id="重绘，重排和合成"><a href="#重绘，重排和合成" class="headerlink" title="重绘，重排和合成"></a>重绘，重排和合成</h2><ol>
+<li><p>更新了元素的几何属性（重排）  例如改变元素的宽度、高度等，那么浏览器会触发重新布局，解析之后的一系列子阶段，这个过程就叫重排。无疑，重排需要更新完整的渲染流水线，所以开销也是最大的。<img src="https://static001.geekbang.org/resource/image/b3/e5/b3ed565230fe4f5c1886304a8ff754e5.png" class="lazyload" data-srcset="https://static001.geekbang.org/resource/image/b3/e5/b3ed565230fe4f5c1886304a8ff754e5.png" srcset="data:image/png;base64,666" alt="img"></p>
+</li>
+<li><p>更新元素的绘制属性（重绘）  比如通过 JavaScript 更改某些元素的背景颜色。 那么布局阶段将不会被执行，因为并没有引起几何位置的变换，所以就直接进入了绘制阶段，然后执行之后的一系列子阶段，这个过程就叫重绘。 重绘省去了布局和分层阶段，所以执行效率会比重排操作要高一些。<img src="https://static001.geekbang.org/resource/image/3c/03/3c1b7310648cccbf6aa4a42ad0202b03.png" class="lazyload" data-srcset="https://static001.geekbang.org/resource/image/3c/03/3c1b7310648cccbf6aa4a42ad0202b03.png" srcset="data:image/png;base64,666" alt="img"></p>
+</li>
+<li><p>直接合成阶段（更改一个既不要布局也不要绘制的属性） 这样的效率是最高的，因为是在非主线程上合成，并没有占用主线程的资源，另外也避开了布局和绘制两个子阶段 <img src="https://static001.geekbang.org/resource/image/02/2c/024bf6c83b8146d267f476555d953a2c.png" class="lazyload" data-srcset="https://static001.geekbang.org/resource/image/02/2c/024bf6c83b8146d267f476555d953a2c.png" srcset="data:image/png;base64,666" alt="img"></p>
+<p>减少重排重绘, 方法很多：</p>
+</li>
+<li><p>使用 class 操作样式，而不是频繁操作 style </p>
+</li>
+<li><p>避免使用 table 布局 </p>
+</li>
+<li><p>批量dom 操作，例如 createDocumentFragment，或者使用框架，例如 React </p>
+</li>
+<li><p>Debounce window resize 事件 </p>
+</li>
+<li><p>对 dom 属性的读写要分离  </p>
+</li>
+<li><p>will-change: transform 做优化 </p>
+</li>
+</ol>
+
+  
+  
+    
+    <div class='footer'>
       
-        <div>
-          <a class='readmore' href='/2021/07/23/%E7%90%86%E8%A7%A3%E6%B5%AE%E5%8A%A8/'>
-            Read More
-          </a>
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=http://example.com/2022/03/09/%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/>http://example.com/2022/03/09/%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/</a></p>
+              
+            
+          </blockquote>
         </div>
+      
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2022-03-09T23:44:28+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Mar 9, 2022</p>
+  </a>
 </div>
 
-          </div>
         
       
         
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/07/18/%E7%9B%92%E6%A8%A1%E5%9E%8B/">
-        Jul 18, 2021
-      </a>
-    </h2>
-  
-  <div class='md'>
+          
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
     
       
-        盒模型宽度问题给一个元素设置宽和高时，指定的是内容的宽和高，所有的内边距，边框，外边距都是追加到该宽度之上的。所以在设置宽和高时要避免魔术数值（根据该样式试出来的值），替换它的方法可以放浏览器计算，用calc（）函数减去边框多出来的值。
-还可以通过全局设置box-sizing来改变盒模型的计算方法，使得设置长宽属性时会包括内容，内边距和边框大小总和。也可以单个元素进行修改。
-12345*,:...
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2022/03/09/%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/&title= - Hexo&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2022/03/09/%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/&title= - Hexo&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2022/03/09/%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/&title= - Hexo&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+    
       
     
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-07-18</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/07/18/%E7%9B%92%E6%A8%A1%E5%9E%8B/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
 </div>
 
-          </div>
+
+
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/07/17/%E7%9B%B8%E5%AF%B9%E5%8D%95%E4%BD%8D/">
-        Jul 17, 2021
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        夏令营2
-css in depth第二章——相对位置
-响应式设计：可以根据浏览器窗口的大小有不同的响应。在响应式网页中，需要习惯模糊值，1.2em具体是多少px不重要，主要看它在页面上的效果怎么样。
-使用em和rem作为相对长度单位。
-em和rem使用em在css中，1em等于当前元素的字号，其中却只取决于作用的元素。假如某一元素中字号大小为16px，padding为1em，那么其内间距浏览...
-      
-    
+    </div>
   </div>
+
+
   
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-07-17</time>
-        
-      </div>
+  
+
+  
+    <div class="prev-next">
       
-        <div>
-          <a class='readmore' href='/2021/07/17/%E7%9B%B8%E5%AF%B9%E5%8D%95%E4%BD%8D/'>
-            Read More
-          </a>
-        </div>
+      
+        <a class='next' href='/2022/03/09/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B/'>
+          <p class='title'><i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>浏览器请求+渲染流程在开发前端过程中，无论是优化还是想设计高性能页面，浏览器作为网页的载体，这其中的 网络流程、页面渲染过程，JavaScript 执行流程，以及 Web 安全理论都是我们必须要...</p>
+        </a>
       
     </div>
   
+</article>
 
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
 </div>
 
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/07/13/%E5%B1%82%E5%8F%A0%E4%BC%98%E5%85%88%E7%BA%A7%E7%BB%A7%E6%89%BF/">
-        Jul 13, 2021
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        css in depth 第一章
-层叠层叠根据三个条件解决冲突
-
-样式表的来源（其实来源之后还要判断一下是否是内联）
-选择器优先级
-源码顺序
-
-样式表来源主要分：作者样式表，用户代理样式表（优先级从高到低）。用户代理样式表是浏览器默认的一些样式，不会做多余的事情。
-！important 的声明会被当做更高优先级的来源，优先级高于所有没有此声明的样式。
-优先级（推荐使用方法）优先级分为两部分：...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-07-13</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/07/13/%E5%B1%82%E5%8F%A0%E4%BC%98%E5%85%88%E7%BA%A7%E7%BB%A7%E6%89%BF/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/">
-        Jul 9, 2021
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        夏令营1
-对于类相关知识的复习：
-
-类中的构造器不是必须要写，但若要对类的实例进行初始化操作比如添加上属性就要写
-如果A类继承了B类，且在A类中写了构造器，那么A类构造器中的super是一定要写的super（props）
-类中定义的方法，都是放在类的原型对象上供实例去使用
-render方法放在组件的实例对象上，中的this指向指向组件实例对象
-写在组件中的方法是放在组件的原型对象上，供实例使...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-07-09</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/03/%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1/">
-        May 3, 2021
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        变量对象JavaScript 的可执行代码，具有执行上下文，而每个上下文包括以下 3 个属性：
-
-变量对象（variable object, 简称 VO）
-作用域链（scope chain）
-this
-
-
-什么是变量对象呢？先看定义：
-
-变量对象是与执行上下文相关的数据作用域，用于存储执行上下文中的变量和函数声明。
-
-变量对象是与执行上下文对应的概念，在执行上下文的创建阶段，它依次存储着在上...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-03</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/03/%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/03/%E5%85%B3%E4%BA%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/">
-        May 3, 2021
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        关于深拷贝和浅拷贝首先需要引入基本数据类型与引用数据类型的概念。
-基本数据类型有哪些，number，string，boolean，null，undefined，symbol以及ES10新增的BigInt(任意精度整数)七类。
-引用数据类型(Object类)有常规名值对的无序对象{a:1}**，数组[1,2,3]，以及函数**等。
-而这两类数据存储分别是这样的：
-a.基本类型–名值存储在栈内存...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-03</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/03/%E5%85%B3%E4%BA%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/12/10/http/">
-        http
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        状态码当客户端向服务器端发送请求时，描述返回的请求结果。
-数字的第一位指定了响应类别，后两位无分类。
+  </article>
 
 
 
 
-这一类型的状态码，代表请求已被接受，需要继续处理。这类响应是临时响应，只包含状态行和某些可选的响应头信息，并以空行结束。
-
-这一类型的状态码，代表请求已成功被服务器接收、理解、并接受
-
-mata信息（HTML语言head区的一个辅助性标签）
-位于文档的头部，不包含任何内容。 标签的属...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-12-10</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/12/10/http/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/12/05/%E7%BB%A7%E6%89%BF/">
-        Dec 5, 2020
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        继承A 对象通过继承B对象，就能直接拥有B对象的所有属性和方法。这对于代码的复用非常有用，
-JavaScript通过使用“类”（class）和原型对象（prototype）实现。常见的有六种继承方式。
-方法一：原型链继承关键在于：子类型的原型为父类型的一个实例对象。
-
-
-让父类的属性和方法在子类实例的原型链上。
-
-CHILD .prototype = new PARENT（）；s
-
-CHIL...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-12-05</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/12/05/%E7%BB%A7%E6%89%BF/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/12/04/Task%203%EF%BC%9A%E5%AF%B9%E8%B1%A1%EF%BC%8C%E6%95%B0%E7%BB%84%E4%BB%A5%E5%8F%8A%E5%AD%97%E7%AC%A6%E4%B8%B2/">
-        Dec 4, 2020
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        Task 3：对象，数组以及字符串数组语法
-split(‘’”), 字符串转数组,返回一个新的数组
-
-slice(start,end),字符串截取，[1,2,3,5].slice(-1)  =&gt; [5],返回截取后的数组，不改变原数组
-
-splice()，删除或者添加字符串 [].splite(1,1,’2’), 在下标为1的位置开始 删除1个元素，添加“2”到这个位置,改变原来数组
-...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-12-04</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/12/04/Task%203%EF%BC%9A%E5%AF%B9%E8%B1%A1%EF%BC%8C%E6%95%B0%E7%BB%84%E4%BB%A5%E5%8F%8A%E5%AD%97%E7%AC%A6%E4%B8%B2/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-    
-  </section>
-  
-    
-      <br>
-      <div class="prev-next">
-        
-          <a class="prev" rel="prev" href="/">
-            <section class="post prev white-box shadow" >
-              <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;Previous&nbsp;
-            </section>
-          </a>
-        
-        <p class="current">
-          2 / 3
-        </p>
-        
-          <a class="next" rel="next" href="/page/3/">
-            <section class="post next white-box shadow">
-              &nbsp;Next&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
-            </section>
-          </a>
-        
-      </div>
-    
-  
 
 
 </div>
@@ -919,82 +627,22 @@ splice()，删除或者添加字符串 [].splite(1,1,’2’), 在下标为1的�
     
     
 
-<section class="widget blogger shadow desktop mobile">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box rectangle' href='/about/'>
-          <img no-lazy src='https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-        
-        
-          <p><span id="jinrishici-sentence">Hexo</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="/atom.xml"
-              class="social fas fa-rss flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="mailto:me@xxx.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/volantis-x/"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="/"
-              class="social fas fa-headphones-alt flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
 
-  
 
-  
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
     
+  <header>
     
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
 
-  
 
-  
-    
-    
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E5%BB%BADOM%E6%A0%91"><span class="toc-text">构建DOM树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B7%E5%BC%8F%E8%AE%A1%E7%AE%97"><span class="toc-text">样式计算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%BD%AC%E6%8D%A2css"><span class="toc-text">1.转换css</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%BD%AC%E6%8D%A2%E5%B1%9E%E6%80%A7%E5%80%BC"><span class="toc-text">2.转换属性值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%AE%A1%E7%AE%97%E5%87%BA%E6%AF%8F%E4%B8%AA%E8%8A%82%E7%82%B9%E7%9A%84%E5%85%B7%E4%BD%93%E6%A0%B7%E5%BC%8F"><span class="toc-text">3.计算出每个节点的具体样式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%83%E5%B1%80%E9%98%B6%E6%AE%B5"><span class="toc-text">布局阶段</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%B8%83%E5%B1%80%E6%A0%91"><span class="toc-text">创建布局树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%83%E5%B1%80%E8%AE%A1%E7%AE%97"><span class="toc-text">布局计算</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B1%82"><span class="toc-text">分层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E5%B1%82%E7%BB%98%E5%88%B6"><span class="toc-text">图层绘制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%85%E6%A0%BC%E5%8C%96%EF%BC%88raster%EF%BC%89%E6%93%8D%E4%BD%9C"><span class="toc-text">栅格化（raster）操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%88%E6%88%90%E5%92%8C%E6%98%BE%E7%A4%BA"><span class="toc-text">合成和显示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E7%BB%98%EF%BC%8C%E9%87%8D%E6%8E%92%E5%92%8C%E5%90%88%E6%88%90"><span class="toc-text">重绘，重排和合成</span></a></li></ol>
+    </div>
+  </section>
 
-  
 
   
 
