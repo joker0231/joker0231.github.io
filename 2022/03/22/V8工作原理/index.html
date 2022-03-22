@@ -5,10 +5,6 @@
   <!-- SEO相关 -->
   
     
-      
-        <meta name="robots" content="noindex,follow">
-      
-    
   
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -309,7 +305,7 @@
     <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper  dock' style="display: none;">
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg"></div>
           
@@ -385,522 +381,217 @@
         
 
 <div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
   
-  <section class="post-list">
+
+
+  
+  <div class="article-meta" id="top">
     
     
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/07/30/%E7%BD%91%E6%A0%BC%E5%B8%83%E5%B1%80/">
-        Jul 30, 2021
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        网格布局设置display：grid的元素将成为一个网格容器，子元素就变成网格元素。通过设置grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr 1fr来定义等高等宽的网格。fr表示每一行每一列的分数单位，也可以用px，em或者百分比来定义。
-理解网格线，网格轨道，网格区域和网格单元。
-repeat函数，在声明多个网格轨道时提...
-      
     
   </div>
+
+
   
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-07-30</time>
-        
-      </div>
+  <h1 id="V8工作原理"><a href="#V8工作原理" class="headerlink" title="V8工作原理"></a>V8工作原理</h1><h2 id="栈空间和堆空间"><a href="#栈空间和堆空间" class="headerlink" title="栈空间和堆空间"></a>栈空间和堆空间</h2><h3 id="语言类型"><a href="#语言类型" class="headerlink" title="语言类型"></a>语言类型</h3><p>首先需要认知一下js是一种什么类型的语言？</p>
+<p>一般来说代码声明有两种类型，一种是在声明变量之前要定义 变量类型。我们把这种在使用之前就需要确认其变量数据类型的称为静态语言。相反地，我们把在运行过程中需要检查数据类型的语言称为动态语言。比如 JavaScript 就是动态语言，因为在声明变量之前并不需要确认其数据类型。</p>
+<p>同时还分为强类型和弱类型的区别，支持隐式类型转换的语言称为弱类型语言，不支持隐式类型转换的语言称为强类型语言。啥是隐式转换呢？就是说可以将变量的类型不断变换，比如 int 型的变量悄悄转换为 bool 型的变量。</p>
+<p>js作为动态弱类型语言，在运行过程中数据是如何存储的呢？</p>
+<p><img src="https://static001.geekbang.org/resource/image/62/57/6293f5315a5bafbd3ba00ee732bfbf57.png?wh=1142*1183" class="lazyload" data-srcset="https://static001.geekbang.org/resource/image/62/57/6293f5315a5bafbd3ba00ee732bfbf57.png?wh=1142*1183" srcset="data:image/png;base64,666" alt="img"></p>
+<h3 id="存储空间类型"><a href="#存储空间类型" class="headerlink" title="存储空间类型"></a>存储空间类型</h3><p>在 JavaScript 的执行过程中， 主要有三种类型内存空间，分别是代码空间、栈空间和堆空间。代码空间是用来存储可执行代码之类的东西，而栈空间是用来存储执行上下文的，而执行上下文中又包括变量环境和词法环境，堆空间则是用来存储对象之类的引用类型的数据。</p>
+<p>也就是说原始类型的数据值都是直接保存在“栈”中的，引用类型的值是存放在“堆”中的。在栈中只会保留引用类型的一个引用地址用来访问该数据。</p>
+<p>那为什么要分两种存储空间呢？主要是因为 JavaScript 引擎需要<strong>用栈来维护程序执行期间上下文的状态</strong>，如果栈空间大了话，所有的数据都存放在栈空间里面，那么会影响到上下文切换的效率，进而又影响到整个程序的执行效率。js中的各种方法程序嵌套调用都涉及到栈来操作，所以栈对于js来说是不可或缺的数据类型。举个栗子：比如 foo 函数执行结束了，JavaScript 引擎需要离开当前的执行上下文，只需要将指针下移到上个执行上下文的地址就可以了，foo 函数执行上下文栈区空间就可以被全部回收，这又涉及到垃圾回收策略了。</p>
+<p> 所以通常情况下，栈空间都不会设置太大，主要用来存放一些原始类型的小数据。而引用类型的数据占用的空间都比较大，所以这一类数据会被存放到堆中，堆空间很大，能存放很多大的数据，不过缺点是分配内存和回收内存都会占用一定的时间。 </p>
+<p>还有两个小tips： 在 JavaScript 中，赋值操作和其他语言有很大的不同，原始类型的赋值会完整复制变量值，而引用类型的赋值是复制引用地址。 所以这里又涉及到<strong>深复制和浅复制</strong>的关系，在复制引用类型的时候要记得用for循环或者其他遍历方法复制，如果只是简单的=，那么只会复制一个堆内存地址哦。</p>
+<p>闭包是存储在<strong>堆空间</strong>的对象哦，是一个内部对象，js是无法访问的。</p>
+<h2 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h2><p>js中使用的是自动垃圾回收的策略，产生的垃圾数据是由垃圾回收器来释放的，并不需要手动通过代码来释放（c就是手动的）。接着上面的说， 分别介绍“栈中的垃圾数据”和“堆中的垃圾数据”是如何回收的。 </p>
+<h3 id="调用栈中的数据是如何回收的"><a href="#调用栈中的数据是如何回收的" class="headerlink" title="调用栈中的数据是如何回收的"></a>调用栈中的数据是如何回收的</h3><p>举个栗子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line">    <span class="keyword">var</span> b = &#123;<span class="attr">name</span>:<span class="string">&quot;极客邦&quot;</span>&#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">showName</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="keyword">var</span> c = <span class="number">2</span></span><br><span class="line">      <span class="keyword">var</span> d = &#123;<span class="attr">name</span>:<span class="string">&quot;极客时间&quot;</span>&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    showName()</span><br><span class="line">&#125;</span><br><span class="line">foo()</span><br></pre></td></tr></table></figure>
+
+<p> 其调用栈和堆空间状态图如下所示： </p>
+<p><img src="https://static001.geekbang.org/resource/image/d8/b0/d807ca19c2c8853ef5a38dca0fb79ab0.jpg" class="lazyload" data-srcset="https://static001.geekbang.org/resource/image/d8/b0/d807ca19c2c8853ef5a38dca0fb79ab0.jpg" srcset="data:image/png;base64,666" alt="img"></p>
+<p> 当 foo 函数执行结束之后，foo 函数的执行上下文会从堆中被销毁掉。那么具体销毁过程是怎么样的呢？在调用栈中，有一个记录当前状态的指针（称为 ESP）。</p>
+<p>当 showName 函数执行完成之后，JavaScript 会将 ESP 下移到 foo 函数的执行上下文，这个下移操作就是销毁 showName 函数执行上下文的过程。从图中可以看出，当 showName 函数执行结束之后，ESP 向下移动到 foo 函数的执行上下文中，上面 showName 的执行上下文虽然保存在栈内存中，但是已经是无效内存了。比如当 foo 函数再次调用另外一个函数时，<strong>这块内容会被直接覆盖掉，用来存放另外一个函数的执行上下文</strong>。</p>
+<h3 id="堆中的数据是如何回收的"><a href="#堆中的数据是如何回收的" class="headerlink" title="堆中的数据是如何回收的"></a>堆中的数据是如何回收的</h3><p><strong>要回收堆中的垃圾数据，就需要用到 JavaScript 中的垃圾回收器了。</strong></p>
+<p>那么首先要先了解一下代际假说（The Generational Hypothesis）的内容，这是垃圾回收领域中一个重要的术语，后续垃圾回收的策略都是建立在该假说的基础之上的，所以很重要。</p>
+<p><strong>代际假说</strong>有以下两个特点：</p>
+<p>第一个是大部分对象在内存中存在的时间很短，简单来说，就是很多对象一经分配内存，很快就变得不可访问；</p>
+<p>第二个是不死的对象，会活得更久。 </p>
+<p>基于代际假说，V8 将堆内存分为两个部分，分别是新生代和老生代两个区域，<strong>新生代中存放的是生存时间短的对象，老生代中存放的生存时间久的对象。</strong> V8 分别使用两个不同的垃圾回收器 ：副垃圾回收器，主要负责新生代的垃圾回收。主垃圾回收器，主要负责老生代的垃圾回收。但是不管是什么类型的垃圾回收器，它们都有一套共同的执行流程。</p>
+<p><strong>第一步</strong>是标记空间中活动对象和非活动对象。所谓活动对象就是还在使用的对象，非活动对象就是可以进行垃圾回收的对象。</p>
+<p><strong>第二步</strong>是回收非活动对象所占据的内存。其实就是在所有的标记完成之后，统一清理内存中所有被标记为可回收的对象。</p>
+<p><strong>第三步</strong>是做内存整理。一般来说，频繁回收对象后，内存中就会存在大量不连续空间，我们把这些不连续的内存空间称为内存碎片。当内存中出现了大量的内存碎片之后，如果需要分配较大连续内存的时候，就有可能出现内存不足的情况。所以最后一步需要整理这些内存碎片，但这步其实是可选的。</p>
+<h4 id="副垃圾回收器"><a href="#副垃圾回收器" class="headerlink" title="副垃圾回收器"></a>副垃圾回收器</h4><p>通常情况下，大多数小的对象都会被分配到新生区，所以说这个区域不大，但是垃圾回收还是比较频繁的。</p>
+<p>新生代中涉及到 Scavenge 算法 ：是把新生代空间对半划分为两个区域，一半是对象区域，一半是空闲区域。</p>
+<p>新加入的对象都会存放到对象区域，当对象区域快被写满时，就需要执行一次垃圾清理操作。这个过程就是，先给垃圾做标记，完成后把那些活跃的对象复制到空闲区域并有序排列，之后对对象区域中的数据经常删除，然后对象区域与空闲区域进行角色翻转，这样就完成了一次清除。但是因为新生区空间不大，所以为了减少垃圾清除的频率， JavaScript 引擎采用了<strong>对象晋升策略</strong>，也就是经过两次垃圾回收依然还存活的对象，会被移动到老生区中。 </p>
+<h4 id="主垃圾回收器"><a href="#主垃圾回收器" class="headerlink" title="主垃圾回收器"></a>主垃圾回收器</h4><p> 除了新生区中晋升的对象，一些大的对象会直接被分配到老生区。因此老生区中的对象有两个特点，一个是对象占用空间大，另一个是对象存活时间长。 主垃圾回收器是采用标记 - 清除（Mark-Sweep）的算法进行垃圾回收的。</p>
+<p>首先还是标记阶段，遍历调用栈，遍历没有到达的地方就是垃圾数据。 接下来就是垃圾的清除过程。</p>
+<p><img src="https://static001.geekbang.org/resource/image/d0/85/d015db8ad0df7f0ccb1bdb8e31f96e85.png" class="lazyload" data-srcset="https://static001.geekbang.org/resource/image/d0/85/d015db8ad0df7f0ccb1bdb8e31f96e85.png" srcset="data:image/png;base64,666" alt="img"></p>
+<p><img src="https://static001.geekbang.org/resource/image/65/8c/652bd2df726d0aa5e67fe8489f39a18c.png" class="lazyload" data-srcset="https://static001.geekbang.org/resource/image/65/8c/652bd2df726d0aa5e67fe8489f39a18c.png" srcset="data:image/png;base64,666" alt="img"></p>
+<p>上面的标记过程和清除过程就是标记 - 清除算法，不过对一块内存多次执行标记 - 清除算法后，会产生大量不连续的内存碎片。而碎片过多会导致大对象无法分配到足够的连续内存，于是又产生了另外一种算法——标记 - 整理（Mark-Compact），这个标记过程仍然与标记 - 清除算法里的是一样的，但后续步骤不是直接对可回收对象进行清理，而是让所有存活的对象都向一端移动，然后直接清理掉端边界以外的内存。</p>
+<h3 id="全停顿"><a href="#全停顿" class="headerlink" title="全停顿"></a>全停顿</h3><p>JavaScript 是运行在主线程之上的，一旦执行垃圾回收算法，都需要将正在执行的 JavaScript 脚本暂停下来，待垃圾回收完毕后再恢复脚本执行。我们把这种行为叫做全停顿。</p>
+<p>为了降低老生代的垃圾回收而造成的卡顿，V8 将<strong>标记过程分为一个个的子标记过程</strong>，同时让垃圾回收标记和 JavaScript 应用逻辑交替进行，直到标记阶段完成，我们把这个算法称为增量标记（Incremental Marking）算法。这样就不会让用户因为垃圾回收任务而感受到页面的卡顿啦。</p>
+<p><img src="https://static001.geekbang.org/resource/image/de/e7/de117fc96ae425ed90366e9060aa14e7.png" class="lazyload" data-srcset="https://static001.geekbang.org/resource/image/de/e7/de117fc96ae425ed90366e9060aa14e7.png" srcset="data:image/png;base64,666" alt="img"></p>
+<h2 id="编译器和解释器"><a href="#编译器和解释器" class="headerlink" title="编译器和解释器"></a>编译器和解释器</h2><p>机器不能直接理解我们所写的代码，所以在执行程序之前，需要将我们所写的代码“翻译”成机器能读懂的机器语言。按语言的执行流程，可以把语言划分为编译型语言和解释型语言。</p>
+<p><strong>编译型语言在程序执行之前，需要经过编译器的编译过程，并且编译之后会直接保留机器能读懂的二进制文件，这样每次运行程序时，都可以直接运行该二进制文件，而不需要再次重新编译了。而由解释型语言编写的程序，在每次运行时都需要通过解释器对程序进行动态解释和执行。</strong></p>
+<p><img src="https://static001.geekbang.org/resource/image/4e/81/4e196603ecb78188e99e963e251b9781.png?wh=1142*510" class="lazyload" data-srcset="https://static001.geekbang.org/resource/image/4e/81/4e196603ecb78188e99e963e251b9781.png?wh=1142*510" srcset="data:image/png;base64,666" alt="img"></p>
+<p>大概的翻译流程是这样。</p>
+<h3 id="V8-是如何执行一段-JavaScript-代码的"><a href="#V8-是如何执行一段-JavaScript-代码的" class="headerlink" title="V8 是如何执行一段 JavaScript 代码的"></a>V8 是如何执行一段 JavaScript 代码的</h3><p><img src="https://static001.geekbang.org/resource/image/1a/ae/1af282bdc4036096c03074da53eb84ae.png?wh=1142*522" class="lazyload" data-srcset="https://static001.geekbang.org/resource/image/1a/ae/1af282bdc4036096c03074da53eb84ae.png?wh=1142*522" srcset="data:image/png;base64,666" alt="img"></p>
+<ol>
+<li><p>生成抽象语法树（AST）和执行上下文</p>
+<p>将源代码转换为抽象语法树，并生成执行上下文。可以把 AST 看成代码的结构化的表示，编译器或者解释器后续的工作都需要依赖于 AST，而不是源代码。 Babel也是AST的一个应用，Babel 的工作原理就是先将 ES6 源码转换为 AST，然后再将 ES6 语法的 AST 转换为 ES5 语法的 AST，最后利用 ES5 的 AST 生成 JavaScript 源代码。 </p>
+<p>生成AST有两个阶段：</p>
+<ol>
+<li>第一阶段是分词（tokenize），又称为词法分析，其作用是将一行行的源码拆解成一个个 token。所谓 token，指的是语法上不可能再分的、最小的单个字符或字符串。 </li>
+<li>第二阶段是解析（parse），又称为语法分析，其作用是将上一步生成的 token 数据，根据语法规则转为 AST。 </li>
+</ol>
+<p><img src="https://static001.geekbang.org/resource/image/83/f5/838028071f63a132cc8b27b23960e5f5.png?wh=1142*505" class="lazyload" data-srcset="https://static001.geekbang.org/resource/image/83/f5/838028071f63a132cc8b27b23960e5f5.png?wh=1142*505" srcset="data:image/png;base64,666" alt="img"></p>
+</li>
+</ol>
+<ol start="2">
+<li><p>生成字节码 </p>
+<p>此时解释器 Ignition 就登场了，它会根据 AST 生成字节码，并解释执行字节码。为啥不用机器码呢？因为机器码占用内存太大了，字节码是介于 AST 和机器码之间的一种代码。但是与特定类型的机器码无关，字节码需要通过解释器将其转换为机器码后才能执行。机器码所占用的空间远远超过了字节码，所以使用字节码可以减少系统的内存使用。 </p>
+</li>
+<li><p>执行代码 </p>
+<p>通常，如果有一段第一次执行的字节码，解释器 Ignition 会逐条解释执行。到了这里，相信你已经发现了，解释器 Ignition 除了负责生成字节码之外，它还有另外一个作用，就是解释执行字节码。在 Ignition 执行字节码的过程中，如果发现有**<em>热点代码**</em>（HotSpot），比如一段代码被重复执行多次，这种就称为热点代码，那么后台的编译器 TurboFan 就会把该段热点的字节码编译为高效的机器码，然后当再次执行这段被优化的代码时，只需要执行编译后的机器码就可以了，这样就大大提升了代码的执行效率。 </p>
+</li>
+</ol>
+
+  
+  
+    
+    <div class='footer'>
       
-        <div>
-          <a class='readmore' href='/2021/07/30/%E7%BD%91%E6%A0%BC%E5%B8%83%E5%B1%80/'>
-            Read More
-          </a>
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=http://example.com/2022/03/22/V8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/>http://example.com/2022/03/22/V8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/</a></p>
+              
+            
+          </blockquote>
         </div>
+      
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2022-03-22T13:54:16+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Mar 22, 2022</p>
+  </a>
 </div>
 
-          </div>
         
       
         
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/07/24/Flexbox/">
-        Jul 24, 2021
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        Flexbox给元素添加display：flex，那么该元素就变成一个弹性容器，它的直接子元素变成了弹性子元素（高度相同，该高度由他们的内容决定）。同时子元素按照主轴线排列，但轴的方向可以改变。
-flex中的注意事项：
+          
 
-弹性盒子中的auto外边距会填充所有可用空间。
-flex属性是三个不同大小属性的简写：flex-grow，flex-shrink，flex-basis，一般设定flex是设...
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2022/03/22/V8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/&title= - Hexo&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2022/03/22/V8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/&title= - Hexo&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2022/03/22/V8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/&title= - Hexo&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+    
       
     
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-07-24</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/07/24/Flexbox/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
 </div>
 
-          </div>
+
+
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/07/23/%E7%90%86%E8%A7%A3%E6%B5%AE%E5%8A%A8/">
-        Jul 23, 2021
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        css中的BFC详解一、何为BFC​    BFC（Block Formatting Context）格式化上下文，是Web页面中盒模型布局的CSS渲染模式，指一个独立的渲染区域或者说是一个隔离的独立容器。
-二、形成BFC的条件   1、浮动元素，float 除 none 以外的值；   2、定位元素，position（absolute，fixed）；   3、display 为以下其中之一...
-      
-    
+    </div>
   </div>
+
+
   
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-07-23</time>
-        
-      </div>
+  
+
+  
+    <div class="prev-next">
       
-        <div>
-          <a class='readmore' href='/2021/07/23/%E7%90%86%E8%A7%A3%E6%B5%AE%E5%8A%A8/'>
-            Read More
-          </a>
-        </div>
+      
+        <a class='next' href='/2022/03/16/JavaScript%E6%89%A7%E8%A1%8C%E6%9C%BA%E5%88%B6/'>
+          <p class='title'><i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>JavaScript执行机制变量提升and执行上下文执行上下文一段 JavaScript 代码在执行之前需要被 JavaScript 引擎编译，编译完成之后，才会进入执行阶段。 经过编译后，会生...</p>
+        </a>
       
     </div>
   
+</article>
 
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
 </div>
 
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/07/18/%E7%9B%92%E6%A8%A1%E5%9E%8B/">
-        Jul 18, 2021
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        盒模型宽度问题给一个元素设置宽和高时，指定的是内容的宽和高，所有的内边距，边框，外边距都是追加到该宽度之上的。所以在设置宽和高时要避免魔术数值（根据该样式试出来的值），替换它的方法可以放浏览器计算，用calc（）函数减去边框多出来的值。
-还可以通过全局设置box-sizing来改变盒模型的计算方法，使得设置长宽属性时会包括内容，内边距和边框大小总和。也可以单个元素进行修改。
-12345*,:...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-07-18</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/07/18/%E7%9B%92%E6%A8%A1%E5%9E%8B/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/07/17/%E7%9B%B8%E5%AF%B9%E5%8D%95%E4%BD%8D/">
-        Jul 17, 2021
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        夏令营2
-css in depth第二章——相对位置
-响应式设计：可以根据浏览器窗口的大小有不同的响应。在响应式网页中，需要习惯模糊值，1.2em具体是多少px不重要，主要看它在页面上的效果怎么样。
-使用em和rem作为相对长度单位。
-em和rem使用em在css中，1em等于当前元素的字号，其中却只取决于作用的元素。假如某一元素中字号大小为16px，padding为1em，那么其内间距浏览...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-07-17</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/07/17/%E7%9B%B8%E5%AF%B9%E5%8D%95%E4%BD%8D/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/07/13/%E5%B1%82%E5%8F%A0%E4%BC%98%E5%85%88%E7%BA%A7%E7%BB%A7%E6%89%BF/">
-        Jul 13, 2021
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        css in depth 第一章
-层叠层叠根据三个条件解决冲突
-
-样式表的来源（其实来源之后还要判断一下是否是内联）
-选择器优先级
-源码顺序
-
-样式表来源主要分：作者样式表，用户代理样式表（优先级从高到低）。用户代理样式表是浏览器默认的一些样式，不会做多余的事情。
-！important 的声明会被当做更高优先级的来源，优先级高于所有没有此声明的样式。
-优先级（推荐使用方法）优先级分为两部分：...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-07-13</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/07/13/%E5%B1%82%E5%8F%A0%E4%BC%98%E5%85%88%E7%BA%A7%E7%BB%A7%E6%89%BF/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/">
-        Jul 9, 2021
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        夏令营1
-对于类相关知识的复习：
-
-类中的构造器不是必须要写，但若要对类的实例进行初始化操作比如添加上属性就要写
-如果A类继承了B类，且在A类中写了构造器，那么A类构造器中的super是一定要写的super（props）
-类中定义的方法，都是放在类的原型对象上供实例去使用
-render方法放在组件的实例对象上，中的this指向指向组件实例对象
-写在组件中的方法是放在组件的原型对象上，供实例使...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-07-09</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/07/09/%E5%A4%8F%E4%BB%A4%E8%90%A51/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/03/%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1/">
-        May 3, 2021
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        变量对象JavaScript 的可执行代码，具有执行上下文，而每个上下文包括以下 3 个属性：
-
-变量对象（variable object, 简称 VO）
-作用域链（scope chain）
-this
-
-
-什么是变量对象呢？先看定义：
-
-变量对象是与执行上下文相关的数据作用域，用于存储执行上下文中的变量和函数声明。
-
-变量对象是与执行上下文对应的概念，在执行上下文的创建阶段，它依次存储着在上...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-03</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/03/%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/03/%E5%85%B3%E4%BA%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/">
-        May 3, 2021
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        关于深拷贝和浅拷贝首先需要引入基本数据类型与引用数据类型的概念。
-基本数据类型有哪些，number，string，boolean，null，undefined，symbol以及ES10新增的BigInt(任意精度整数)七类。
-引用数据类型(Object类)有常规名值对的无序对象{a:1}**，数组[1,2,3]，以及函数**等。
-而这两类数据存储分别是这样的：
-a.基本类型–名值存储在栈内存...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-03</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/03/%E5%85%B3%E4%BA%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/12/10/http/">
-        http
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        状态码当客户端向服务器端发送请求时，描述返回的请求结果。
-数字的第一位指定了响应类别，后两位无分类。
+  </article>
 
 
 
 
-这一类型的状态码，代表请求已被接受，需要继续处理。这类响应是临时响应，只包含状态行和某些可选的响应头信息，并以空行结束。
-
-这一类型的状态码，代表请求已成功被服务器接收、理解、并接受
-
-mata信息（HTML语言head区的一个辅助性标签）
-位于文档的头部，不包含任何内容。 标签的属...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-12-10</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/12/10/http/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-    
-  </section>
-  
-    
-      <br>
-      <div class="prev-next">
-        
-          <a class="prev" rel="prev" href="/">
-            <section class="post prev white-box shadow" >
-              <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;Previous&nbsp;
-            </section>
-          </a>
-        
-        <p class="current">
-          2 / 3
-        </p>
-        
-          <a class="next" rel="next" href="/page/3/">
-            <section class="post next white-box shadow">
-              &nbsp;Next&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
-            </section>
-          </a>
-        
-      </div>
-    
-  
 
 
 </div>
@@ -910,82 +601,22 @@ mata信息（HTML语言head区的一个辅助性标签）
     
     
 
-<section class="widget blogger shadow desktop mobile">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box rectangle' href='/about/'>
-          <img no-lazy src='https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-        
-        
-          <p><span id="jinrishici-sentence">Hexo</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="/atom.xml"
-              class="social fas fa-rss flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="mailto:me@xxx.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/volantis-x/"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="/"
-              class="social fas fa-headphones-alt flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
 
-  
 
-  
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
     
+  <header>
     
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
 
-  
 
-  
-    
-    
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%88%E7%A9%BA%E9%97%B4%E5%92%8C%E5%A0%86%E7%A9%BA%E9%97%B4"><span class="toc-text">栈空间和堆空间</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AD%E8%A8%80%E7%B1%BB%E5%9E%8B"><span class="toc-text">语言类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E7%A9%BA%E9%97%B4%E7%B1%BB%E5%9E%8B"><span class="toc-text">存储空间类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6"><span class="toc-text">垃圾回收</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E7%94%A8%E6%A0%88%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E6%98%AF%E5%A6%82%E4%BD%95%E5%9B%9E%E6%94%B6%E7%9A%84"><span class="toc-text">调用栈中的数据是如何回收的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A0%86%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E6%98%AF%E5%A6%82%E4%BD%95%E5%9B%9E%E6%94%B6%E7%9A%84"><span class="toc-text">堆中的数据是如何回收的</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%AF%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8"><span class="toc-text">副垃圾回收器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8"><span class="toc-text">主垃圾回收器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E5%81%9C%E9%A1%BF"><span class="toc-text">全停顿</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E5%99%A8%E5%92%8C%E8%A7%A3%E9%87%8A%E5%99%A8"><span class="toc-text">编译器和解释器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#V8-%E6%98%AF%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8C%E4%B8%80%E6%AE%B5-JavaScript-%E4%BB%A3%E7%A0%81%E7%9A%84"><span class="toc-text">V8 是如何执行一段 JavaScript 代码的</span></a></li></ol></li></ol>
+    </div>
+  </section>
 
-  
 
   
 
