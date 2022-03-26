@@ -5,10 +5,6 @@
   <!-- SEO相关 -->
   
     
-      
-        <meta name="robots" content="noindex,follow">
-      
-    
   
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -309,7 +305,7 @@
     <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper  dock' style="display: none;">
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg"></div>
           
@@ -385,374 +381,208 @@
         
 
 <div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
   
-  <section class="post-list">
+
+
+  
+  <div class="article-meta" id="top">
     
     
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/12/10/http/">
-        http
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        状态码当客户端向服务器端发送请求时，描述返回的请求结果。
-数字的第一位指定了响应类别，后两位无分类。
-
-
-
-
-这一类型的状态码，代表请求已被接受，需要继续处理。这类响应是临时响应，只包含状态行和某些可选的响应头信息，并以空行结束。
-
-这一类型的状态码，代表请求已成功被服务器接收、理解、并接受
-
-mata信息（HTML语言head区的一个辅助性标签）
-位于文档的头部，不包含任何内容。 标签的属...
-      
     
   </div>
+
+
   
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-12-10</time>
-        
-      </div>
+  <h1 id="浏览器页面循环系统"><a href="#浏览器页面循环系统" class="headerlink" title="浏览器页面循环系统"></a>浏览器页面循环系统</h1><h2 id="消息队列和事件循环"><a href="#消息队列和事件循环" class="headerlink" title="消息队列和事件循环"></a>消息队列和事件循环</h2><p>这里以渲染进程为例，每个页面的渲染进程都有一个主线程，在这个主线程里有很多要处理的事务，比如说计算布局，计算样式，执行js代码，解析DOM之类的一系列与页面有关的事件，这些事情都是在主线程里面执行的。那么如何让这么多不同类型的事情按顺序执行呢？这就涉及到这里要讲到的页面循环系统了，它是用来调度这些任务的系统，并且处理一种问题——<strong>在线程运行途中能接受并且执行新的任务</strong>。</p>
+<p>首先我们需要有一个认知，在渲染进程中，有一个IO线程是专门用来接受其他进程传进来的消息，然后将消息包装成任务提交给主线程的。比如说网络进程下载资源，浏览器进程的事件处理，都是通过IPC与IO线程先沟通，然后再打包交给主线程的。那么这里的IO线程就相当与在主线程工作的时候，不断加入新任务的机器。</p>
+<h3 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h3><p>那么现在进入正题，当主线程接收到IO线程的一些任务，是怎么处理的呢？这里引入了一个概念叫做<strong>消息队列。</strong></p>
+<p>消息队列是一种数据结构，可以存放要执行的任务。它符合队列<strong>“先进先出”</strong>的特点，也就是说要添加任务的话，<strong>添加到队列的尾部；要取出任务的话，从队列头部去取。</strong></p>
+<p><img src="https://static001.geekbang.org/resource/image/6d/5e/6d141ec0925590d83d97a37cce8e6f5e.png" class="lazyload" data-srcset="https://static001.geekbang.org/resource/image/6d/5e/6d141ec0925590d83d97a37cce8e6f5e.png" srcset="data:image/png;base64,666" alt="img"></p>
+<h3 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h3><p>加入了消息队列，就可以改造出一个合理的事件循环系统了。IO线程中产生的新任务添加进消息队列尾部，渲染主线程会循环地从消息队列头部中读取任务，执行任务。</p>
+<p><img src="https://static001.geekbang.org/resource/image/2a/ab/2ac6bc0361cb4690c5cc83d8abad22ab.png" class="lazyload" data-srcset="https://static001.geekbang.org/resource/image/2a/ab/2ac6bc0361cb4690c5cc83d8abad22ab.png" srcset="data:image/png;base64,666" alt="img"></p>
+<p>具体图示如上。主线程执行的任务都全部从消息队列中获取。所以如果有其他线程想要发送任务让主线程去执行，只需要将任务添加到该消息队列中就可以了。由于是多个线程操作同一个消息队列，所以在添加任务和取出任务时还会加上一个<strong>同步锁</strong>，这块内容也要注意下。</p>
+<h2 id="宏任务和微任务"><a href="#宏任务和微任务" class="headerlink" title="宏任务和微任务"></a>宏任务和微任务</h2><p>由上一part可以看出页面使用的是单线程来处理各个任务的，页面线程所有执行的任务都来自于消息队列。消息队列是“先进先出”的属性，也就是说放入队列中的任务，需要等待前面的任务被执行完，才会被执行。鉴于这个属性，就有如下两个问题需要解决。</p>
+<p>首先就是处理高优先级的任务，就比如说监控DOM节点的变化，根据这些变化去处理相应的业务逻辑，这里就涉及到一个问题，因为DOM变化一般来说都非常频繁，如果在当前任务处理过程中同步调用相应的js接口，那么当前任务的执行时间就会变长，相应执行效率就会下降。但如果将它们都添加到消息队列的尾部，可能前面有很多任务在排队，实时性就不好。为了解决这个问题，微任务就应运而生啦。</p>
+<h3 id="宏任务"><a href="#宏任务" class="headerlink" title="宏任务"></a>宏任务</h3><p>通常我们把消息队列中的任务称为宏任务，每个宏任务中都包含了一个微任务队列，在执行宏任务的过程中，如果 DOM 有变化，那么就会将该变化添加到微任务列表中，这样就不会影响到宏任务的继续执行，因此也就解决了执行效率的问题。等宏任务中的主要功能都直接完成之后，这时候，渲染引擎并不着急去执行下一个宏任务，而是执行当前宏任务中的微任务，因为 DOM 变化的事件都保存在这些微任务队列中，这样也就解决了实时性问题。</p>
+<p>消息队列中的任务时间颗粒粗，微任务可以保持更高的实时性。基于微任务的技术有 MutationObserver、Promise 以及以 Promise 为基础开发出来的很多其他的技术。那么现在再更细致的介绍一下什么叫宏任务和微任务。</p>
+<p>简单来说，我们把这些消息队列中的任务称为宏任务，例子之前也举过了，需要注意的是，<strong>setTimeout 函数触发的回调函数都是宏任务。</strong></p>
+<h3 id="微任务"><a href="#微任务" class="headerlink" title="微任务"></a>微任务</h3><p><strong>微任务就是一个需要异步执行的函数，执行时机是在主函数执行结束之后、当前宏任务结束之前。</strong></p>
+<p>不过要搞清楚微任务系统是怎么运转起来的，就得站在 V8 引擎的层面来分析下。我们知道当 JavaScript 执行一段脚本的时候，V8 会为其创建一个全局执行上下文，在创建全局执行上下文的同时，V8 引擎也会在内部创建一个微任务队列。顾名思义，这个微任务队列就是用来存放微任务的，因为在当前宏任务执行的过程中，有时候会产生多个微任务，这时候就需要使用这个微任务队列来保存这些微任务了。不过这个微任务队列是给 V8 引擎内部使用的，所以你是无法通过 JavaScript 直接访问的。也就是说每个宏任务都关联了一个微任务队列。</p>
+<p> 微任务是怎么产生的？在现代浏览器里面，产生微任务有两种方式。</p>
+<p>第一种方式是使用 MutationObserver 监控某个 DOM 节点，然后再通过 JavaScript 来修改这个节点，或者为这个节点添加、删除部分子节点，当 DOM 节点发生变化时，就会产生 DOM 变化记录的微任务。</p>
+<p>第二种方式是使用 Promise，当调用 Promise.resolve() 或者 Promise.reject() 的时候，也会产生微任务。 注意是调用了resolve和reject之后才会产生微任务。</p>
+<p>那么微任务是怎么执行的呢？</p>
+<p>通常情况下，在当前宏任务中的 JavaScript 快执行完成时，也就在 JavaScript 引擎准备退出全局执行上下文并清空调用栈的时候，JavaScript 引擎会检查全局执行上下文中的微任务队列，然后按照顺序执行队列中的微任务。WHATWG 把执行微任务的时间点称为<strong>检查点</strong>。如果在执行微任务的过程中产生新的微任务，也会将该微任务加入到本微任务队列中，一直执行到队列为空才会结束，执行下一个宏任务。</p>
+<p><img src="https://static001.geekbang.org/resource/image/83/88/839f468be3d683019c309e0acd8cd788.png" class="lazyload" data-srcset="https://static001.geekbang.org/resource/image/83/88/839f468be3d683019c309e0acd8cd788.png" srcset="data:image/png;base64,666" alt="img"></p>
+<p><img src="https://static001.geekbang.org/resource/image/1d/92/1db319c879610816c0cfea22723fc492.png" class="lazyload" data-srcset="https://static001.geekbang.org/resource/image/1d/92/1db319c879610816c0cfea22723fc492.png" srcset="data:image/png;base64,666" alt="img"></p>
+<p>以上就是微任务的工作流程，从上面分析我们可以得出如下几个结论：</p>
+<ul>
+<li>微任务和宏任务是绑定的，每个宏任务在执行时，会创建自己的微任务队列。</li>
+<li>微任务的执行时长会影响到当前宏任务的时长。比如一个宏任务在执行过程中，产生了 100 个微任务，执行每个微任务的时间是 10 毫秒，那么执行这 100 个微任务的时间就是 1000 毫秒，也可以说这 100 个微任务让宏任务的执行时间延长了 1000 毫秒。所以你在写代码的时候一定要注意控制微任务的执行时长。</li>
+<li>在一个宏任务中，分别创建一个用于回调的宏任务和微任务，无论什么情况下，微任务都早于宏任务执行。 因为在微任务中产生的宏任务也是要插入到消息队列或者是延迟队列的末尾的，这肯定是需要下一次事件循环才有可能被执行的，而微任务在这一次的事件循环之前就会被执行。</li>
+</ul>
+<h2 id="应用实例"><a href="#应用实例" class="headerlink" title="应用实例"></a>应用实例</h2><h3 id="MutationObserver"><a href="#MutationObserver" class="headerlink" title="MutationObserver"></a>MutationObserver</h3><p> MutationObserver 是用来监听DOM改变的一套方法。</p>
+<p>首先 MutationObserver 将响应函数改为异步调用，并且并不是在每次DOM改变都调用，而是等多次DOM变化以后，一次性触发异步调用（有点像react的虚拟DOM实现），并且使用一个数据结构来记录期间所有的DOM变化。</p>
+<p>消息通知的及时性则是使用微任务来解决，如果采用 setTimeout 创建宏任务来触发回调的话，那么实时性就会大打折扣。这时候，微任务就可以上场了，在每次 DOM 节点发生变化的时候，渲染引擎将变化记录封装成微任务，并将微任务添加进当前的微任务队列中。这样当执行到检查点的时候，V8 引擎就会按照顺序执行微任务了。</p>
+<h3 id="setTimeout"><a href="#setTimeout" class="headerlink" title="setTimeout"></a>setTimeout</h3><p>之前也说了，setTimeout触发的回调函数是一个宏任务，那么要执行一段异步任务，需要先将任务添加到消息队列中。不过通过定时器设置回调函数有点特别，它们需要在指定的时间间隔内被调用，但消息队列中的任务是按照顺序执行的，所以为了保证回调函数能在指定时间内执行，你不能将定时器的回调函数直接添加到消息队列中。</p>
+<p>这里就需要知道一个事实，就是Chrome内部布置一个消息队列，还有一个专为延迟执行的任务维护的队列，包括了定时器和内部需要延迟执行的任务。所以settimeout的回调函数会被添加到延迟队列中。</p>
+<p>那么消息循环系统是怎么触发延迟队列的呢？</p>
+<p>通常情况下，在处理完消息队列的一个任务以后就会去一次延迟队列，判断延迟队列中的任务是否到期，然后依次执行已经到期的任务。等任务执行完了，再执行消息队列中的下一个任务。</p>
+<p>但是这样的机制也会导致setTimeout有一些不可避免的缺点。</p>
+<ol>
+<li>有很多因素会导致回调函数执行比设定的预期值要久，其中一个就是当前任务执行时间过久从而导致定时器设置的任务被延后执行。</li>
+<li>如果 setTimeout 存在嵌套调用，那么系统会设置最短时间间隔为 4 毫秒。也就是说在定时器函数里面嵌套调用定时器，也会延长定时器的执行时间。是因为在 Chrome 中，定时器被嵌套调用 5 次以上，系统会判断该函数方法被阻塞了，如果定时器的调用时间间隔小于 4 毫秒，那么浏览器会将每次调用的时间间隔设置为 4 毫秒。</li>
+<li>未激活的页面，setTimeout 执行最小间隔是 1000 毫秒。目的是为了优化后台页面的加载损耗以及降低耗电量。</li>
+<li>延时执行时间有最大值。如果 setTimeout 设置的延迟值大于 2147483647 毫秒（大约 24.8 天）时就会溢出，那么相当于延时值被设置为 0 了。</li>
+<li>使用 setTimeout 设置的回调函数中的 this 不符合直觉。如果被 setTimeout 推迟执行的回调函数是某个对象的方法，那么该方法中的 this 关键字将指向全局环境，而不是定义时所在的那个对象。最简单的解决方法就是用bind绑定一下。</li>
+</ol>
+<h3 id="XMLHttpRequest"><a href="#XMLHttpRequest" class="headerlink" title="XMLHttpRequest"></a>XMLHttpRequest</h3><p><img src="https://static001.geekbang.org/resource/image/29/c6/2914a052f4f249a52077692a22ee5cc6.png" class="lazyload" data-srcset="https://static001.geekbang.org/resource/image/29/c6/2914a052f4f249a52077692a22ee5cc6.png" srcset="data:image/png;base64,666" alt="img"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">GetWebData</span>(<span class="params">URL</span>)</span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 1:新建XMLHttpRequest请求对象</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">let</span> xhr = <span class="keyword">new</span> XMLHttpRequest()</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 2:注册相关事件回调处理函数 </span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    xhr.onreadystatechange = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">switch</span>(xhr.readyState)&#123;</span><br><span class="line">          <span class="keyword">case</span> <span class="number">0</span>: <span class="comment">//请求未初始化</span></span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&quot;请求未初始化&quot;</span>)</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">          <span class="keyword">case</span> <span class="number">1</span>:<span class="comment">//OPENED</span></span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&quot;OPENED&quot;</span>)</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">          <span class="keyword">case</span> <span class="number">2</span>:<span class="comment">//HEADERS_RECEIVED</span></span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&quot;HEADERS_RECEIVED&quot;</span>)</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">          <span class="keyword">case</span> <span class="number">3</span>:<span class="comment">//LOADING  </span></span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&quot;LOADING&quot;</span>)</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">          <span class="keyword">case</span> <span class="number">4</span>:<span class="comment">//DONE</span></span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">this</span>.status == <span class="number">200</span>||<span class="built_in">this</span>.status == <span class="number">304</span>)&#123;</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="built_in">this</span>.responseText);</span><br><span class="line">                &#125;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&quot;DONE&quot;</span>)</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    xhr.ontimeout = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">&#x27;ontimeout&#x27;</span>) &#125;</span><br><span class="line">    xhr.onerror = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">&#x27;onerror&#x27;</span>) &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 3:打开请求</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    xhr.open(<span class="string">&#x27;Get&#x27;</span>, URL, <span class="literal">true</span>);<span class="comment">//创建一个Get请求,采用异步</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 4:配置参数</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    xhr.timeout = <span class="number">3000</span> <span class="comment">//设置xhr请求的超时时间</span></span><br><span class="line">    xhr.responseType = <span class="string">&quot;text&quot;</span> <span class="comment">//设置响应返回的数据格式</span></span><br><span class="line">    xhr.setRequestHeader(<span class="string">&quot;X_TEST&quot;</span>,<span class="string">&quot;time.geekbang&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 5:发送请求</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    xhr.send();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>首先， 创建 XMLHttpRequest 对象，用来执行实际的网络请求操作。第二步：为 xhr 对象注册回调函数。后台任务执行完成之后就会通过调用回调函数来告诉其执行结果。第三步：配置基础的请求信息，首先要通过 open 接口配置一些基础的请求信息，包括请求的地址、请求方法（是 get 还是 post）和请求方式（同步还是异步请求），这就是一整个 XMLHttpRequest 请求流程。</p>
+<h4 id="XMLHttpRequest-使用过程中的“坑”"><a href="#XMLHttpRequest-使用过程中的“坑”" class="headerlink" title="XMLHttpRequest 使用过程中的“坑”"></a>XMLHttpRequest 使用过程中的“坑”</h4><ol>
+<li><p>跨域问题  默认情况下，跨域请求是不被允许的。</p>
+</li>
+<li><p>HTTPS 混合内容的问题  HTTPS 混合内容是 HTTPS 页面中包含了不符合 HTTPS 安全要求的内容，比如包含了 HTTP 资源，通过 HTTP 加载的图像、视频、样式表、脚本等，都属于混合内容。</p>
+</li>
+</ol>
+
+  
+  
+    
+    <div class='footer'>
       
-        <div>
-          <a class='readmore' href='/2020/12/10/http/'>
-            Read More
-          </a>
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=http://example.com/2022/03/26/%E6%B5%8F%E8%A7%88%E5%99%A8%E9%A1%B5%E9%9D%A2%E5%BE%AA%E7%8E%AF%E7%B3%BB%E7%BB%9F/>http://example.com/2022/03/26/%E6%B5%8F%E8%A7%88%E5%99%A8%E9%A1%B5%E9%9D%A2%E5%BE%AA%E7%8E%AF%E7%B3%BB%E7%BB%9F/</a></p>
+              
+            
+          </blockquote>
         </div>
+      
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2022-03-26T16:36:33+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Mar 26, 2022</p>
+  </a>
 </div>
 
-          </div>
         
       
         
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/12/05/%E7%BB%A7%E6%89%BF/">
-        Dec 5, 2020
-      </a>
-    </h2>
-  
-  <div class='md'>
+          
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
     
       
-        继承A 对象通过继承B对象，就能直接拥有B对象的所有属性和方法。这对于代码的复用非常有用，
-JavaScript通过使用“类”（class）和原型对象（prototype）实现。常见的有六种继承方式。
-方法一：原型链继承关键在于：子类型的原型为父类型的一个实例对象。
-
-
-让父类的属性和方法在子类实例的原型链上。
-
-CHILD .prototype = new PARENT（）；s
-
-CHIL...
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2022/03/26/%E6%B5%8F%E8%A7%88%E5%99%A8%E9%A1%B5%E9%9D%A2%E5%BE%AA%E7%8E%AF%E7%B3%BB%E7%BB%9F/&title= - Hexo&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2022/03/26/%E6%B5%8F%E8%A7%88%E5%99%A8%E9%A1%B5%E9%9D%A2%E5%BE%AA%E7%8E%AF%E7%B3%BB%E7%BB%9F/&title= - Hexo&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2022/03/26/%E6%B5%8F%E8%A7%88%E5%99%A8%E9%A1%B5%E9%9D%A2%E5%BE%AA%E7%8E%AF%E7%B3%BB%E7%BB%9F/&title= - Hexo&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+    
       
     
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-12-05</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/12/05/%E7%BB%A7%E6%89%BF/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
 </div>
 
-          </div>
+
+
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/12/04/Task%203%EF%BC%9A%E5%AF%B9%E8%B1%A1%EF%BC%8C%E6%95%B0%E7%BB%84%E4%BB%A5%E5%8F%8A%E5%AD%97%E7%AC%A6%E4%B8%B2/">
-        Dec 4, 2020
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        Task 3：对象，数组以及字符串数组语法
-split(‘’”), 字符串转数组,返回一个新的数组
-
-slice(start,end),字符串截取，[1,2,3,5].slice(-1)  =&gt; [5],返回截取后的数组，不改变原数组
-
-splice()，删除或者添加字符串 [].splite(1,1,’2’), 在下标为1的位置开始 删除1个元素，添加“2”到这个位置,改变原来数组
-...
-      
-    
+    </div>
   </div>
+
+
   
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-12-04</time>
-        
-      </div>
+  
+
+  
+    <div class="prev-next">
       
-        <div>
-          <a class='readmore' href='/2020/12/04/Task%203%EF%BC%9A%E5%AF%B9%E8%B1%A1%EF%BC%8C%E6%95%B0%E7%BB%84%E4%BB%A5%E5%8F%8A%E5%AD%97%E7%AC%A6%E4%B8%B2/'>
-            Read More
-          </a>
-        </div>
+      
+        <a class='next' href='/2022/03/22/V8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/'>
+          <p class='title'><i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>V8工作原理栈空间和堆空间语言类型首先需要认知一下js是一种什么类型的语言？
+一般来说代码声明有两种类型，一种是在声明变量之前要定义 变量类型。我们把这种在使用之前就需要确认其变量数据类型的称为...</p>
+        </a>
       
     </div>
   
+</article>
 
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
 </div>
 
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/11/27/javascript%20task1&2/">
-        Nov 27, 2020
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        javascript
-0.1+0.1=0.2但0.1+0.2不等于0.3？
+  </article>
 
-​       计算机在表示小数的时候存在舍入误差，在0.1+0.1是这种舍入误差被抵消掉了，但是这种负负得正的效果不一定每次都能完美抵消，故在0.1+0.2的时候计算机只能表示出最接近0.3的值而非0.3。但有些值不存在舍入误差，比如0.5.
 
-number底层的存储格式
 
-​      64位的二进制储存。
 
-...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-11-27</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/11/27/javascript%20task1&2/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/11/21/%E5%AD%A6%E8%80%8C%E6%9C%BA%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/">
-        Nov 21, 2020
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-border-radius 允许你设置元素的外边框圆角。当使用一个半径时确定一个圆形，当使用两个半径时确定一个椭圆。这个(椭)圆与边框的交集形成圆角效果。
-
-使用hover效果改变字体颜色问题。父元素中存在两个子元素，其中一个子元素设置过字体颜色，不可利用hover改变父元素整体字体颜色。**子元素中设置字体颜色优先级高于父元素**。
-此时能使用“&gt;”符号，来提升父元素css优先级。...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-11-21</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/11/21/%E5%AD%A6%E8%80%8C%E6%9C%BA%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/10/10/%E7%AC%AC%E4%B8%80%E7%AF%87/">
-        Oct 10, 2020
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        这是第一篇博文不知道该说点什么…大概试一试学到的基础markdown语法吧链接一下我的GitHub吧
-欢迎浏览我的GitHub
-
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-10-10</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/10/10/%E7%AC%AC%E4%B8%80%E7%AF%87/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/10/08/hello-world/">
-        Hello World
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Qu...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-10-08</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/10/08/hello-world/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-    
-  </section>
-  
-    
-      <br>
-      <div class="prev-next">
-        
-          <a class="prev" rel="prev" href="/page/2/">
-            <section class="post prev white-box shadow" >
-              <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;Previous&nbsp;
-            </section>
-          </a>
-        
-        <p class="current">
-          3 / 3
-        </p>
-        
-      </div>
-    
-  
 
 
 </div>
@@ -762,82 +592,22 @@ Qu...
     
     
 
-<section class="widget blogger shadow desktop mobile">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box rectangle' href='/about/'>
-          <img no-lazy src='https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-        
-        
-          <p><span id="jinrishici-sentence">Hexo</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="/atom.xml"
-              class="social fas fa-rss flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="mailto:me@xxx.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/volantis-x/"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="/"
-              class="social fas fa-headphones-alt flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
 
-  
 
-  
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
     
+  <header>
     
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
 
-  
 
-  
-    
-    
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%92%8C%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF"><span class="toc-text">消息队列和事件循环</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97"><span class="toc-text">消息队列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF"><span class="toc-text">事件循环</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8F%E4%BB%BB%E5%8A%A1%E5%92%8C%E5%BE%AE%E4%BB%BB%E5%8A%A1"><span class="toc-text">宏任务和微任务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%8F%E4%BB%BB%E5%8A%A1"><span class="toc-text">宏任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AE%E4%BB%BB%E5%8A%A1"><span class="toc-text">微任务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B"><span class="toc-text">应用实例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MutationObserver"><span class="toc-text">MutationObserver</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#setTimeout"><span class="toc-text">setTimeout</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#XMLHttpRequest"><span class="toc-text">XMLHttpRequest</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#XMLHttpRequest-%E4%BD%BF%E7%94%A8%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E2%80%9C%E5%9D%91%E2%80%9D"><span class="toc-text">XMLHttpRequest 使用过程中的“坑”</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </section>
 
-  
 
   
 
